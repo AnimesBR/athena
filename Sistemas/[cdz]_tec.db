@@ -1,0 +1,245 @@
+[controledocosmo]
+nome=Controle do Cosmo
+desc=Técnica básica que permite manipular o cosmo para atacar.
+tipo=habilidade
+l=x
+
+[forçavital]
+nome=Força Vital
+desc=O usuário é capaz de utilizar sua vitalidade como parte da potência do ataque, podendo até a falecer com isso.
+tipo=habilidade
+l=x
+
+[precedivina]
+nome=Prece Divina
+desc=Por uma vez na luta o usuário irá invocar as preces do seu deus protetor e então lançar um golpe com duas vezes o seu poder investido caso sua vitalidade esteja abaixo da metade (50%).
+tipo=habilidade
+l=x
+
+[poderoculto]
+nome=Poder Oculto
+desc=Quando a vitalidade do usuário está abaixo de 25% na luta, ele se torna capaz de utilizar seu poder oculto, tendo a força dos seus golpes multiplicada por 2.
+tipo=habilidade
+l=x
+
+[asasdeluz]
+nome=Asas de Luz
+desc=Técnica que permite aos anjos planarem por um curto período de tempo, duas asas semi-transparentes e ligeiramente douradas surgem às suas costas. Seus movimentos se tornam leves e podem atingir alturas medianas, enquanto estiver utilizando esta técnica a potência dos seus golpes físicos cai pela metade.
+tipo=habilidade
+l=x
+
+[toquedivino]
+nome=Toque Divino
+desc=Ao simples toque com a palma de sua mão em um adversário, o Anjo é capaz de absorver parte de sua vitalidade para ele mesmo, sugando sua força vital. Esta técnica só pode ser utilizada uma vez na luta e tem o limite de 25% cósmico que equivale a 25% de vitalidade.
+tipo=habilidade
+l=x
+
+[soprodevida]
+nome=Sopro de Vida
+desc=Se usado enquanto vivo no turno em que o anjo receberia o golpe de misericórdia, faz com que a energia do mesmo permaneça por mais dois turnos com 25% de vitalidade, mas esta habilidade só pode ser usada uma vez e o anjo falecerá obrigatoriamente depois dos 2 turnos, caso perca os 25% de vitalidade antes também morre.
+tipo=habilidade
+l=x
+
+[telecinese]
+nome=Telecinese
+desc=A telecinésia é a alegada capacidade de mover fisicamente um objeto com a força psíquica (mente), fazendo-o levitar, mover-se ou apenas ser abalado pela força psíquica. Necessita do uso de Capacidade Mental.
+tipo=habilidade
+l=x
+
+[teletransporte]
+nome=Teletransporte
+desc=O teletransporte é a brusca mudança de um objeto ou alguém de um local para outro, sendo este local próximo ou distante. O cavaleiro pode teletransportar a si mesmo ou qualquer coisa para onde quiser, considera-se o movimento de teleporte como acima da velocidade da luz, já que aparece instantaneamente em outro local. Só pode ser utilizado a cada dois turnos. Não é necessário gastar capacidade mental.
+tipo=habilidade
+l=x
+
+[telepatia]
+nome=Telepatia
+desc=Telepatia é a habilidade de adquirir informação a cerca dos pensamentos, sentimentos ou atividades de outra pessoa sem o uso de ferramentas tais como a linguagem corporal ou sinais. Necessário uso de capacidade mental.
+tipo=habilidade
+l=x
+
+[punhodeluz]
+nome=Punho de Luz
+desc=Indica que ao realizar seus ataques na velocidade da luz, tanto cósmicos como físicos, vários raios de energia seguem se entrelaçando em direção ao alvo. Não é algo para ser usado e sim automático, torna a esquiva adversária muito difícil.
+tipo=habilidade
+l=x
+
+[zeroabsoluto]
+nome=Zero Absoluto
+desc=corresponde à temperatura de -273ºC, permite que o cavaleiro atinja próximo a essa temperatura ao desferir seus golpes gélidos.
+tipo=habilidade
+l=x
+
+[controledomicrocosmo]
+nome=Controle do Microcosmo
+desc=O guerreiro se torna apto a queimar seu cosmo no limite, é o poder de fusionar os átomos, aproveitando ao máximo o que o cosmo pode oferecer. Indica que o usuário alcançou domínio sobre o 7º sentido e pode manusear o cosmo melhor do que alguém que só possua o Controle do Cosmo.
+tipo=habilidade
+l=x
+
+[precisão]
+nome=Precisão
+desc=O usuário se torna capaz de focar um ponto específico no seu ataque, tendo bastante precisão, mas para isso sua guarda fica aberta.
+tipo=habilidade
+l=5
+
+[impulsão]
+nome=Impulsão
+desc=O usuário através do cosmo, não mais precisa correr, sendo impulsionado pelo mesmo se locomove muito mais rápido, como se estivesse deslizando.
+tipo=habilidade
+l=5
+
+[percepçãoaguçada]
+nome=Percepção Aguçada
+desc=Ao ver um golpe especial pela primeira vez o usuário percebe como o golpe funciona e caso venha a ser usado uma segunda vez, tanto em lutas quanto RPG`s esse golpe não funcionará.
+tipo=habilidade
+l=15
+
+[furtividade]
+nome=Furtividade
+desc=O usuário em condições favoráveis, consegue se ocultar no ambiente com maior facilidade. Ele não pode ser atingido por nenhum ataque direto, mesmo que utilizem a habilidade precisão. Ataques que atinjam uma área grande poderão afetá-lo e esta habilidade só dura 1 turno.
+tipo=habilidade
+l=15
+
+[janeladaalma]
+nome=Janela da Alma
+desc=O cavaleiro se concentra mentalmente ignorando tudo ao seu redor, o ambiente, o som, enfim, tudo. Apenas o cosmo do seu adversário é visto, retirando qualquer possibilidade deste lhe tentar pegar em surpresa, ou caso esteja sem seus sentidos iniciais.
+tipo=habilidade
+l=15
+
+[Restrição]
+nome=Restrição
+desc=Emanando seu cosmo de encontro ao oponente este paraliza o inimigo impedindo sua próxima ação caso a potência empregada supere a do oponente.
+tipo=habilidade
+l=30
+
+[manipulação]
+nome=Manipulação
+desc=Permite ao usuário transmutar seus atributos durante a luta, substituindo o valor de um atributo pelo de outro.
+tipo=habilidade
+l=250
+
+[concentração]
+nome=Concentração
+desc=O usuário fica parado durante 1 ação adversária, mas no início do próximo movimento do oponente, libera seu ataque com o dobro de capacidade e com acerto automático.
+tipo=manobra ofensiva
+l=5
+
+[ataquemúltiplo]
+nome=Ataque Múltiplo
+desc=O usuário ao desferir um ataque, tem o mesmo multiplicado em 5x durante sua tragetória, sendo válido apenas para ataques cósmicos singulares. A potência se mantém a mesma, o ataque apenas se divide, gerando dificuldade para ser defendido.
+tipo=manobra ofensiva
+l=5
+
+[destruiçãoescalar]
+nome=Destruição Escalar
+desc=O usuário libera uma grande explosão cósmica de área com o dobro de sua capacidade cósmica, mas caso sua capacidade física não seja o dobro da cósmica receberá 50% do dano causado.
+tipo=manobra ofensiva
+l=10
+
+[exclamação]
+nome=Exclamação
+desc=Habilidade para ser utilizada em conjunto por 2 ou mais usuários, o poder ofensivo investido dos envolvidos é somada e multiplicada por dois, gerando um ataque devastador. É uma técnica proibída pelos Deuses, caso seja utilizada o usuário estará apto a perder seu posto/armadura.
+tipo=manobra ofensiva
+l=15
+
+[privação]
+nome=Privação
+desc=O cavaleiro priva um ou mais dos seus sentidos durante 2 turnos, aguçando seu cosmo e o acumulando com o tempo, no final destes dois turnos todo o cosmo acumulado é liberado em um golpe com força multiplicada pelo número de sentidos privados.
+tipo=manobra ofensiva
+l=30
+
+[supernova]
+nome=Super Nova
+desc=O Cosmo reluzente em milhares de partículas concentra-se em um único ponto, transformando-se em um imenso que não pode ser contido. O Cosmo concentrado chega a um ponto em que não pode mais permanecer comprimido e se dispersa de uma só vez, gerando um golpe devastador com 4x a potência empregada.
+tipo=manobra ofensiva
+l=75
+
+[círculodefensivo]
+nome=Círculo Defensivo
+desc=O usuário rapidamente cria uma barreira cósmica ao seu redor, repelindo um ataque com 100% de eficiência, mas na próxima ação do adversário não poderá se mover. Vale para golpes especiais.
+tipo=manobra defensiva
+l=10
+
+[meditação]
+nome=Meditação
+desc=O usuário fica parado durante a ação adversária, mas após esta ação terá sua vitalidade recuperada, equivalente à porcentagem de capacidade cósmica utilizada. Só pode ser utilizada 1 vez na luta e 100% de capacidade cósmica equivalem a 10% de vitalidade.
+tipo=manobra defensiva
+l=15
+
+[reflexão]
+nome=Reflexão
+desc=O usuário energiza suas mãos sendo capaz de bloquear totalmente um ataque cósmico e lança-lo de volta contra seu adversário com metade da força inicial. O gasto tem que ser proporcional à capacidade usada.
+tipo=manobra defensiva
+l=15
+
+[reversal]
+nome=Reversal
+desc=O usuário poderá interceptar um ataque inimigo e caso sua capacidade física ou cósmica comparada a utilizada pelo adversário seja maior, irá reverter o dano ao adversário, serve tanto para ataques físicos quanto para ataques cósmicos.
+tipo=manobra defensiva
+l=30
+
+[bloqueioespiritual]
+nome=Bloqueio Espiritual
+desc=o usuário fecha os olhos e se concentra, qualquer tentativa de ilusão ou ataque que afete sua mente é imediatamente cancelado, porém essa concentração cansa o seu utilizador, e reflete em seu estado físico, fazendo com que ele perca um pouco de sua vitalidade.
+tipo=manobra defensiva
+l=50
+
+[fendapsíquica]
+nome=Fenda Psíquica
+desc=Os olhos do usuário brilham e imediatamente uma onda psíquica age sobre a mente do oponente, no próximo turno ele estará desnorteado e tonto.
+tipo=técnica mental
+l=15
+
+[ElípsePsíquica]
+nome=Elípse Psíquica
+desc=O usuário se torna capaz de controlar o ar em volta de seu corpo, podendo redireciona-lo afim de bloquear ou redirecionar golpes e até capacitar sua movimentação. O usuário concentra todo seu poder Psíquico neste golpe. Portanto não pode fazer mais nada enquanto o utiliza. Podendo retornar a luta só quando esta for desativada.
+tipo=técnica mental
+l=30
+
+[premoniçãoinstantânea]
+nome=Premonição Instantânea
+desc=O guerreiro se torna sensível a coisas que estão prestes a acontecer, como um golpe ou ação adversária. Até mesmo acontecimentos randômicos da natureza.
+tipo=habilidade extra
+l=Y
+
+[velocidadedosom]
+nome=Velocidade do Som
+desc=O guerreiro torna-se capaz de atingir a velocidade do som nos seus ataques. Para maiores informações digite !6º sentido.
+tipo=habilidade extra
+l=Y
+
+[velocidadedaluz]
+nome=Velocidade da Luz
+desc=O guerreiro torna-se capaz de atingir a velocidade da luz nos seus ataques.  Para maiores informações digite !7º sentido.
+tipo=habilidade extra
+l=Y
+
+[arayashiki]
+nome=Arayashiki
+desc=Aquele que o despertar poderá ir e vir do Mundo dos Mortos sem perder a vida. Posteriormente de diferentes dimensões.
+tipo=habilidade extra
+l=Y
+
+[misophetamenos]
+nome=Misopheta Menos
+desc=Técnica do envelhecimento retardado usado pelos deuses. Com essa técnica, o coração passa a bater apenas 100 mil vezes por ano. Caso o sistema seja zerado você fará parte do Hall da Fama e seu cadastro será guardado.
+tipo=habilidade extra
+l=Y
+
+[atarashi]
+nome=Atarashi
+desc=Nada mais que a vontade suprema despertada no interior de um ser, tornando-o totalmente interligado ao mundo ao seu redor, se tornando praticamente um só, atinge a compreensão total da vida e funcionamento das coisas.
+tipo=habilidade extra
+l=Y
+
+[posturadeiai]
+nome=Postura de IAI
+desc=É a posição de ataque e defesa perfeitos. Quando esta técnica é utilizada junto com o GC, seu ataque atinge a velocidade perfeita de seu golpe. Podendo fazer que seus inimigos não vejam seus ataques/movimentos.
+tipo=habilidade extra
+l=Y
+
+[punhodeaço]
+nome=Punho de Aço
+desc=Indica que o cavaleiro retentor do Punho de Aço possui uma força fora do normal comparado aos demais. Seus golpes de capacidade física são sempre multiplicados por 2.
+tipo=habilidade extra
+l=Y

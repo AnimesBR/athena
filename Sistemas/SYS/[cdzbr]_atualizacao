@@ -1,0 +1,333 @@
+on *:text:!atualizar*:#animerpg ,#Sekai,#Makai,#Kaikai,#Tenkai,#Meikai,#starhill:{
+  verificar2
+  $verstaff(1)
+  if ($readini(cdz\sistemas\[cdz]_lutas.db,Geral,luta) != não) { .msg $nick $prestaff(Atenção,Já está havendo uma atualização) | halt }
+  if ($2 == $null) { .msg $nick $prestaff(Atenção,Parâmetros insuficientes) | halt }
+  elseif ($3 == $null) { .msg $nick $prestaff(Atenção,Parâmetros insuficientes. $ex(!Atualizar Vencedor Perdedor Narrador Nível)) | halt }
+  elseif ($4 == $null) { .msg $nick $prestaff(Atenção,Parâmetros insuficientes. $ex(!Atualizar Vencedor Perdedor Narrador Nível)) | halt }
+  elseif ($5 == $null) { .msg $nick $prestaff(Atenção,Parâmetros insuficientes. $ex(!Atualizar Vencedor Perdedor Narrador Nível)) | halt }
+  elseif !$istok(fácil média difícil,$5,32) { .msg $nick $prestaff(Atenção,Parâmetros inválidos) | halt }
+  elseif (!$dados($2,dados,nome)) { .msg $nick $prestaff(Atenção,$2 não está cadastrado em nosso sistema) | halt }
+  elseif (!$dados($3,dados,nome)) { .msg $nick $prestaff(Atenção,$3 não está cadastrado em nosso sistema) | halt }
+  elseif (!$dados($4,dados,nome)) { .msg $nick $prestaff(Atenção,$4 não está cadastrado em nosso sistema) | halt }
+  elseif ($dados($2,dados,hpatu) == 0) { .msg $nick $prestaff(Atenção,Você não pode atualizar esta luta enquanto $destaque($2) estiver em estado crítico de vida) | halt }
+  elseif ($dados($3,dados,hpatu) == 0) { .msg $nick $prestaff(Atenção,Você não pode atualizar esta luta enquanto $destaque($3) estiver em estado crítico de vida) | halt }
+  elseif ($5 != $null) {
+    writeini cdz\sistemas\[cdz]_lutas.db Geral luta sim
+    writeini cdz\sistemas\[cdz]_lutas.db Geral nivel N
+    writeini cdz\sistemas\[cdz]_lutas.db Geral atualizador $nick
+    set %nivelfinal $5
+    set %vencedor $2
+    set %perdedor $3
+    set %narrador $4
+    set %ganhoc1 $replace($5,Fácil,750,Média,1000,Difícil,1250)
+    set %ganhoc2 $replace($5,Fácil,600,Média,850,Difícil,1100)
+    set %ganhoe1 $replace($5,Fácil,750,Média,1000,Difícil,1250)
+    set %ganhoe2 $replace($5,Fácil,600,Média,850,Difícil,1100)
+    set %ganhon1 $replace($5,Fácil,750,Média,850,Difícil,950)
+    set %cos1 $calc($dados(%vencedor,dados,cos) + %ganhoc1)
+    set %cos2 $calc($dados(%perdedor,dados,cos) + %ganhoc2)
+    set %exp1 $calc($dados(%vencedor,dados,exp) + %ganhoe1)
+    set %exp2 $calc($dados(%perdedor,dados,exp) + %ganhoe2)
+    set %din1 $calc($dados(%narrador,dados,exp) + %ganhon1)
+    set %id CDZ $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ - $+ $rand(1,100) $+ $rand(a,z)
+    msg #animerpg $prenormal(14Luta $destaque($upper($5)) 14entre15 $2 14·09 $+ $dados($2,dados,raça) $+ 14· e15 $3 14·09 $+ $dados($3,dados,raça) $+ 14·)
+    msg #animerpg $prenormal(Vencedor $+ 14:15 $2 0fica com $destaque($div(%exp1)) 14[09+ $+ %ganhoe1 $+ 14] 0exp e $div(%cos1) 14[09+ $+ %ganhoc1 $+ 14] 0de cosmo)
+    msg #animerpg $prenormal(Perdedor $+ 14:15 $3 0fica com $destaque($div(%exp2)) 14[09+ $+ %ganhoe2 $+ 14] 0exp e $div(%cos2) 14[09+ $+ %ganhoc2 $+ 14] 0de cosmo)
+    msg #animerpg $prenormal(Narrador $+ 14:15 $4 0fica com $div(%din1) 14[09+ $+ %ganhon1 $+ 14] 0de experiência)
+    msg #animerpg $prenormal(15Você deseja $opcao(!,Confirmar) ou $opcao(!,Cancelar) 15a luta de id $destaque(%id))
+  }
+}
+
+on *:text:!Empate*:#animerpg ,#Sekai,#Makai,#Kaikai,#Tenkai,#Meikai,#starhill:{ 
+  verificar2
+  $verstaff(1)
+  if ($readini(cdz\sistemas\[cdz]_lutas.db,Geral,luta) != não) { .msg $nick $prestaff(Atenção,Já está havendo uma atualização) | halt }
+  if ($2 == $null) { .msg $nick $prestaff(Atenção,Parâmetros insuficientes) | halt }
+  elseif ($3 == $null) { .msg $nick $prestaff(Atenção,Parâmetros insuficientes. $ex(!Empate Vencedor Perdedor Narrador)) | halt }
+  elseif ($4 == $null) { .msg $nick $prestaff(Atenção,Parâmetros insuficientes. $ex(!Empate Vencedor Perdedor Narrador)) | halt }
+  elseif !$istok(fácil média difícil,$5,32) { .msg $nick $prestaff(Atenção,Parâmetros inválidos) | halt }
+  elseif (!$dados($2,dados,nome)) { .msg $nick $prestaff(Atenção,$2 não está cadastrado em nosso sistema) | halt }
+  elseif (!$dados($3,dados,nome)) { .msg $nick $prestaff(Atenção,$3 não está cadastrado em nosso sistema) | halt }
+  elseif (!$dados($4,dados,nome)) { .msg $nick $prestaff(Atenção,$4 não está cadastrado em nosso sistema) | halt }
+  elseif ($dados($2,dados,hpatu) == 0) { .msg $nick $prestaff(Atenção,Você não pode atualizar esta luta enquanto $destaque($2) estiver em estado crítico de vida) | halt }
+  elseif ($dados($3,dados,hpatu) == 0) { .msg $nick $prestaff(Atenção,Você não pode atualizar esta luta enquanto $destaque($3) estiver em estado crítico de vida) | halt }
+  elseif ($5 != $null) {
+    writeini cdz\sistemas\[cdz]_lutas.db Geral luta sim
+    writeini cdz\sistemas\[cdz]_lutas.db Geral nivel E
+    writeini cdz\sistemas\[cdz]_lutas.db Geral atualizador $nick
+    set %nivelfinal empate
+    set %vencedor $2
+    set %perdedor $3
+    set %narrador $4
+    set %ganhoc1 1000
+    set %ganhoc2 1000
+    set %ganhoe1 1000
+    set %ganhoe2 1000
+    set %ganhon1 1000
+    set %cos1 $calc($dados(%vencedor,dados,cos) + %ganhoc1)
+    set %cos2 $calc($dados(%perdedor,dados,cos) + %ganhoc2)
+    set %exp1 $calc($dados(%vencedor,dados,exp) + %ganhoe1)
+    set %exp2 $calc($dados(%perdedor,dados,exp) + %ganhoe2)
+    set %din1 $calc($dados(%narrador,dados,exp) + %ganhon1)
+    set %id $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ - $+ $rand(1,100) $+ $rand(a,z)
+    set %id CDZ $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ - $+ $rand(1,100) $+ $rand(a,z)
+    msg #animerpg $prenormal(14Luta $destaque($upper(EMPATE)) 14entre15 $2 14·09 $+ $dados($2,dados,raça) $+ 14· e15 $3 14·09 $+ $dados($3,dados,raça) $+ 14·)
+    msg #animerpg $prenormal(Lutador $+ 14:15 $2 0fica com $destaque($div(%exp1)) 14[09+ $+ %ganhoe1 $+ 14] 0exp e $div(%cos1) 14[09+ $+ %ganhoc1 $+ 14] 0de cosmo)
+    msg #animerpg $prenormal(Lutador $+ 14:15 $3 0fica com $destaque($div(%exp2)) 14[09+ $+ %ganhoe2 $+ 14] 0exp e $div(%cos2) 14[09+ $+ %ganhoc2 $+ 14] 0de cosmo)
+    msg #animerpg $prenormal(Narrador $+ 14:15 $4 0fica com $div(%din1) 14[09+ $+ %ganhon1 $+ 14] 0de experiência)
+    msg #animerpg $prenormal(15Você deseja $opcao(!,Confirmar) ou $opcao(!,Cancelar) 15a luta de id $destaque(%id))
+  } 
+}
+
+on *:text:!confirmar:*:{
+  $verstaff(1)
+  if ($readini(cdz\sistemas\[cdz]_lutas.db,geral,luta) == não) {
+    .msg #animerpg $prestaff(Atenção,Não está havendo uma atualização)
+    halt
+  }
+  if ($readini(cdz\sistemas\[cdz]_lutas.db,geral,atualizador) != $nick) {
+    .msg #animerpg $prestaff(Atenção,O responsável pela atualização é $ifmatch)
+    halt
+  }
+  if (($readini(cdz\sistemas\[cdz]_lutas.db,geral,luta) == sim) && ($readini(cdz\sistemas\[cdz]_lutas.db,geral,nivel) == N)) {
+    writeini CDZ\Sistemas\[cdz]_atualizacoes.db %id luta %vencedor %perdedor %narrador F $nick %nivelfinal
+    if $dados(%vencedor,dados,invocada) == sim {
+      set %hparm1 $calc($dados(%vencedor,armadura,vidaatu) - 5)
+      if %hparm1 <= 0 {
+        $escrever(%vencedor,armadura,vidaatu,0)
+      }
+      else {
+        $escrever(%vencedor,armadura,vidaatu,%hparm1)
+      }
+    }
+    else {
+      set %hpuser1 $calc($dados(%vencedor,dados,hpatu) - 10)
+      if %hpuser1 <= 0 {
+        $escrever(%vencedor,dados,hpatu,0)
+      }
+      else {
+        $escrever(%vencedor,dados,hpatu,%hpuser1)
+      }
+    }
+    if $dados(%vencedor,batalhas,ultimas) != $date {
+      $escrever(%vencedor,batalhas,ultimas,$date)
+      $escrever(%vencedor,batalhas,cota,0)
+      $escrever(%vencedor,batalhas,cota,$calc($dados(%vencedor,batalhas,cota) + 1))
+    }
+    else {
+      $escrever(%vencedor,batalhas,cota,$calc($dados(%vencedor,batalhas,cota) + 1))
+    }
+    if $dados(%perdedor,dados,invocada) == sim {
+      set %hparm2 $calc($dados(%perdedor,armadura,vidaatu) - 8)
+      if %hparm2 <= 0 {
+        $escrever(%perdedor,armadura,vidaatu,0)
+      }
+      else {
+        $escrever(%perdedor,armadura,vidaatu,%hparm2)
+      }
+    }
+    else {
+      set %hpuser2 $calc($dados(%perdedor,dados,hpatu) - 14)
+      if %hpuser2 <= 0 {
+        $escrever(%perdedor,dados,hpatu,0)
+      }
+      else {
+        $escrever(%perdedor,dados,hpatu,%hpuser2)
+      }
+    }
+    if $dados(%perdedor,batalhas,ultimas) != $date {
+      $escrever(%perdedor,batalhas,ultimas,$date)
+      $escrever(%perdedor,batalhas,cota,0)
+      $escrever(%perdedor,batalhas,cota,$calc($dados(%perdedor,batalhas,cota) + 1))
+    }
+    else {
+      $escrever(%perdedor,batalhas,cota,$calc($dados(%perdedor,batalhas,cota) + 1))
+    }
+    $escrever(%vencedor,batalhas,vitorias,$calc($dados(%vencedor,batalhas,vitorias) + 1))
+    $escrever(%vencedor,dados,exp,%exp1)
+    $adicionar-cosmo(%vencedor,%ganhoc1)
+    $escrever(%perdedor,batalhas,Derrotas,$calc($dados(%perdedor,batalhas,Derrotas) + 1))
+    $escrever(%perdedor,dados,exp,%exp2)
+    $adicionar-cosmo(%perdedor,%ganhoc2)
+    $escrever(%narrador,batalhas,narradas,$calc($dados(%narrador,batalhas,narradas) + 1))
+    $escrever(%narrador,dados,exp,%din1)
+    .msg #animerpg $prestaff(Luta Atualizada,0Atualizador14:15 $nick 14/ 0Data14:0  $+ $date $+  15às0  $+ $time $+  $+ $cor(!))
+    unset %vencedor
+    unset %perdedor
+    unset %narrador
+    unset %exp1
+    unset %exp2
+    unset %din1
+    unset %hparm1
+    unset %hparm2
+    unset %hpuser1
+    unset %hpuser2
+    unset %id
+    writeini cdz\sistemas\[cdz]_lutas.db Geral luta não
+  }
+  elseif (($readini(cdz\sistemas\[cdz]_lutas.db,geral,luta) == sim) && ($readini(cdz\sistemas\[cdz]_lutas.db,geral,nivel) == E)) {
+    writeini CDZ\Sistemas\[cdz]_atualizacoes.db %id luta %vencedor %perdedor %narrador F $nick %nivelfinal
+    if $dados(%vencedor,dados,invocada) == sim {
+      set %hparm1 $calc($dados(%vencedor,armadura,vidaatu) - 10)
+      if %hparm1 <= 0 {
+        $escrever(%vencedor,armadura,vidaatu,0)
+      }
+      else {
+        $escrever(%vencedor,armadura,vidaatu,%hparm1)
+      }
+    }
+    else {
+      set %hpuser1 $calc($dados(%vencedor,dados,hpatu) - 10)
+      if %hpuser1 <= 0 {
+        $escrever(%vencedor,dados,hpatu,0)
+      }
+      else {
+        $escrever(%vencedor,dados,hpatu,%hpuser1)
+      }
+    }
+    if $dados(%vencedor,batalhas,ultimas) != $date {
+      $escrever(%vencedor,batalhas,ultimas,$date)
+      $escrever(%vencedor,batalhas,cota,0)
+      $escrever(%vencedor,batalhas,cota,$calc($dados(%vencedor,batalhas,cota) + 1))
+    }
+    else {
+      $escrever(%vencedor,batalhas,cota,$calc($dados(%vencedor,batalhas,cota) + 1))
+    }
+    if $dados(%perdedor,dados,invocada) == sim {
+      set %hparm2 $calc($dados(%perdedor,armadura,vidaatu) - 10)
+      if %hparm2 <= 0 {
+        $escrever(%perdedor,armadura,vidaatu,0)
+      }
+      else {
+        $escrever(%perdedor,armadura,vidaatu,%hparm2)
+      }
+    }
+    else {
+      set %hpuser2 $calc($dados(%perdedor,dados,hpatu) - 10)
+      if %hpuser2 <= 0 {
+        $escrever(%perdedor,dados,hpatu,0)
+      }
+      else {
+        $escrever(%perdedor,dados,hpatu,%hpuser2)
+      }
+    }
+    if $dados(%perdedor,batalhas,ultimas) != $date {
+      $escrever(%perdedor,batalhas,ultimas,$date)
+      $escrever(%perdedor,batalhas,cota,0)
+      $escrever(%perdedor,batalhas,cota,$calc($dados(%perdedor,batalhas,cota) + 1))
+    }
+    else {
+      $escrever(%perdedor,batalhas,cota,$calc($dados(%perdedor,batalhas,cota) + 1))
+    }
+    $escrever(%vencedor,batalhas,empates,$calc($dados(%vencedor,batalhas,empates) + 1))
+    $escrever(%vencedor,dados,exp,%exp1)
+    $adicionar-cosmo(%vencedor,%ganhoc1)
+    $escrever(%perdedor,batalhas,empates,$calc($dados(%perdedor,batalhas,empates) + 1))
+    $escrever(%perdedor,dados,exp,%exp2)
+    $adicionar-cosmo(%perdedor,%ganhoc2)
+    $escrever(%narrador,batalhas,narradas,$calc($dados(%narrador,batalhas,narradas) + 1))
+    $escrever(%narrador,dados,exp,%din1)
+    .msg #animerpg $prestaff(Luta Atualizada,0Atualizador14:15 $nick 14/ 0Data14:0  $+ $date $+  15às0  $+ $time $+  $+ $cor(!))
+    unset %vencedor
+    unset %perdedor
+    unset %narrador
+    unset %exp1
+    unset %exp2
+    unset %din1
+    unset %hparm1
+    unset %hparm2
+    unset %hpuser1
+    unset %hpuser2
+    unset %id
+    writeini cdz\sistemas\[cdz]_lutas.db Geral luta não
+  }
+}
+
+
+on *:text:!cancelar*:#animerpg ,#sekai,#tenkai,#meikai,#makai,#kaikai,#starhill:{
+  verificar2
+  $verstaff(1)
+  if !$2 {
+    if ($readini(cdz\sistemas\[cdz]_lutas.db,geral,luta) == não) { .msg #animerpg $prestaff(Atenção,Não está havendo uma atualização) | halt }
+    if $dados($nick,staff,lv) == $null { .msg #animerpg $prestaff(Atenção,Você não faz parte da equipe do canal) | halt }
+    if $dados($nick,staff,lv) <= 3 {
+      if ($readini(cdz\sistemas\[cdz]_lutas.db,geral,atualizador) != $nick) {
+        .msg #animerpg $prestaff(Atenção,Você não é o responsável pela atualização)
+        halt
+      }
+    }
+    .msg #animerpg $prestaff(Luta Cancelada,0Atualizador14:15 $readini(cdz\sistemas\[cdz]_lutas.db,geral,atualizador) 14/ 0Data14:0  $+ $date $+  15às0  $+ $time $+  $+ $cor(!))
+    unset %vencedor
+    unset %perdedor
+    unset %narrador
+    unset %exp1
+    unset %exp2
+    unset %din1
+    unset %hparm1
+    unset %hparm2
+    unset %hpuser1
+    unset %hpuser2
+    unset %id
+    writeini cdz\sistemas\[cdz]_lutas.db Geral luta não
+  }
+  else {
+    $verstaff(3)
+    set %id $2
+    if ($readini(CDZ\Sistemas\[cdz]_atualizacoes.db,%id,luta) == $null) {
+      msg # $prestaff(Atenção,A luta de id $destaque(%id) 15não existe no banco de dados do bot)
+      halt
+    }
+    set %luta $readini(CDZ\Sistemas\[cdz]_atualizacoes.db,%id,luta)
+    set %nivel $gettok(%luta,4,32)
+    set %vencedor $gettok(%luta,1,32)
+    set %perdedor $gettok(%luta,2,32)
+    set %narrador $gettok(%luta,3,32)
+    set %atualizador $gettok(%luta,5,32)
+    set %nivelfinal2 $gettok(%luta,6,32)
+    if %nivel == c {
+      msg # $prestaff(Atenção,Esta luta já foi cancelada)
+      halt
+    }
+    if %nivel == f {
+      set %cos1 $replace(%nivelfinal2,Fácil,750,Média,1000,Difícil,1250)
+      set %cos2 $replace(%nivelfinal2,Fácil,600,Média,850,Difícil,1100)
+      set %exp1 $replace(%nivelfinal2,Fácil,750,Média,1000,Difícil,1250)
+      set %exp2 $replace(%nivelfinal2,Fácil,600,Média,850,Difícil,1100)
+      set %din1 $replace(%nivelfinal2,Fácil,750,Média,850,Difícil,950)
+      set %newvit $calc($dados(%vencedor,batalhas,vitorias) - 1)
+      set %newder $calc($dados(%perdedor,batalhas,derrotas) - 1)
+      set %newnar $calc($dados(%narrador,batalhas,narradas) - 1)
+      $escrever(%vencedor,batalhas,vitorias,%newvit)
+      $escrever(%vencedor,batalhas,cota,$calc($dados(%vencedor,batalhas,cota) - 1))
+      $escrever(%perdedor,batalhas,derrotas,%newder)
+      $escrever(%perdedor,batalhas,cota,$calc($dados(%perdedor,batalhas,cota) - 1))
+      $escrever(%narrador,batalhas,narradas,%newnar)
+    }
+    if %nivel == e {
+      set %cos1 1000
+      set %cos2 1000
+      set %exp1 1000
+      set %exp2 1000
+      set %din1 1000
+      set %newvit $calc($dados(%vencedor,batalhas,empates) - 1)
+      set %newder $calc($dados(%perdedor,batalhas,empates) - 1)
+      set %newnar $calc($dados(%narrador,batalhas,narradas) - 1)
+      $escrever(%vencedor,batalhas,empates,%newvit)
+      $escrever(%vencedor,batalhas,cota,$calc($dados(%vencedor,batalhas,cota) - 1))
+      $escrever(%perdedor,batalhas,empates,%newder)
+      $escrever(%perdedor,batalhas,cota,$calc($dados(%perdedor,batalhas,cota) - 1))
+      $escrever(%narrador,batalhas,narradas,%newnar)
+    }
+    set %expf1 $calc($dados(%vencedor,dados,exp) - %exp1)
+    set %expf2 $calc($dados(%perdedor,dados,exp) - %exp2)
+    set %dinf1 $calc($dados(%narrador,dados,exp) - %din1)
+    $remover-cosmo(%vencedor,%cos1)
+    $escrever(%vencedor,dados,exp,%expf1)
+    $remover-cosmo(%perdedor,%cos2)
+    $escrever(%perdedor,dados,exp,%expf2)
+    $escrever(%narrador,dados,exp,%dinf1)
+    writeini CDZ\Sistemas\[cdz]_atualizacoes.db %id luta %vencedor %perdedor %narrador c %atualizador
+    msg # $premsg($nick,%vencedor 14vs15 %perdedor 14(09 $+ %id $+ 14) 0Narrador14:15 %narrador 14& 0Atualizador14: $destaque(%atualizador) 14->0 Luta cancelada com sucesso!)
+  }
+}

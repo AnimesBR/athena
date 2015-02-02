@@ -1,0 +1,54 @@
+[santuário]
+base=100
+limite=5000
+total=12
+1=áries 15
+2=touro 15
+3=gêmeos 17
+4=câncer 17
+5=leão 20
+6=virgem 20
+7=libra
+8=escorpião
+9=sagitário
+10=capricórnio
+11=aquário
+12=peixes
+
+[inferno]
+base=750
+limite=2500
+total=8
+1=aqueronte
+2=balron
+3=esfinge
+4=pappilon
+5=lira
+6=wyvern
+7=garuda
+8=griffon
+
+[asgard]
+base=1000
+limite=2000
+total=8
+1=phecda
+2=alioth
+3=merak
+4=benetnasch
+5=megrez
+6=arkor
+7=mizar
+8=dubhe
+
+[templomarinho]
+base=250
+limite=4250
+total=7
+1=cavalomarinho
+2=kraken
+3=chrysaor
+4=scylla
+5=lymnades
+6=sirene
+7=dragãomarinho

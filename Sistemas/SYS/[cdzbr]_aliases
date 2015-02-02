@@ -1,0 +1,637 @@
+alias n { return msg =$nick 14,1 $str($chr(160),72)  }
+
+alias m { 
+  if ($1 != $null) { set %corinicial  $+ $1 | return msgt $nick }
+  else { set %corinicial 00 | return msgt $nick | unset %corinicial } 
+}
+alias l { 
+  if ($1 != $null) { set %corinicial  $+ $1 | return msgl $nick }
+  else { set %corinicial 00 | return msgl $nick | unset %corinicial } 
+}
+alias r { 
+  if ($1 != $null) { set %corinicial  $+ $1 | return msgr $nick }
+  else { set %corinicial 00 | return msgr $nick | unset %corinicial } 
+}
+
+alias subopcao { return 15< $upper($1) > }
+alias preopcao { return $remove($1-,:) $+  $+ $dados($nick,dados,detalhescor) $+ :00 }
+
+alias opcao {
+  var %cor  $+ $dados($nick,dados,detalhescor)
+  if $2 != $null {
+    if $1 == $chr(33) || $1 == $chr(64) || $1 == $chr(46) { return %cor $+ $1 $+ 14 $+ $2 $+  }
+    if $2 isnum { return 14 $+ $remove($1,$chr(58)) $+ %cor $+ $chr(58) $+  $+ $2 }
+    if $2 == nada { return 14 $+ $remove($1,$chr(58)) $+ %cor $+ $chr(58) }
+  }
+  else {
+    if $1 == $chr(33) || $1 == $chr(64) { return %cor $+ $1 $+ 14 $+ $2 $+  }
+    else { return 14 $+ $remove($1,$chr(58)) $+ %cor $+ $chr(58) }
+  }
+}
+
+alias cor {
+  if ($2 != $null) { 
+    if $2 == Bor {
+      var %cor  $+ $dados($nick,dados,barracor)
+      var %b = $dados($nick,dados,barracor)
+      if %b == 0 { var %cor 07 }
+      if %b == 1 { var %cor 07 }
+      return %cor $+ $1
+      halt
+    }
+    if $2 isnum {
+      var %cor  $+ $dados($nick,dados,detalhescor)
+      var %cor2  $+ $2
+      return %cor $+ $1 $+ %cor2
+      halt
+    }
+  }
+  if ($3 != $null) {
+    var %cor  $+ $dados($3,dados,barracor)
+    var %b = $dados($3,dados,barracor)
+    if %b == 0 { var %cor 07 }
+    if %b == 1 { var %cor 07 }
+    return %cor $+ $1
+    halt
+  }
+  else {
+    var %cor  $+ $dados($nick,dados,detalhescor)
+    return %cor $+ $1
+    halt
+  }
+  if ($dados($nick,dados,detalhescor) == $null) { return 07 $+ $1 $+ 00 | halt }
+  else {
+    var %cor  $+ $dados($nick,dados,detalhescor)
+    return %cor $+ $1
+  }
+}
+
+alias destaque {
+  var %barracor $dados($nick,dados,barracor)
+  var %destaquecor $dados($nick,dados,destaquecor)
+  if (%destaquecor == $null) { return 08 $+ $1 $+ 00 | halt }
+  else {
+    if $len(%destaquecor) == 2 { var %cor  $+ %destaquecor }
+    else {
+      if %destaquecor < 10 { var %cor  $+ 0 $+ %destaquecor }
+      else { var %cor  $+ %destaquecor }
+    }
+    if $2 { return %cor $+ $1 $+  $+ $2 }
+    else { return %cor $+ $1 }
+  }
+}
+
+alias redtaque {
+  var %barracor $dados($nick,dados,barracor)
+  var %destaquecor 04
+  if $len(%destaquecor) == 2 { var %cor  $+ %destaquecor }
+  else {
+    if %destaquecor < 10 { var %cor  $+ 0 $+ %destaquecor }
+    else { var %cor  $+ %destaquecor }
+  }
+  return %cor $+ $1
+}
+
+alias a {
+  var %msg $2-
+  var %n = $gettok(%msg,0,32) 
+  var %z = 1
+  while %msg {
+    if $len($remove($gettok(%msg,$+(1-,%n),32),$chr(3))) <= 67 { 
+      msgt $1 $replace($gettok(%msg,$+(1-,%n),32),$chr(59),$chr(44))
+      var %msg = $deltok(%msg,$+(1-,%n),32) 
+      var %n = $gettok(%msg,0,32) 
+      inc %z 
+    }
+    else { dec %n }
+  }
+}
+
+alias a2 {
+  var %msg $2-
+  var %n = $gettok(%msg,0,32) 
+  var %z = 1
+  while %msg {
+    if $len($remove($gettok(%msg,$+(1-,%n),32),$chr(3))) <= 62 {
+      msgt $1  $+ %cora $+ $replace($gettok(%msg,$+(1-,%n),32),$chr(59),$chr(44))
+      var %msg = $deltok(%msg,$+(1-,%n),32)
+      var %n = $gettok(%msg,0,32)
+      inc %z
+    }
+    else { dec %n }
+  }
+}
+
+alias premsg {
+  if ATHENA isin $1 { var %b $dados($nick,dados,barracor) }
+  else { 
+    if $dados($1,dados,nome) != $null { var %b $dados($1,dados,barracor) }
+    else { var %b $dados($nick,dados,barracor) }
+    if %b == $null { var %b 14 }
+    if %b == 1 { var %b 14 }
+    if %b == 0 { var %b 14 }
+    var %c  $+ %b $+ , $+ %b  
+    return %c 1,1  $+ %b $+ ( $+ $destaque($1) 14->15 $2- $+  $+ %b $+ ) %c 
+  }
+}
+
+alias prestaff {
+  var %b $dados($nick,dados,barracor)
+  if %b == $null { var %b 14 }
+  if %b == 1 { var %b 14 }
+  if %b == 0 { var %b 14 }
+  var %c  $+ %b $+ , $+ %b  
+  return %c 0,1  $+ %b $+ ( $+ $destaque($1) 14->00 $2- $+  $+ %b $+ ) %c 
+}
+
+alias prenormal {
+  var %b $dados($nick,dados,barracor)
+  if %b == $null { var %b 14 }
+  if %b == 1 { var %b 14 }
+  if %b == 0 { var %b 14 }
+  var %c  $+ %b $+ , $+ %b  
+  return %c 0,1  $+ %b $+ ( $+ $1- $+  $+ %b $+ ) %c 
+}
+
+alias b { return  $+ $1- $+  }
+alias u { return  $+ $1- $+  }
+alias alerta { return 04( $+ $upper($1) $+ ) }
+alias ex { return 4(EX):09 $upper($1) }
+alias quebra-linha { $m(14) >< 15--------------------------------14 >< }
+offalias quebra-linhat { msg =$nick 14,1 $str(_,72)  }
+alias quebra-linhat { $m(14) $str(¯,16) $+ \ $+ $str(_,36) $+ / $+ $str(¯,16) }
+alias quebra-linhab { $m(14) $str(_,08) $+ / $+ $str(¯,52) $+ \ $+ $str(_,08) }
+alias quebra-linhac { msg =$nick 14,1 $str(¯,72)   }
+alias div { return $replace($bytes($1,b),$chr(44),.)) }
+alias separador { 
+  if $1 != $null { return  $+ $dados($nick,dados,barracor) $+ / $+ $1 }
+  else { return  $+ $dados($nick,dados,barracor) $+ / }
+}
+
+alias inicial {
+  set %msg $1
+  set %con $len($1)
+  var %l1 = $left(%msg,1)
+  var %r1 = $right($1,1)
+  var %l2 = $mid($1,2,1) 
+  var %r2 = $mid($1,$calc(%con - 1),1)
+  set %m1 $mid($1,3,$calc(%con - 4))
+  set %msg 14 $+ %l1 $+ 15 $+ %l2 $+ 0 $+ %m1 $+ 15 $+ %r2 $+ 14 $+ %r1 $+ 09
+  if ($dados($nick,dados,nome) == $null) { var %cor 07 }
+  else { var %cor  $+ $dados($nick,dados,detalhescor) }
+  var %c $dados($nick,dados,barracor)
+  var %c2 15,1
+  var %c3 01
+  var %c4  $+ %c $+ , $+ 05
+  var %len = $calc((68 - $len($strip($1-))) / 2)
+  var %len2 = $calc((72 - $len($strip($1-))) / 2)
+  msg =$nick 14,1 $str($chr(160),72) 
+  quebra-linhat
+  $m(09) $str(_,$len($1-))
+  $m(09) $upper(( $+ %msg $+ ))
+  $m(09) $str(¯,$len($1-))
+  quebra-linhab
+  $m
+}
+
+%t-t-fra
+0,0  15,15 14,14 15,15 14,14 15,15 
+$+ 15,15 14,14 15,15 14,14 15,15 
+msg =$nick 14,15( (__) ) $str($chr(160),63) 14,15( (__) )
+msg =$nick 0,0  15,15 14,14 15,15 14,14 15,15  $+ $str($chr(160),69) $+ 15,15 14,14 15,15 14,14 15,15 
+
+msg =$nick 1,1 %c2 $str($chr(160),$round(%len,0)) $+ %c3 $+ $upper(01+00 $1- 01+) $+ $str($chr(160),$int(%len)) 1,1 
+msg =$nick 1,1 $+ 15,1 $str(¯,69) %c4
+
+alias msgt {
+  var %c $dados($nick,dados,barracor)
+  var %c  $+ %c $+ ,01
+  var %c2  $+ $dados($nick,dados,barracor) $+ , $+ $dados($nick,dados,barracor)
+  var %len = $calc((70 - $len($strip($2-))) / 2)
+  msg = $+ $1 %c %c2 %corinicial $+ ,1 $+ $str($chr(160),$round(%len,0)) $+ $2- $+ $str($chr(160),$int(%len)) $+ %c2 %c 
+}
+
+alias msgl {
+  var %c $dados($nick,dados,barracor)
+  var %c  $+ %c $+ ,01
+  var %c2  $+ $dados($nick,dados,barracor) $+ , $+ $dados($nick,dados,barracor)
+  var %len = 68  - $len($strip($2-))
+  msg = $+ $1  %c %c2 %corinicial $+ ,1 $2- $+ $str($chr(160),$int(%len)) %c2 %c 
+}
+
+alias msgr {
+  var %c $dados($nick,dados,barracor)
+  var %c  $+ %c $+ , $+ %c  
+  var %len = 68 - $len($strip($2-))
+  msg = $+ $1 0,0  15,15 14,14 15,15 14,14 15,15  1,1  $+ %c  $+ %corinicial $+ ,1 $+ $str($chr(160),$int(%len)) $+ $2- %c 1,1 
+}
+
+alias msgtopo {
+  var %c $dados($nick,dados,barracor)
+  var %c2  $+ %c $+ , $+ %c
+  var %c3 01
+  var %c4  $+ %c $+ , $+ 01
+  msg =$nick 14,1 $str($chr(160),72) 
+  msg =$nick 1,1 14,14 14,1 $+ $str(¯,15) $+ \ $+ $str(_,38) $+ / $+ $str(¯,15) $+ 14,14 1,1 
+  $m
+}
+
+alias msgbase {
+  var %c $dados($nick,dados,barracor)
+  var %c2  $+ %c $+ , $+ %c
+  var %c3 01
+  var %c4  $+ %c $+ , $+ 01
+  $m
+  msg =$nick 14,1 $str(¯,16) $+ \ $+ $str(_,38) $+ / $+ $str(¯,16) 
+  msg =$nick 14,1 $str($chr(160),72) 
+}
+
+alias spc { return $str($chr(160),$calc($2 - $len($1-))) } 
+alias dados { return $readini(cdz\dados\usuarios\ $+ $1 $+ .db,$2,$3) }
+alias dadosarm { 
+  var %armadura = $dados($1,armadura,nome)
+  return $readini(cdz\dados\armaduras\ $+ $remove(%armadura,$chr(32)) $+ .db,arm,$2)
+}
+alias dadosarm2 { return $readini(cdz\dados\armaduras\ $+ $remove($1,$chr(32)) $+ .db,arm,$2) }
+alias dadosficha { return $readini(cdz\dados\usuarios\ $+ $1 $+ \fichas\ $+ $remove($dados($1,fichas,carregada),$chr(32)) $+ .db,arm,$2) }
+alias escrever { echo -s $1 $2 $3 $4- | writeini cdz\dados\usuarios\ $+ $1 $+ .db $2 $3 $4- }
+alias escrever2 { writeini cdz\dados\usuarios\ $+ $1 $+ \fichas\ $+ $remove($2,$chr(32)) $+ .db arm $3 $4 }
+
+alias complete { return $str($chr($1),$calc($strip($2) - $len($strip($3)) - $len($strip(%complete)))) }
+alias website { return http://kon.com/armaduras/ }
+
+alias deslogar {
+  if $dados($1,dados,nome) == $null {
+    remove cdz\dados\usuarios\ $+ $1 $+ .db
+  }
+  writeini cdz\dados\usuarios\ $+ $1 $+ .db dados logado não
+  if $dados($nick,staff,lv) != $null { 
+    writeini cdz\dados\usuarios\ $+ $1 $+ .db staff logado não
+  }
+}
+
+alias zerando {
+  if $len($1) == 1 { return $cor(OOO,Bor) $+  $+ $2 $+ $1 }
+  if $len($1) == 2 { return $cor(OO,Bor) $+  $+ $2 $+ $1 }
+  if $len($1) == 3 { return $cor(O,Bor) $+  $+ $2 $+ $1 }
+  if $len($1) >= 4 { return  $+ $2 $+ $1 }
+}
+
+alias zerando2 { return  $+ $2 $+ $1 }
+
+alias trapassa {
+  if $1 !isnum { $inicial(ERRO) | $m trapasseiro detected, se fudeu | msgbase $nick | /ms send Hades $nick tentando trapassear | halt }
+  if + isin $1 { $inicial(ERRO) | $m trapasseiro detected, se fudeu | msgbase $nick | /ms send Hades $nick tentando trapassear | halt }
+  if - isin $1 { $inicial(ERRO) | $m trapasseiro detected, se fudeu | msgbase $nick | /ms send Hades $nick tentando trapassear | halt }
+  if * isin $1 { $inicial(ERRO) | $m trapasseiro detected, se fudeu | msgbase $nick | /ms send Hades $nick tentando trapassear | halt }
+  if / isin $1 { $inicial(ERRO) | $m trapasseiro detected, se fudeu | msgbase $nick | /ms send Hades $nick tentando trapassear | halt }
+  if % isin $1 { $inicial(ERRO) | $m trapasseiro detected, se fudeu | msgbase $nick | /ms send Hades $nick tentando trapassear | halt }
+}
+
+alias pre-level {
+  set %valor $1
+  if (%valor >= 0) && (%valor <= 40000) { var %lvl = $calc(%valor / 2000) }
+  if (%valor > 40000) && (%valor <= 100000) { var %lvl = $calc(20 + ((%valor - 40000) / 3000)) }
+  if (%valor > 100000) && (%valor <= 180000) { var %lvl = $calc(40 + ((%valor - 100000) / 4000)) }
+  if (%valor > 180000) && (%valor <= 280000) { var %lvl = $calc(60 + ((%valor - 180000) / 5000)) }
+  if (%valor > 280000) && (%valor <= 700000) { var %lvl = $calc(80 + ((%valor - 280000) / 6000)) }
+  if (%valor > 700000) { var %lvl = $calc(150 + ((%valor - 700000) / 8000)) }
+  return $int(%lvl)
+}
+
+alias pre-personagem {
+  var %t-li.ori =  $+ $strip($1-)
+  var %t-li.p = $len(%t-li.ori) % 3
+  if (%t-li.p != 0) {
+    var %t-li.ori = %t-li.ori $+ $chr(160)
+  }
+  var %t-li.p = $len(%t-li.ori) % 3
+  if (%t-li.p != 0) {
+    var %t-li.ori = %t-li.ori $+ $chr(160)
+  }
+  var %t-li.p = $len(%t-li.ori) / 3
+  var %t-li.p1 = %t-li.p + 1
+  var %t-li.p2 = %t-li.p1 + %t-li.p
+  var %t-fra = 14 $+ $mid(%t-li.ori,1,%t-li.p) $+ 15 $+ $mid(%t-li.ori,%t-li.p1,%t-li.p) $+ 00 $+ $mid(%t-li.ori,%t-li.p2,%t-li.p)
+  unset %t-li.*
+  set %t-t-fra $replace(%t-fra,$chr(160),$chr(32))
+  unset %t-fra
+  if $right(%t-t-fra,1) == $chr(32) {
+    set %qespaco $numtok(%t-t-fra,32)
+    set %t-t-fra $deltok(%t-t-fra,$calc(%qespaco + 1),32)
+  }
+  set %raca $dados($1,dados,raça)
+  set %msgnick %t-t-fra $+ 14(0 $+ %raca $+ 14)
+}
+
+alias pre-armadura {
+  if $dadosarm($1,nome2) == $null { set %armadura $dadosarm($1,nome) }
+  else { set %armadura $ifmatch }
+}
+
+alias pre-variacao {
+  if %level  == 1 { set %vmax 10 }
+  if %level <= 09 && %level >= 02 { set %vmax 9 }
+  if %level <= 19 && %level >= 10 { set %vmax 8 }
+  if %level <= 29 && %level >= 20 { set %vmax 7 }
+  if %level <= 39 && %level >= 30 { set %vmax 6 }
+  if %level <= 49 && %level >= 40 { set %vmax 5 }
+  if %level <= 59 && %level >= 50 { set %vmax 4 }
+  if %level <= 69 && %level >= 60 { set %vmax 3 }
+  if %level <= 79 && %level >= 70 { set %vmax 2 }
+  if %level <= 089 && %level >= 80 { set %vmax 2 }
+  if %level > 089 { set %vmax 2 }
+}
+
+alias invocacao {
+  if $dados($1,dados,invocada) == sim { return $calc($replace($dadosarm($1,classe),d,2,c,3,b,4,a,5,s,10,x,15) * $2) }
+  else { return $2 }
+}
+
+alias vercadastro {
+  if ($dados($nick,dados,nome) == $null) {
+    if $dados($nick,dados,barracor) == $null { $escrever($nick,dados,barracor,14) }
+    if $dados($nick,dados,detalhescor) == $null { $escrever($nick,dados,detalhescor,15) }
+    if $dados($nick,dados,destaquecor) == $null { $escrever($nick,dados,destaquecor,08) }
+    whois $nick
+    $inicial(ATENÇÃO) 
+    $m Ao verificar nosso banco de dados,
+    $m não encontramos o seu cadastro!
+    $m
+    $m(15) Cadastro? $opcao(!,CADASTRO) $subopcao(RAÇA) $subopcao(AURA) $subopcao(SENHA)
+    $m
+    $m(15) Trocas de Nick? $opcao(!,TROCAR NICK) 09(ON) $separador Dúvidas? $opcao(!,AJUDA)
+    $m
+    $m(10) * 11recomendamos a leitura das seções !Raças e !Auras10 *
+    msgbase $nick
+    halt
+  }
+  if ($dados($nick,dados,logado) == não) {
+    $inicial(CADASTRO ENCONTRADO)
+    $m último acesso em $u($dados($nick,dados,login))
+    $m 
+    $l Recado adicionado em 20/07/2009
+    $m
+    $m 4ATENÇÃO. POR PRECAUÇÃO EU TROQUEI A SENHA DE TODOS! ENTÃO, CADA
+    $m 4UM DEVERÁ SOLICITAR A SUA SENHA E TROCA-LA POR UMA NOVA, NÃO PO-
+    $m 4DENDO COLOCAR A MESMA SENHA DE ANTES.
+    $m
+    $l                                                           Hades
+    $m
+    $m(4) (LOGIN): $opcao(!,IDENTIFICAR) $subopcao(SENHA CADASTRADA)
+    $m
+    $a($nick,qualquer tentativa de roubo de contas será severamente punida; então pense duas vezes antes de tentar algo que possa prejudicar o $u(seu) cadastro; atenciosamente a equipe :D)
+    $m
+    $m(15) Para recuperar sua senha digite $+ $cor(:)
+    $m $opcao(!,SOLICITAR SENHA)
+    $m
+    $m(15) Dúvidas Remanescentes $+ $cor(?)
+    $m $opcao(!,AJUDA)
+    msgbase $nick
+    halt
+  }
+  if ($dados($nick,dados,logado) == sim) {
+    $inicial(VOCÊ JÁ ESTA LOGADO)
+    $m Digite $opcao(!,Menu) 00para acessar o sistema central do bot.
+    msgbase $nick
+    halt 
+  }
+}
+
+alias configurarskin {
+  $inicial(Central de Skins)
+  $m Basicamente são skins pré definidas onde você não precisa
+  $m quebrar a cabeça para fazer combinações de cores, atualmente
+  $m as disponíveis são:
+  $m
+  msgl $nick            0Nome               Borda      Detalhes    Destaques
+  $m
+  msgl $nick        $opcao(Golden Skin)       14->   0,0   1,1         7,7   1,1         8,8   1,1
+  msgl $nick        $opcao(Sapuris Skin)      14->   6,6   1,1         14,14   1,1         8,8   1,1
+  msgl $nick        $opcao(Ebano Skin)        14->   14,14   1,1         15,15   1,1         8,8   1,1
+  msgl $nick        $opcao(Magma Skin)        14->   7,7   1,1         4,4   1,1         8,8   1,1
+  msgl $nick        $opcao(Marine Skin)       14->   2,2   1,1         12,12   1,1         8,8   1,1
+  msgl $nick        $opcao(Nature Skin)       14->   10,10   1,1         3,3   1,1         9,9   1,1
+  $m
+  $m(14) Para selecionar um skin digite 
+  $m $opcao(!,SKIN) $opcao(SKIN) $opcao(SELECIONADA)
+  msgbase $nick
+}
+
+alias configurarcor {
+  $inicial(Escolha Sua Cor Favorita)
+  $m(15) Através de um sistema de customização, você podera,
+  $m(15) alterar as cores das 0BORDAS/LINHAS/DESTAQUES15 do BOT14.
+  $m(00) 
+  $m(00) As cores disponíveis são
+  $m(00) 
+  $m(00)   0 -> 0,0   1,1        
+  $m(00)   1 -> 1,1   0,1 (Preto)
+  $m(00)   2 -> 2,1   1,1        
+  $m(00)   3 -> 3,3   1,1        
+  $m(00)   4 -> 4,4   1,1        
+  $m(00)   5 -> 5,5   1,1        
+  $m(00)   6 -> 6,6   1,1        
+  $m(00)   7 -> 7,7   1,1        
+  $m(00)   8 -> 8,8   1,1        
+  $m(00)   9 -> 9,9   1,1        
+  $m(00)  10 -> 10,10   1,1        
+  $m(00)  11 -> 11,11   1,1        
+  $m(00)  12 -> 12,12   1,1        
+  $m(00)  13 -> 13,13   1,1        
+  $m(00)  14 -> 14,14   1,1        
+  $m(00)  15 -> 15,15   1,1        
+  $m
+  $m(00) Para configurar a cores digite14:
+  $m $opcao(!,CONFIGURAR) 14BORDA/LINHA/DESTAQUE Nº DESEJADO
+  $m
+  $m(00) Por exemplo:
+  $m(00) Para configurar em vermelho a cor das bordas, digite14:
+  $m $opcao(!,CONFIGURAR) 14BORDA 4
+  msgbase $nick
+}
+
+alias verificarficha {
+  if $dados($nick,fichas,carregada) == Nenhuma {
+    $inicial(ATENÇÃO)
+    $m Para utilizar este comando é necessário ter uma ficha carregada.
+    msgbase $nick
+    halt
+  }
+}
+
+alias verificarficha2 {
+  if $1 == $null {
+    if $dados($nick,fichas,carregada) == Nenhuma {
+      msg # $premsg($nick,Para utilizar este comando é necessário ter uma ficha carregada)
+      halt
+    }
+  }
+  else {
+    if $dados($1,fichas,carregada) == Nenhuma {
+      msg # $premsg($1,Para utilizar este comando é necessário ter uma ficha carregada)
+      halt
+    }
+  }
+}
+
+alias verificar3 { 
+  if ($nick !ison #animerpg ) {
+    $inicial(ATENÇÃO)
+    $m(15) Você não está no 0#14KON15 para ter acesso ao bot.
+    msgbase $nick
+    .close -c $nick
+    halt
+  }
+  if ($dados($nick,dados,nome) == $null) {
+    vercadastro
+    halt
+  }
+  if ($dados($nick,dados,logado) == não) {
+    vercadastro
+    halt
+  }
+  if ($dados($nick,dados,logado) == sim) {
+    vercadastro
+  }
+}
+
+alias verificar2 {
+  if (!$dados($nick,dados,nome)) {
+    var %c 7,7
+    var %b 7,1
+    msg $nick %c 0,1  $+ %b $+ (8Atenção 14->15 Você não consta em nosso sistema $+  $+ %b $+ ) %c 
+    halt
+  }
+  if ($nick !ison #animerpg ) {
+    msg $nick $prestaff(Atenção,Você não está no 0#14kon)
+    halt
+  }
+  if ($dados($nick,dados,logado) == não) {
+    msg $nick $prestaff(Atenção,Você não está logado em nosso sistema)
+    halt
+  }
+}
+
+alias verificar {
+  if ($nick !ison #animerpg ) {
+    $inicial(ATENÇÃO)
+    $m(15) Você não está no 0#14kon15 para ter acesso ao bot.
+    msgbase $nick
+    .close -c $nick
+    halt
+  }
+  if ($dados($nick,dados,nome) == $null) {
+    vercadastro
+    halt
+  }
+  if ($dados($nick,dados,logado) == não) {
+    vercadastro
+    halt
+  }
+}
+
+alias verstaff {
+  if $chat($nick) != $null {
+    if ($dados($nick,staff,lv) == $null) {
+      $inicial(ERRO INTERNO)
+      $m(15) Você não faz parte da equipe.
+      msgbase $nick
+      halt
+    }
+    if $1 {
+      if ($dados($nick,staff,lv) < $1) {
+        $inicial(ERRO INTERNO)
+        $m(15) Você não tem nível o suficiente.
+        msgbase $nick
+        halt
+      }
+    }
+    if ($dados($nick,staff,logado) == não) {
+      $inicial(ERRO INTERNO)
+      $m(15) Você não está devidamente logado.
+      msgbase $nick
+      halt
+    }
+  }
+  else {
+    if ($dados($nick,staff,lv) == $null) { msg # $prestaff(Atenção,15Você não faz parte da staff14.) | halt } 
+    if $1 {
+      if ($dados($nick,staff,lv) < $1) { msg # $prestaff(Atenção,15Você não tem nível suficiente14.) | halt }
+    }
+    if ($dados($nick,staff,logado) == não) { msg # $prestaff(Atenção,15Você não está devidamente logado14.) | halt }
+  }
+}
+
+Método de uso: $rss(LINK,N,ITEM)
+LINK do xml - Número do RSS - ITEM do RSS
+
+alias rss {
+  var %e = !echo $color(info) -a * Rss:, %r = return $false
+  if ($os isin 9598) { %e this snippet requires Windows ME or higher | %r }
+  if ($version < 5.91) { %e this snippet requires atleast mIRC 5.91 or higher | %r }
+  if (!$regex(%e,$1-,/^-[fhi] \S+ \S+$/i)) {
+    %e Syntax: /rss <-fhi> <url> <file|htb> or $!rss(-fhi, url, file|htb) | %r
+  }
+  var %flag = $mid($1,2), %filepath
+  if (%flag == h) %filepath = " $+ $mircdirtmprss"
+  else {
+    var %dir = $nofile($3-), %file = $nopath($3-)
+    if (%file != $mkfn(%file)) { %e file %file contains illegal characters. | %r }
+    if (* !iswm %dir) %dir = $mircdir
+    elseif (!$isdir(%dir)) { %e no such folder %dir | %r }
+    %filepath = $+(",%dir,%file,")
+  }
+  var %w = $+(@rss,$ticks,$r(1111,9999),.vbs), %a = aline %w, %size, %n = $lf
+  write -c %filepath
+  window -h %w
+  %a Function nohtml(byref string)
+  %a set regex = new regexp
+  %a regex.global = true : regex.pattern = "<[^>]*>|[\r\n\177]+" : nohtml = regex.replace(string,"")
+  %a set regex = nothing
+  %a End Function
+  %a set xml = createobject("msxml.domdocument") : set ado = createobject("adodb.stream")
+  %a ado.open : ado.type = 2 : ado.charset = "ascii"
+  %a xml.validateonparse = false : xml.async = false : xml.load " $+ $2"
+  %a for each item in xml.getelementsbytagname("item")
+  if (%flag == i) {
+    %a i = i + 1
+    %a ado.writetext "[#" & i & "]",1
+    %a for each node in item.childnodes
+    %a if node.text <> "" then ado.writetext node.nodename & "=" & nohtml(node.text),1
+    %a next %n ado.writetext vbcrlf
+  }
+  else {
+    %a for each node in item.childnodes
+    %a name = node.nodename
+    %a if name = "description" then %n desc = name & ": " & nohtml(node.text)
+    %a elseif name = "link" or name = "title" then %n tmp = tmp & name & ": " & nohtml(node.text) & chr(127)
+    %a end if %n next
+    if (%flag == h) %a i = i + 1 %n ado.writetext i & chr(10) & left(tmp & desc,920) & chr(10)
+    else %a ado.writetext left(tmp & desc,920) & vbcrlf
+    %a tmp = null
+  }
+  %a next %n ado.savetofile %filepath ,2 : ado.close %n set ado = nothing : set xml = nothing
+  savebuf %w %w | close -@ %w
+  .comopen %w wscript.shell
+  if (!$comerr) .comclose %w $com(%w,run,1,bstr*,%w,uint,0,bool,true)
+  .remove %w
+  if (%flag == h) {
+    if ($hget($3)) hfree $3
+    hmake $3
+    hload $3 %filepath
+    .remove %filepath
+    %size = $hget($3,0).item
+  }
+  else %size = $file(%filepath)
+  if ($isid) return $iif(%size,$true,$false)
+  if ($show) {
+    if (!%size) %e no data could be retrieved from $2
+    else %e Finished retrieving info from $2 (saved to $iif(%flag == h,hash table:,file:) $3-)
+  }
+  return
+  :error
+  if ($com(%w)) .comclose %w
+  if ($isfile(%w)) .remove %w
+  if ($window(%w)) close -@ %w
+}

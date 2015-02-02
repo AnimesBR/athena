@@ -1,0 +1,27 @@
+[azul]
+desc=Os golpes físicos de uma pessoa que possui a aura azul se projetam como luz de encontro ao oponente; mesmo a distância é fácil atingir um oponente; mas estes golpes não possuem a velocidade da luz; tudo depende da velocidade do guerreiro. Já golpes físicos que necessitam de toque para algum efeito; como envenenamento, não funcionam desta forma, havendo necessidade do toque.
+tipo=física
+
+[verde]
+desc=A Aura Verde concede ao cavaleiro maior precisão aos seus ataques e movimentos; fornecendo maior capacidade de esquiva/bloqueio; os golpes de um cavaleiro com aura verde se ligam perfeitamente em combos; os tornando muito difíceis de serem bloqueados. Conforme os golpes são desferidos, devido à sua precisão fendas e feixes de vento dilaceram aos poucos o alvo.
+tipo=física
+
+[roxa]
+desc=Adiciona eletricidade aos golpes aplicados. Seja pela arma do cavaleiro; ou pelos seus próprios punhos; faiscas elétricas causam danos ao oponente; causando um impacto que repuxa o corpo do adversário tirando seu equilíbrio e estabilidade.
+tipo=física
+
+[vermelha]
+desc=O cavaleiro consegue inflamar seu cosmo tornando-o quente o suficiente para criar queimaduras e até mesmo conjurar fogo juntamente com seus golpes; além disso; esta aura permite que uma "baforada" de ar quente bloqueie alguns tipos de ataque.
+tipo=cósmica e física
+
+[branca]
+desc=Essa Aura concede a capacidade de esfriar o local e juntar as móleculas de água na atmosfera de forma muito rápida; criando gelo no local. Quanto mais forte for o cavaleiro; mais denso será o gelo, e também, mais rápido será formado, além de abrangir uma área cada vez maior.
+tipo=cósmica e física
+
+[negra]
+desc=Aura geralmente associada a guerreiros malignos, alguém poderoso que possua essa aura pode causar terror em seus adversários. Os golpes de alguém que controla a aura negra vai aos poucos minando a resistência adversária, a cada golpe aplicado parte da vitalidade do oponente é deduzida levando o mesmo à fadiga.
+tipo=física
+
+[dourada]
+desc=A sagrada aura dourada é exclusiva de guerreiros muito poderosos, esta aura confere uma espécie de redução do rendimento do tempo, o seu possuidor simplesmente vê tudo 50% mais lento que o normal, seus golpes físicos podem ser projetados como luz em feixes entralaçados criando grande dificuldade de esquiva, além de explosões diretas de cosmo através de sua capacidade cósmica em pontos específicos na arena, o cavaleiro possuidor desta aura, tem sua capacidade psíquica aumentada em 15%, ficando apto a se comunicar livremente por telepatia.
+tipo=cósmica e física

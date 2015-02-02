@@ -1,0 +1,29 @@
+[sekai]
+Desc=Em japonês, Sekai é o nome dado a superfície da Terra onde vivem grande parte dos seres vivos, tendo os humanos como raça dominante. O Sekai é a própria Biosfera da Terra, porém o Mundo dos Homens divide-se em vários reinos, países, cidades, tribos e etc.
+Deus=Athena
+Regente=Shion
+soldados=15000
+
+[meikai]
+Desc=Também chamado de Submundo ou principalmente de Mundo dos Mortos, o Mundo das Trevas é o domínio de Hades. Os gregos da antiguidade costumavam usar o nome de Hades para denominar este mundo, sem qualquer distinção. Porém, este mundo existe como um destino para os seres vivos do mundo dos homens que perdem a vida.
+Deus=Hades
+Regente=Pandora
+soldados=15000
+
+[tenkai]
+Desc=O Mundo Celestial, conhecido como "Céu", chega até a ser confundindo com o Paraíso (Campos Elísios).Ao contrário dos Elísios, para onde vão as boas almas, o Mundo Celetial só pode ser habitado pelos deuses e seus Anjos (Angels) alguns são narrados em várias religiões e mitos agindo como mensageiros, mas são mais conhecidos como Guerreiros Celestiais (Tentoushi) protegendo a morada dos deuses e sendo executores da Vontade Divina.
+Deus=Zeus
+Regente=Apollo
+soldados=15000
+
+[kaikai]
+Desc=A maior parte da Terra é coberta de água, e sob elas, mais precisamente nas profundezas do mar, está o reino do deus do mar, Poseidon. Hoje o seu reino está restrito a três templos secretos nas profundezas do mar, envoltos em bolhas criadas pela Vontade Divina de Poseidon, além dos 7 pilares marinhos, mas nem sempre foi assim, já houve um grande império chamado de Atlântida, governado por Poseidon.
+Deus=Poseidon
+Regente=General Dragão Marinho
+soldados=15000
+
+[makai]
+Desc=O Mundo dos Demônio é chamado também de Tártaro ou Inferno, por estar nas profundezas mais isoladas abaixo do Mundo das Trevas (ou dos Mortos) o nome "Inferno" acaba se confundindo com o próprio Mundo de Hades.
+Deus=Cronos
+Regente=Pontos
+soldados=15000

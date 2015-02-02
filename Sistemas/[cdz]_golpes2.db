@@ -1,0 +1,783 @@
+---SAPURIS---
+
+[PequenoArbusto]
+Tecnica=Pequeno Arbusto
+Armadura=Esqueleto
+Desc01=O Espectro de Esqueleto queima o cosmo e, com isso, faz crescer pequenos arbustos em todo campo de batalha. Após isso, ele se esconde num deles e se prepara para atacar o inimigo quando ele menos esperar.
+
+[GrandeFlato]
+Tecnica=Grande Flato
+Armadura=Esqueleto
+Desc01=O Espectro de Esqueleto concentra sua Força no seu orifício anal a partir de gases venenosos, na tentativa de deixar o inimigo sem ar.
+
+[FragrânciaProfunda]
+Tecnica=Fragrância Profunda
+Armadura=Deep
+Desc01=O espectro libera ondas de energia que cercam o inimigo e emitem um cheiro sedativo, essa fragrância age diretamente sobre a pele infiltrando-se no sistema nervoso central do inimigo e paralisando suas funções vitais, podendo levá-lo à morte.
+
+[PerfumeMortal]
+Tecnica=Perfume Mortal
+Armadura=Deep
+Desc01=Um perfume invade o ambiente e o oponente começa a sentir um cheiro extremamente agradável e sem perceber, vai desfalecendo pouco a pouco, podendo chegar a morrer.
+
+[SaltoEsmagador]
+Tecnica=Salto Esmagador
+Armadura=Sapo
+Desc01=O espectro investe em alta velocidade contra o oponente saltando e caindo em seguida com um chute voador, causando danos razoáveis.
+
+[ErupçãoHorrenda]
+Tecnica=Erupção Horrenda
+Armadura=Pappilon
+Desc01=O espectro em sua forma primária libera vários jatos de energia capazes de desintegrar tudo que tocam, funcionando como um ácido, podendo causar muitos danos.
+
+[FiosdeSeda]
+Tecnica=Fios de Seda
+Armadura=Pappilon
+Desc01=O espectro em sua forma secundária libera inúmeros fios brancos de seda que envolvem o corpo do oponente, paralisando seus movimentos e impedindo que ele respire, podendo leva-lo à morte. 
+
+[EncantamentoMortal]
+Tecnica=Encantamento Mortal
+Armadura=Pappilon
+Desc01=O espectro invoca várias borboletas de luz que localizam o inimigo e o cercam, em seguida o espectro ergue o braço e desfere uma rajada de luz que se atingir o oponente o leva ao submundo, de onde não pode retornar, acabando assim com sua vida.
+
+[DevoradordeVidas]
+Tecnica=Devorador de Vidas
+Armadura=Harpia
+Desc01=O espectro reúne seu cosmo e cria uma onda de choque produzida através das asas de sua sapuris, capaz de tirar a fonte de vida do inimigo atingido.
+
+[DoceChocolate]
+Tecnica=Doce Chocolate
+Armadura=Harpia
+Desc01=O espectro cria uma grande ilusão fazendo o oponente pensar em momentos bons e alegres de sua vida, desnorteando sua mente, deixando-o vulnerável para ser atacado.
+
+[AbraçodoGigante]
+Tecnica=Abraço do Gigante
+Armadura=Ciclope
+Desc01=O espectro concentra seu cosmo nos braços enrigecendo-os incrivelmente, em seguida avança na direção do inimigo, o segura e abraça esmagando todos os ossos do seu corpo.
+
+[JuntaGigante]
+Tecnica=Junta Gigante
+Armadura=Ciclope
+Desc01=O espectro reúne seu cosmo no punho e dispara uma grande rajada de energia em seu oponente, podendo desintegrar o seu corpo. 
+
+[TentáculosdoVerme]
+Tecnica=Tentáculos do Verme
+Armadura=Verme
+Desc01=O espectro usa os vários tentáculos que sua sapuris possui para fazer um ataque intenso, alguns deles aprisionam o inimigo enquanto outros esmagam seus ossos e rasgam sua pele, e esses tentáculos podem se regenerar depois de um certo tempo.
+
+[RugidoSangrento]
+Tecnica=Rugido Sangrento
+Armadura=Verme
+Desc01=O espectro usa seus tentáculos formando uma enorme espiral contra o oponente, criando um tentáculo único com grande poder de ataque, atravessando o seu corpo.
+
+[GrandiosoMachadoEsmagador]
+Tecnica=Grandioso Machado Esmagador
+Armadura=Minotauro
+Desc01=O espectro concentra seu cosmo e usa um ataque de braço muito poderoso, com um alto impacto semelhante a um machado de ferro, seu braço pode destroçar qualquer coisa, tendo um grande poder de destruição.
+
+[GuilhotinadaFlorSangrenta]
+Tecnica=Guilhotina da Flor Sangrenta
+Armadura=Minotauro
+Desc01=O espectro concentra seu cosmo e cria uma navalha virtual sobre a cabeça do inimigo, em seguida ela cai em alta velocidade, podendo decepar a cabeça do inimigo caso o atinja em cheio, sendo um golpe fatal.
+
+[VôodoExtermínio]
+Tecnica=Vôo do Extermínio
+Armadura=Basilisk
+Desc01=O espectro concentra seu cosmo e libera uma enorme energia agressiva, saltando em seguida, ele desfere um furacão descontrolado de grandes proporções, semelhante ao bater de asas de sua sapuris.
+
+[RemoGiratório]
+Tecnica=Remo Giratório
+Armadura=Aqueronte
+Desc01=O espectro concentra o cosmo em seu remo e o gira em alta velocidade, criando uma espécie de barreira giratória que detém diversos ataques inimigos.
+
+[RedemoinhoEsmagador]
+Tecnica=Redemoinho Esmagador
+Armadura=Aqueronte
+Desc01=O espectro concentra seu cosmo nos punhos e gira os braços rapidamente criando um grande redemoinho que arremessa o oponente para longe, causando vários danos.
+
+[BalançadaMaldição]
+Tecnica=Balança da Maldição
+Armadura=Esfinge
+Desc01=O espectro usa o som de sua harpa para paralisar o oponente e criar uma ilusão onde retira o coração dele e o coloca numa balança sagrada para medir o volume de maldades cometidas, tendo como contra-peso uma pena, caso o coração do oponente seja mais pesado do que a pena, ele morrerá.
+
+[BeijonaEscuridão]
+Tecnica=Beijo na Escuridão
+Armadura=Esfinge
+Desc01=O espectro cria uma densa névoa que escurece todo o ambiente, deixando o oponente impossibilitado de vê-lo, e em seguida desfere um poderoso raio de cosmo na direção do oponente.
+
+[GrandeReestruturação]
+Tecnica=Grande Reestruturação
+Armadura=Troll
+Desc01=O espectro reúne seu cosmo nos braços aumentando o seu poder físico, em seguida avança na direção do oponente desferindo vários socos em sequência, e deles são emitidos feixes de luz que causam muitos danos.
+
+[ChicotedeFogo]
+Tecnica=Chicote de Fogo
+Armadura=Balron
+Desc01=O espectro usa seu terrível chicote que se enrola no alvo e começa a pressioná-lo de forma intensa, e em seguida acaba cortando-o em pedaços, sendo uma arma secreta letal.
+
+[Reencarnação]
+Tecnica=Reencarnação
+Armadura=Balron
+Desc01=O espectro afeta a mente do oponente lhe mostrando todos os pecados que cometeu, deixando-o atordoado e indefeso, por fim o espectro pode arremessar a alma do inimigo numa das prisões do inferno como forma de castigo, de acordo com o julgamento que fizer.
+
+[AvalancheExplosiva]
+Tecnica=Avalanche Explosiva
+Armadura=Golem
+Desc01=O espectro concentra seu cosmo e manipula o solo, arremessando pedras gigantes com alta velocidade nos oponentes, dificultando sua esquiva e contra-ataque.
+
+[UivoInfernal]
+Tecnica=Uivo Infernal
+Armadura=Lycaon
+Desc01=O espectro concentra uma esfera de cosmo nos punhos, avança em alta velocidade e a desfere diretamente no estômago do oponente, derrubando-o e deixando-o inconsciente.
+
+[SpraydeSangue]
+Tecnica=Spray de Sangue
+Armadura=Durahan
+Desc01=O espectro desfere uma rajada de sangue que tem características ácidas, podendo corroer a armadura do oponente e qualquer objeto que toque.
+
+[MensageirodaMorte]
+Tecnica=Mensageiro da Morte
+Armadura=Durahan
+Desc01=O espectro invoca cinco criaturas guerreiras demoníacas que atacam violentamente o oponente, ajudando-o em batalha. 
+
+[GrandeParede]
+Tecnica=Grande Parede
+Armadura=Besouro Mortal
+Desc01=O espectro reúne seu cosmo nos punhos e colocando-os na frente do corpo cria uma barreira semelhante a uma parede cósmica, conseguindo defender ataques diretos de seu oponente.
+
+[FiqueComigo]
+Tecnica=Fique Comigo
+Armadura=Besouro Mortal
+Desc01=O espectro usa seu cosmo para atrair o oponente pra perto de si, e então abraça-o com uma incrível força bruta, destroçando sua armadura e todos os ossos de seu corpo.
+
+[OlhodaCustódia]
+Tecnica=Olho da Custódia
+Armadura=Górgona
+Desc01=O espectro se concentra e cria um grande furacão com a força de seu cosmo, deixando o oponente no olho do furacão, arremessando-o para longe numa velocidade altíssima.
+
+[CadeadoMortal]
+Tecnica=Cadeado Mortal
+Armadura=Górgona
+Desc01=O espectro utiliza sua enorme agilidade para confundir o inimigo enquanto monta suas pernas no pescoço dele e aplica uma chave de perna, arremessando-o contra o chão com muita força.
+
+[ContagemNatural]
+Tecnica=Contagem Natural
+Armadura=Elfo
+Desc01=O espectro concentra seu cosmo e abre pequenas fissuras no solo de onde saem estranhas plantas que avançam contra o inimigo para aprisioná-lo e retirar sua energia.
+
+[MisturadeTerremoto]
+Tecnica=Mistura de Terremoto
+Armadura=Elfo
+Desc01=O espectro usa seu cosmo para abrir a terra, causando intensos terremotos e abrindo enormes fissuras, causando danos razoáveis e deixando o inimigo vulnerável.
+
+[MáximaPrecaução]
+Tecnica=Máxima Precaução
+Armadura=Wyvern
+Desc01=O Kyoto concentra toda sua energia cósmica trincando seus punhos, uma grande esfera de energia é criada ao seu redor bloqueando qualquer coisa em sua direção e em seguida essa esfera explode aumentando o raio da circunferência, criando graves danos em quem estiver nas proximidades.
+
+[DestruiçãoMáxima]
+Tecnica=Destruição Máxima
+Armadura=Wyvern
+Desc01=O kyoto libera inúmeros feixes de luz na direção do oponentecom uma enorme pressão, em seguida com as duas mãos ele lança uma rajada de energia muito poderosa semelhante a um dragão cósmico roxo, tendo um poder de destruição altíssimo.
+
+[MarioneteCósmica]
+Tecnica=Marionete Cósmica
+Armadura=Griffon
+Desc01=Ao movimentar os braços e as mãos o kyoto cria inúmeras linhas de cosmo quase invisíveis que são lançandas pela ponta de seus dedos, estas se enrroscam e prendem-se em várias partes do corpo do inimigo o paralisando imediatamente. Após ser preso pelo golpe a vítima do ataque perde todo controle dos movimentos do corpo sendo erguido no ar feito uma marionete, ficando a merce do espectro que o controla da maneira que desejar, podendo causar diferentes danos ao inimigo, desde algum membro quebrado até fraturas por todo corpo a ponto de levar a morte. Essa técnica é especialmente perigosa pois deixa o inimigo quase que totalmente indefeso contra a vontade do kyoto.
+
+[BaterDeAsasGigante]
+Tecnica=Bater De Asas Gigante
+Armadura=Griffon
+Desc01=O Kyoto eleva seu cosmo ao limite sendo envolto por uma energia de cor roxa que se ergue até os céus ao mesmo tempo que concentra uma grande força destrutiva genrando ao redor do mesmo correntes de ar a extrema velocidade. Então abrindo violentamente as asas de sua surplice ele libera os ventos formando um furacão de tonalidade roxa que rapidamente toma proporções gigantescas se expandindo até explodir numa rajada de cosmo pra todos os lados devastando e varrendo tudo em todas as direções com uma imensa força. O inimigo ao ser pego pelo golpe é sugado para os ares ao mesmo tempo que é retalhado pelos ventos e por fim sofrendo o impacto da explosão o arremessando para longe com extrema violência.
+
+[VôodeGaruda]
+Tecnica=Vôo de Garuda
+Armadura=Garuda
+Desc01=O kyoto elevando seu cosmo ergue ambas as mãos para o alto disparando uma poderosa rajada de cosmo sobre o oponente, de baixo pra cima, o lançando com uma velocidade absurda para os céus, a uma altura extrema. Logo após o juiz faz um "X" no chão marcando o local da queda do inimigo que, cerca de 3 segundos depois, cai numa velocidade terrível causando graves danos no corpo todo devido o impácto extremo contra o solo. 
+
+
+[IlusãoGaláctica]
+Tecnica=Ilusão Galáctica
+Armadura=Garuda
+Desc01=O kyoto dispara um feixe de luz que atinge a testa do oponente o arremessando para o alto envolto de círculos de cosmo que o paralizam e lançam para uma dimesão paralela, onde vários olhos galáticos se abrem ao redor do mesmo. O impacto gerado pelo golpe faz uma enorme pressão ao mesmo tempo que corroe e destroça o corpo do inimigo que acredita estar mesmo sendo sugado para outra galáxia, causando danos graves. Apesar de ser uma ilusão, a mente do inimigo acredita no que está acontecendo não conseguindo distinguir o real do imaginário, sofrendo as conseqüências que podem ser mortais.
+
+[VendavaldaCoroadoSol]
+Tecnica=Vendaval da Coroa do Sol
+Armadura=Benu
+Desc01=O espectro cria um grande sol negro ás suas costas de onde incontáveis labaredas de fogo se desprendem indo de encontro ao adversário.
+
+[CrusifixãoAnsata]
+Tecnica=Crusifixão Ansata
+Armadura=Benu
+Desc01=As chamas negras penetram no corpo do adversário e então começam a sair por diversas partes do corpo, como juntas e articulações causando danos seríssimos, sendo uma técnica altamente torturante.
+
+
+===KAIKAI===
+
+---Fantasmas I---
+
+[ForçadoEspectro]
+Tecnica=Força do Espectro
+Armadura=Vampiro
+Desc01=O cavaleiro fantasma dispara um feixe de luz de seu punho, e ao atingir o oponente causa terríveis ilusões, porém também deixam danos reais.
+
+[GarrasdoInferno]
+Tecnica=Garras do Inferno
+Armadura=Vampiro
+Desc01=O cavaleiro fantasma concentra sua energia nas garras e ataca violentamente o oponente, podendo feri-lo gravemente.
+
+[GolpedoGolfinho]
+Tecnica=Golpe do Golfinho
+Armadura=Golfinho
+Desc01=O cavaleiro fantasma salta e cai com seu corpo girando, aplicando vários golpes giratórios no oponente.
+
+[CabeçadadoGolfinho]
+Tecnica=Cabeçada do Golfinho
+Armadura=Golfinho
+Desc01=O Cavaleiro de Golfinho pula para o alto de modo que o seu adversário não consiga lhe ver, e concentrando o poder na ponta do seu elmo, volta para a superfície dando uma grande cabeçada no oponente.
+
+[ForçadosTorpedos]
+Tecnica=Força dos Torpedos
+Armadura=Medusa
+Desc01=O cavaleiro fantasma lança diversos socos contra seu adversário, estes que aparentam ter a potência de torpedos.
+
+[Tentáculos]
+Tecnica=Tentáculos
+Armadura=Medusa
+Desc01=Os Tentáculos de Medusa prendem seus inimigos, enquanto as pontas dos tentáculos soltam descargas elétricas poderosas no corpo do adversário, causando grandes danos e podendo paralisá-lo.
+
+[ChutedaSerpente]
+Tecnica=Chute da Serpente
+Armadura=Serpente
+Desc01=O cavaleiro fantasma salta para o alto e cai em seguida aplicando um chute certeiro no oponente, envolto pela imagem de uma serpente marinha.
+
+---Anjos Celestiais---
+
+[MáximaAltitude]
+Tecnica=Máxima Altitude
+Armadura=Ikarus
+Desc01=O anjo do Olimpo reúne muita energia em suas mãos e dispara uma rajada poderosa de cosmo, essa energia envolve o oponente jogando-o para cima e causando muitos danos.
+
+[GlobodeFogoCelestial]
+Tecnica=Globo de Fogo Celestial
+Armadura=Theseus
+Desc01=O Cavaleiro Celeste cria um globo de fogo que rodeia toda sua mão, aumentando cada vez mais o seu tamanho, e logo após isso, o Globo entra em chamas. Ao ser lançado contra seu adversário, ele engole qualquer ataque que venha na sua direção, sugando seu poder e tornando-se cada vez mais forte, causando grandes danos no oponente.
+
+[DeflexãoPúrpura]
+Tecnica=Deflexão Púrpura
+Armadura=Odysseus
+Desc01=Ao concentrar seu cosmo em espiral um pequeno ciclone púpura é formado e assim se torna um circulo de rotação constante, que é capaz de causar danos e ainda assim, desviar ataques, tanto quanto os paralizar e deixa-los suspensos por um tempo.
+
+---Berserkers---
+
+[ExplosãoFinal]
+Tecnica=Explosão Final
+Desc01=O berserker abre os braços reunindo muita energia, em seguida posiciona as duas mãos a frente do corpo e libera uma rajada de cosmos extremamente poderosa.
+
+[Submissão]
+Tecnica=Submissão
+Desc01=O berserker posiciona os braços a frente e libera uma enorme pressão de ar contra o oponente, fazendo com que ele seja arremessado violentamente contra o chão, depois a pressão continua paralisando seus movimentos, impedindo que ele se levante.
+
+[TentáculosMortais]
+Tecnica=Tentáculos Mortais
+Desc01=O berserker parece liberar vários tentáculos de sua armadura, aprisionando o oponente e aplicando uma descarga poderosa de energia, na verdade trata-se de uma ilusão, porém deixa danos reais.
+
+[MedoAssassino]
+Tecnica=Medo Assassino
+Desc01=O berserker com seu cosmo consegue intervir na mente do oponente trazendo à tona os seus maiores medos e complexos, perturbando assim sua instabilidade emocional e deixando-o consequentemente vulnerável.
+
+[TerrorSupremo]
+Tecnica=Terror Supremo
+Desc01=O berserker posiciona suas duas mãos para cima e reúne sua energia criando uma esfera negra que vai aumentando gradativamente, em seguida ela se divide em várias esferas menores e são lançadas contra o oponente, e cada esfera explode ao tocar em algo.
+
+[DemôniosFatais]
+Tecnica=Demônios Fatais
+Desc01=O berserker invoca criaturas demoníacas gigantescas que ganham vida por algum tempo e atacam violentamente o oponente, sendo necessário um alto poder de ataque e defesa para acabar com essas criaturas.
+
+[TigreBranco]
+Tecnica=Tigre Branco
+Desc01=O berserker eleva seu cosmo e com o punho desfere toda energia reunida formando a imagem de um enorme tigre branco que ataca o oponente causando sérios danos.
+
+[FogoInfernal]
+Tecnica=Fogo Infernal
+Desc01=O berserker dispara uma poderosa rajada de chamas, envolvendo o oponente em um turbilhão de fogo de cor azulado, dificultando muito sua esquiva e contra-ataque.
+
+[ÚltimaPicada]
+Tecnica=Última Picada
+Desc01=É uma técnica onde o berserker libera pequenas rajadas de ar de suas unhas causando cortes e arranhões no corpo do oponente.
+
+[AsasdaDestruição]
+Tecnica=Asas da Destruição
+Desc01=O berserker eleva seu cosmo e salta muito alto com os braços abertos, cai em seguida na direção do oponente desferindo toda energia através do punho, por ser uma ataque aéreo torna difícil o contra-ataque.
+
+[VôoNoturno]
+Tecnica=Vôo Noturno
+Desc01=O berserker concentra seu cosmo nas pernas, avança na direção do oponente, salta e cai logo após desferindo vários chutes em sequência forçando o oponente a recuar.
+
+[NeblinadaMorte]
+Tecnica=Neblina da Morte
+Desc01=O berserker cria com seu cosmo uma densa e sombria neblina que envolve todo o local ocultando sua presença, aproveitando-se disso ele ataca o oponente de surpresa, pegando-o desprevenido.
+
+[AniquilaçãoSangrenta]
+Tecnica=Aniquilação Sangrenta
+Desc01=O berserker concentra seu cosmo e atinge o oponente furando-o com a mão aberta, em seguida começa a drenar toda sua energia vital podendo levá-lo à morte.
+
+[PlantaDevoradoradeAlmas]
+Tecnica=Planta Devoradora de Almas
+Desc01=Surge a imagem de uma enorme planta carnívora cósmica atrás do berserker, essa planta então lança seus tentáculos tentando aprisionar por completo o oponente, caso consiga pode extrair a alma de seu corpo, deixando-o inerte.
+
+[MandíbulasArrasadoras]
+Tecnica=Mandíbulas Arrasadoras
+Desc01=O berserker libera de seus punhos várias rajadas de ar em alta pressão em forma de 'mandíbulas', que convergem contra o oponente podendo destruir partes de sua armadura.
+
+[TeiaVenenosa]
+Tecnica=Teia Venenosa
+Desc01=O berserker libera da palma das mãos teias finas que envolvem o oponente imobilizando-o, além disso essas teias liberam substâncias venenosas, enfraquecendo gradativamente o inimigo.
+
+[JavaliFurioso]
+Tecnica=Javali Furioso
+Desc01=A imagem de um enorme javali cósmico é vista atrás do berserker que em seguida avança em alta velocidade contra o oponente e o atinge frontalmente com o ombro, aproveitando-se de sua enorme força física, empurrando assim o inimigo para longe.
+
+[ChifredeBúfalo]
+Tecnica=Chifre de Búfalo
+Desc01=O berserker ataca diretamente o oponente com seu cosmo concentrado no chifre de sua vestimenta, sendo um ataque de alto impacto e que geralmente causa grandes danos.
+
+[GarrasLetaisdaHiena]
+Tecnica=Garras Letais da Hiena
+Desc01=O berserker avança contra o inimigo em alta velocidade e desfere golpes em sequencia com seus punhos que são altamente cortantes, lembrando cortes feitos por garras.
+
+[TrombaBrutal]
+Tecnica=Tromba Brutal
+Desc01=O berserker reúne seu cosmo num dos braços e avança contra o oponente com o braço horizontalmente reto visando atingir seu pescoço, podendo derrubá-lo caso consiga acertar.
+
+[PresasdeRinoceronte]
+Tecnica=Presas de Rinoceronte
+Desc01=O berserker aplica um gancho no oponente arremessando-o para cima envolto em energia, quando ele está caindo aplica-lhe um soco na altura do estômago jogando-o para longe.
+
+[SocoRelâmpago]
+Tecnica=Soco Relâmpago
+Desc01=O berserker reúne seu cosmo num dos punhos e desfere um poderoso soco descarregando toda energia acumulada assemelhando-se a um relâmpago.
+
+[FúriaExtrema]
+Tecnica=Fúria Extrema
+Desc01=O berserker reúne muita energia e avança contra o oponente aplicando uma sequencia avassaladora de socos e chutes em alta velocidade, sendo difícil esquivar e contra-atacar.
+
+[GrandeFuracãodoTigre]
+Tecnica=Grande Furacão do Tigre
+Desc01=O berserker libera de seu punho uma rajada de energia em forma de um enorme furacão que ao atingir o oponente arremessa-o para longe causando danos razoáveis.
+
+[ImpactoTerrestre]
+Tecnica=Impacto Terrestre
+Desc01=O berserker consegue causar enormes fendas no solo com o impacto de seu soco, e dessas fendas saem várias rajadas de energia para cima, atingindo o oponente de surpresa.
+
+[OndasMentais]
+Tecnica=Ondas Mentais
+Desc01=O berserker usa suas habilidades mentais para emitir ondas que atingem diretamente o cérebro do oponente, causando dores de cabeça e desconcentrando-o na luta.
+
+[AtaquePredador]
+Tecnica=Ataque Predador
+Desc01=O berserker segue em alta velocidade aplicando um ataque concentrado, liberando um feixe de energia que atravessa o inimigo, aparecendo o berserker no outro lado.
+
+---Marinas---
+
+[CiladadeCoral]
+Tecnica=Cilada de Coral
+exp=
+Classe=Marinas
+Armadura=Sereia
+Desc01=O marina lança um jato de coral que envolve o oponente e faz com que uma camada espessa de coral cubra todo seu corpo imobilizando-o e acabando com sua vida.
+
+[VentosdeTempestade]
+Tecnica=Ventos de Tempestade
+Armadura=Cavalo Marinho
+Desc01=O general marina abre os braços emitindo ondas que paralisam temporariamente o oponente, em seguida ele desfere um poderoso tornado que arremessa o inimigo para longe.
+
+[SoproDivino]
+Tecnica=Sopro Divino
+Armadura=Cavalo Marinho
+Desc01=O general marina reúne todo seu cosmo criando a imagem de enormes ondas ao redor de si, além da imagem de um dragão marinho cósmico, em seguida ele aplica um gancho no oponente arremessando-o para cima envolto numa rajada poderosa de energia.
+
+[TornadoViolento]
+Tecnica=Tornado Violento
+Armadura=Scylla
+Desc01=O general marina ergue os braços e cria uma poderosa corrente de ar ao redor de si, em seguida desfere um imenso tornado com alto poder de destruição contra o oponente.
+
+[FerrãodaAbelhaRainha]
+Tecnica=Ferrão da Abelha Rainha
+Armadura=Scylla
+Desc01=O general marina emite de seu dedo indicador um feixe de energia que assume a imagem de uma abelha e atinge o oponente, causando muitos danos.
+
+[ÁguiaPoderosa]
+Tecnica=Águia Poderosa
+Armadura=Scylla
+Desc01=O general marina salta e desce dando um vôo rasante com os braços abertos, em seguida dispara com os punhos duas rajadas de energia que assumem a imagem de uma águia.
+
+[SerpenteAssasina]
+Tecnica=Serpente Assasina
+Armadura=Scylla
+Desc01=O general marina desfere um feixe de luz que envolve o oponente assumindo a forma de uma enorme serpente que o envolve e pressiona cada vez mais, ficando difícil para escapar.
+
+[FúriadoLobo]
+Tecnica=Fúria do Lobo
+Armadura=Scylla
+Desc01=O general marina assume a imagem de um lobo furioso e avança contra o oponente aplicando um golpe frontal certeiro contra ele.
+
+[AtaqueVampiro]
+Tecnica=Ataque Vampiro
+Armadura=Scylla
+Desc01=O general marina desfere de seu punho vários feixes de energia que assumem a forma de morcegos e atacam o oponente, causando muitos ferimentos e sugando seu sangue.
+
+[UrsoInfernal]
+Tecnica=Urso Infernal
+Armadura=Scylla
+Desc01=O general marina desfere um golpe frontal de alto impacto assumindo a forma de um enorme urso que ataca com uma patada certeira.
+
+[LançaRelâmpago]
+Tecnica=Lança Relâmpago
+Armadura=Chrysaor
+Desc01=A lança sagrada de Chrysaor é muito poderosa, sendo extremamente resistente e afiada, o simples vácuo no ar deixado por um golpe dela é suficiente para ferir o oponente.
+
+[MahaRoshini]
+Tecnica=Maha Roshini
+Armadura=Chrysaor
+Desc01=O general marina fica numa posição de meditação e através de seus sete chkaras ele obtém muita energia para criar uma barreira invisível que repele investidas inimigas, além de poder criar ondas de energia muito poderosas.
+
+[SalamandraSatânica]
+Tecnica=Salamandra Satânica
+Armadura=Lymnades
+Desc01=O general marina assume a imagem de uma enorme salamandra e consegue golpear o oponente frontalmente arremessando-o para o alto e deixando-o cair com sérios danos.
+
+[AuroraBoreal]
+Tecnica=Aurora Boreal
+Armadura=Kraken
+Desc01=O general marina cria uma esfera de energia entre as mãos, em seguida lança uma poderosa rajada de energia envolta por um turbilhão de ar frio e com um alto poder destrutivo.
+
+[SinfoniaFinaldaMorte]
+Tecnica=Sinfonia Final da Morte
+Armadura=Sirene
+Desc01=O general marina toca sua flauta emitindo uma linda melodia, mas as ondas sonoras afetam diretamente o cérebro do oponente causando fortes dores e fazendo com que ele fique vulnerável, desfalecendo em seguida.
+
+[ClímaxFinaldaMorte]
+Tecnica=Clímax Final da Morte
+Armadura=Sirene
+Desc01=O general marina toca sua flauta e emite vários feixes de energia com altíssimo poder de destruição na direção do oponente, tornando muito difícil para ele evitar esse ataque.
+
+[TriânguloDourado]
+Tecnica=Triângulo Dourado
+Armadura=Dragão Marinho
+Desc01=O general marina reúne seu cosmo e desfere ondas de energia em forma de triângulos que envolvem o oponente arremessando-o em outra dimensão, mais precisamente na zona do triângulo diabólico do atlântico norte onde o seu corpo fica vagando eternamente.
+
+
+===TENKAI===
+
+---Guerreiros Deuses---
+
+[PunhoFlamejante]
+tecnica=Punho Flamejante
+Armadura=Ur
+Desc01=O guerreiro deus concentra seu cosmos em seus punhos e libera uma enorme quantidade de cosmos flamejante em seu oponente, causando enormes danos ao corpo do inimigo.
+
+[Chamasdosdeuses]
+Tecnica=Chamas dos Deuses
+Armadura=Ur
+Desc01=O Cavaleiro movimenta suas mãos como se fosse um X e lança uma então uma enorme rajada de fogo que tem a força de queimar tudo que toca.
+
+[MachadoBumerangue]
+Tecnica=Machado Bumerangue
+Armadura=Rung
+Desc01=O guerreiro deus concentra seu cosmo em seus dois poderosos machados bumerangues e os arremessa em alta velocidade, retalhando tudo que tocam.
+
+[GrandeTerremoto]
+Tecnica=Grande Terremoto
+Armadura=Rung
+Desc01=O Cavaleiro concentra seu cosmo e bate com seus dois machados no chão causando assim um grande terremoto na área a sua volta.
+
+[AtaquedeLobos]
+Tecnica=Ataque de Lobos
+Armadura=Loki
+Desc01=O guerreiro deus fica envolto num cosmo em forma de lobo, avança em alta velocidade desferindo várias rajadas de energia como se vários lobos atacassem o oponente.
+
+[TempestadedeOdin]
+Tecnica=Tempestade de Odin
+Armadura=Loki
+Desc01=A tempestade de Odin é um golpe terrível, onde uma nevasca juntamente com um Vendaval são conjurados contra o adversário, retardando seus movimentos além de causar danos sérissimos.
+
+[MachadosMiolnir]
+Tecnica=Machados Miolnir
+Armadura=Phecda
+Desc01=O guerreiro deus arremessa seus poderosos e enormes machados que giram em altíssima velocidade provocando um pequeno tornado por onde passam, e causando muitos estragos ao atingir alguma coisa.
+
+[HérculesTitânico]
+Tecnica=Hércules Titânico
+Armadura=Phecda
+Desc01=O guerreiro deus concentra seu cosmo no punho e desfere uma rajada de energia concentrada muito poderosa, envolto por feixes elétricos, e que possui um alto poder destrutivo.
+
+[GarradoLoboAssassino]
+Tecnica=Garra do Lobo Assassino
+Armadura=Alioth
+Desc01=O guerreiro deus desfere uma sequência de golpes com as garras de seus punhos, atacando o oponente diretamente e dificultando seu contra-ataque.
+
+[GolpedoLoboImortal]
+Tecnica=Golpe do Lobo Imortal
+Armadura=Alioth
+Desc01=O guerreiro deus libera rajadas de energia em forma de lobos cósmicos, atacando o oponente com vários golpes de suas garras e causando ferimentos sérios por todo o corpo.
+
+[ForçaCongelante]
+Tecnica=Força Congelante
+Armadura=Merak
+Desc01=O guerreiro deus posiciona seus dois braços a frente e libera uma rajada de ar frio muito poderosa, geralmente congelando o oponente por inteiro.
+
+[RaiodeFogo]
+Tecnica=Raio de Fogo
+Armadura=Merak
+Desc01=O guerreiro deus movimenta seus braços circularmente e libera uma imensa rajada de chamas, semelhante a um tornado de fogo de proporções incríveis.
+
+[EscudodeOdin]
+Tecnica=EscudodeOdin
+Armadura=Durval
+Desc01=Inúmeros feixes de luz saem do corpo do guerreiro deus convergindo na direção do oponente e criando uma enorme pressão sobre ele, em seguida é liberado várias rajadas de energia da palma da mão do guerreiro.
+
+[CoroadeFogo]
+Tecnica=Coroa de Fogo
+Armadura=Carina
+Desc01=O cavaleiro ergue os braços ficando envolto por feixes de energia, em seguida ele lança uma esfera de fogo muito poderosa que ao atingir o oponente envolve todo seu corpo, causando muitos danos.
+
+[HérculesReluzente]
+Tecnica=Hércules Reluzente
+Armadura=Lince
+Desc01=O cavaleiro reúne seu cosmo em uma das mãos, avança em alta velocidade na direção do oponente e desfere de seu punho uma enorme rajada de energia.
+
+[CabelosDouradosdaMorte]
+Tecnica=Cabelos Dourados da Morte
+Armadura=Coma Berenices
+Desc01=O cavaleiro salta por cima do oponente deixando que linhas cósmicas semelhantes a cabelos envolvam todo seu corpo, elas aprisionam e vão pressionando cada vez o inimigo causando ferimentos graves, por fim uma descarga de energia passa pelos fios e o atinge.
+
+[RaioPoderoso]
+Tecnica=Raio Poderoso
+Armadura=Benetnasch
+Desc01=O guerreiro  deus libera de seus dedos inúmeros feixes de energia extremamente cortantes em alta velocidade, semelhantes às cordas de sua harpa, retalhando tudo que toca, sendo uma técnica muito perigosa.
+
+[RéquiemdeCordas]
+Tecnica=Réquiem de Cordas
+Armadura=Benetnasch
+Desc01=O guerreiro deus começa a tocar sua harpa enquanto as cordas envolvem e aprisionam o oponente, fazendo uma enorme pressão, apertando cada vez mais, ferindo gravemente o inimigo e levando-o à morte.
+
+[EspadadeFogo]
+Tecnica=Espada de Fogo
+Armadura=Megrez
+Desc01=O robe divino de Megrez possui uma espada constituída de cristais especiais e que tem habilidade de se envolver em fogo, seus cortes são afiados e liberam inúmeras chamas.
+
+[CouraçaAmetista]
+Tecnica=Couraça Ametista
+Armadura=Megrez
+Desc01=O guerreiro deus abre os braços reunindo neles seu cosmo, em seguida libera um redemoinho intenso repleto de cristais de ametista que ao tocarem no corpo do oponente cristalizam a área atingida, sendo uma técnica mortal.
+
+[UnidadedaNatureza]
+Tecnica=Unidade da Natureza
+Armadura=Megrez
+Desc01=O guerreiro deus leva um certo tempo reunindo seu cosmo, em seguida invoca misteriosos espíritos unindo-os aos elementos da natureza, podendo manipula-la como quiser. É uma técnica antiga desse guerreiro deus.
+
+[GarrasdoTigreNegro]
+Tecnica=Garras do Tigre Negro
+Armadura=Mizar
+Desc01=O guerreiro deus concentra seu cosmo nas suas enormes garras, e avança contra o inimigo desferindo vários golpes cortantes em altíssima velocidade e repleto de cristais de gelo.
+
+[ImpulsoAzul]
+Tecnica=Impulso Azul
+Armadura=Mizar
+Desc01=O guerreiro deus abre os braços reunindo seu cosmo e forma uma esfera azul de energia semelhante a um modelo atômico, e que é lançada contra o oponente envolvendo-o e descarregando toda energia em seu corpo.
+
+[GarrasdoTigredaSombra]
+Tecnica=Garras do Tigre da Sombra
+Armadura=Arkor
+Desc01=O guerreiro deus desfere com suas garras vários feixes cortantes que depois se fundem numa única rajada de energia que atinge violentamente o oponente.
+
+[PunhodoTigredaSombra]
+Tecnica=Punho do Tigre da Sombra
+Armadura=Arkor
+Desc01=O Cavaleiro energiza seu cosmo em sua mão direita e com ela dá um soco no inimigo com seu punho imitando a pata de um tigre. Este soco, se bem dado pode parar o coração do inimigo.
+
+[EspadadeOdin]
+Tecnica=Espada de Odin
+Armadura=Dubhe
+Desc01=O guerreiro deus emite de seu dedo indicador um feixe de luz semelhante a uma espada que faz um círculo no chão ao redor do oponente, e cria uma redemoinho que arremessa o inimigo para cima causando muitos estragos.
+
+[VendavaldoDragão]
+Tecnica=Vendaval do Dragão
+Armadura=Dubhe
+Desc01=O guerreiro deus eleva os braços reunindo seu cosmo nas mãos, em seguida ele lança duas rajadas de energia imensas dos seus punhos, em seguida elas se fundem numa única rajada atingindo o oponente com um poder de destruição incrível.
+
+[Estigma]
+Tecnica=Estigma
+Desc01=O Cavaleiro concentra seu Cosmo e lança uma fina rajada do mesmo em direção do seu oponente. Depois de poucos segundos, o adversário começa a expelir sangue pela boca, nariz e mãos. É um golpe defensivo, apesar de causar danos sérios ao adversário, que fica um pouco fraco depois do golpe.
+
+[GolpeVingador]
+Tecnica=Golpe Vingador
+Desc01=Após receber um golpe, o Cavaleiro se levanta rapidamente gritando: 'Golpe Vingador!' e, na Velocidade da Luz ele ataca seu adversário pelas costas. Suas mãos, que estão energizadas com muito cosmo, queimão o adversário.
+
+[SaphirosEnedora]
+Tecnica=Saphiros Enedora
+Desc01=Consegue controlar mentalmente os animais. São válidos apenas Lobos, Cães e Parecidos.
+
+[RampantesdaLâmina]
+Tecnica=Rampantes da Lâmina
+Desc01=O Cavaleiro acende seu Cosmo e ataca o adversário, disparando de sua arma, Vários 'Flashs' de cosmo, que atigem-no. Se a Aura do usuário for Vermelha, o poder de ataque Aumenta.
+
+[Polyolkya]
+Tecnica=Polyolkya
+Desc01=O Cavaleiro de Dragão de Cem Cabeças, entra na mente do Adversário e cria uma ilusão na cabeça do mesmo. A ilusão é de que a alma do adversário está sendo devorada por um Dragão de Cem Cabeças, depois desse ataque, o adversário terá poucas forças para usar no combate.
+
+[CabeçasParalizantes]
+Tecnica=Cabeças Paralizantes
+Desc01=O Cavaleiro utiliza seu cosmo para evocar uma Cabeça de Dragão, que é feita de cosmo. ela vai em direção ao inimigo e o paraliza por um certo período de tempo.
+
+[AbsorçãoCósmica]
+Tecnica=Absorção Cósmica
+Desc01=O Deus Tífon absorve energia cósmica dos outros cavaleiros para usar da maneira que quiser. Podendo assim, utilizar um maior número de '%' nas lutas.
+
+[Kiai]
+Tecnica=Kiai
+Desc01=Esse golpe consiste em criar uma Gigantesca Onda de Energia que atira qualquer cavaleiro longe. Dependendo da força do golpe, ele pode destruir até Armaduras.
+
+[CalabouçodoTempoEstagnado]
+Tecnica=Calabouço do Tempo Estagnado
+Desc01=Esse golpe consiste em fechar o adversário numa barreira cósmica, que é praticamente inquebrável e inviolável. Essa 'barreira' vai lentamente absorvendo o cosmo e a energia do Adversário.
+
+[TeleosOracle]
+Tecnica=Teleos Oracle
+Desc01=Aquele que for vítima desse golpe se converterá imediatamente em um leal servo, obedecendo aos diversos comandos de Cronos e realizando todos meus pedidos, uma vez atingido seu controle é irrevessível.
+
+[ChaosHyetos]
+Tecnica=Chaos Hyetos
+Desc01=Fios de cosmo descem das estrelas e saem em todas as direções, ferindo gravemente o adversário, prendendo-o e sugando a sua cosmo-energia e energia vital exponensialmente.
+
+[ArkheinPhainomenon]
+Tecnica=Arkhein Phainomenon
+Desc01=Ativa controle pleno sobre as forças da natureza, com exceção do Trovão que foi criação de Zeus.
+
+[RapieiraCintilante]
+Tecnica=Rapieira Cintilante
+Desc01=O Cavaleiro faz seu cosmo brilhar, e, com a ilusão de estar com muitas Rapieiras, engana o adversário. Então, ele corre em direção ao inimigo, e sacando as suas 2 reais rapieiras, ataca o inimigo.
+
+[IluminaçãoNegra]
+Tecnica=Iluminação Negra
+Desc01=Envolvido por uma aura Negra, o cavaleiro aumenta o poder de ataque de suas Rapieiras.
+
+[VendavalNegro]
+Tecnica=Vendaval Negro
+Desc01=O Cavaleiro usa suas Rapieiras para provocar um intenso Vendaval, arremessando o oponente para longe.
+
+[VortexdoÉbano]
+Tecnica=Vórtex do Ébano
+Desc01=O vortex do ébano é um golpe que captura o inimigo dentro de um turbilhão, aplicando-lhe uma variação brusca de pressão e fortes rajadas de ventos. A variação de pressão faz o sangue entrar em ebulição e o vento decepa o corpo em pedaços. O turbilhão não cessa enquanto não dizimar a carne, explodir as veias e tornar o corpo um mero nada.
+
+[SolNegro]
+Tecnica=Sol Negro
+Desc01= o titã invoca um gigantesco sol negro ás suas costas com uma enorme concentração de cosmo lembrando um grande planeta em envolto de chamas intensas que se desprendem em forma de rajadas de fogo negro em todas os direções em grande quantidade pulverizando qualquer coisa que toca, previamente as destruindo com uma explosão e logo dissolvendo com incrível força devido o calor gerado. As chamas são tão poderosas e intensas que gera a morte queimando tudo, desde a vida até o cosmo do inimigo. 
+
+[VortexSolar]
+tecnica=Vortex Solar
+Desc01=Este golpe é uma variação do Vortex do Ébano, sendo disparado pela espada Gurthang rodeada por rajadas de vento a extrema velocidade ou pelas mãos do titã, a diferença é que o turbilhão criado está carregado por partículas elétricas "o vento solar" oriundos do Sol Negro. As correntes de ar formadas são extremamente quentes e velozes, incinerando o inimigo, tudo que os ventos tocam acaba sendo destruido e pulverizado.
+ 
+[TurbilhãodaEspadaMortal]
+Tecnica=Turbilhão da Espada Mortal
+Desc01=Materializando a espada Gurthang, o titã concentra rajadas de vento negro a incrível velocidade ao redor da espada em forma de um turbilhão aumentando muito a pressão ao redor da mesma superando mil vezes a pressão normal da superfície terrestre. Logo após o titã desfere um golpe lançando as rajadas de ventos a incrível pressão com o movimento de espada, lançando um gigantesco turbilhão negro destruindo tudo a sua frente, esmagando e dilacerando qualquer coisa de maneira assombrosa não sobrando nada do lugar ou do inimigo.
+
+[DilúviodeTalassa]
+Tecnica=Dilúvio de Talassa
+Desc01=O Cavaleiro conjura uma Chuva Torrencial, que, ao invés de pingos de chuvas, são gotas de cosmo, que vão acertando o inimigo vagarosamente.
+
+[EspadaFluída]
+Tecnica=Espada Fluída
+Desc01=O Cavaleiro concentra os cosmo em suas mãos e consegue fazer um tipo de Espada de Água. Que pode ser perfeitamente usado em combates. Porém, se a '%' usada for pequena, a espada pode se desfazer.
+
+[ImpactodaCorrenteza]
+Tecnica=Impacto da Correnteza
+Desc01=Utilizando muito cosmo, o Cavaleiro conjura Ondas enormes, e então, ele faz elas atacarem o inimigo.
+
+[FluxoBrilhante]
+Tecnica=Fluxo Brilhante
+Desc01=O Cavaleiro concentra cosmos e então manda rajadas de água na direção do inimigo. O que o inimigo não sabe, é que dentro das 'rajadas' existe uma grande concentração de bolas de cosmos, então a rajada torna-se brilhante.
+
+[DimensãoSeccionada]
+Tecnica=Dimensão Seccionada
+Desc01=O Cavaleiro usa sua Arma para fazer um corte no Ar e sugar tudo a sua volta.
+
+[ConvocaçãodoHecatônquiro]
+Tecnica=Convocação do Hecatônquiro
+Desc01=O  Cavaleiro de Dimensões consegue convocar um de seus '100 irmãos' Uma criatura com 100 braços, que pode atacar o Inimigo.
+
+[FúriadeHecatônquiro]
+Tecnica=Fúria de Hecatônquiro
+Desc01=Manipula o Hecatônquiro convocado. Podendo somente utilizá-lo para golpes físicos. Esta técnica só pode ser utilizada com o Hecatônquiro convocado, óbviamente.
+
+[CemTiros]
+Tecnica=Cem Tiros
+Desc01=O Cavaleiro energiza sua Lâmina Dupla e dispara 100 bolas de cosmo, altamente destrutivas. Esse golpe pode varrer tudo em um raio de 1 Km.
+
+--Hypnos & Thanatos--
+
+[SonoEterno]
+Tecnica=Sono Eterno
+Desc01=Hypnos coloca seus oponentes em um sono profundo sem volta, deixando-os vegetativos e indefesos, e esses que dormem nunca mais acordam (Shun de Andrômeda conseguiu acordar por causa do sangue de Atena em sua armadura). Essa técnica permite também que Hypnos controle os sonhos do adversário.
+
+[EncontroComOutraRealidade]
+Tecnica=Encontro Com Outra Realidade
+Desc01=Hypnos leva os seus oponentes ao Mundo dos Sonhos. Lá, Hypnos tem total controle sobre as mentes e corpos de seus inimigos podendo aprisioná-los em sonhos, ilusões ou pesadelos.
+
+[PesadeloMortal]
+Tecnica=Pesadelo Mortal
+Desc01=Hypnos depois de colocar seus oponentes em estado de sono eterno pode manipular seus sonhos transformando-os em pesadelos terríveis podendo levá-los à loucura ou até à morte.
+
+[TerrívelProvidência]
+Tecnica=Terrível Providência 
+Desc01=Thanatos concentra o cosmo nas mãos liberando-o contra o adversário como uma densa esfera de energia capaz de romper os planos dimensionais. Esta toma proporções gigantescas e ao toque explode em um ataque devastador capaz de desfazer em pó sua armadura.
+
+[PortadoInferno]
+Tecnica=Porta do Inferno 
+Desc01=Golpe que o Deus da Morte utiliza em Lost Canvas contra Manigold de Câncer e seu mestre Sage. O deus abre uma fenda que leva a uma dimensão inabitada por humanos ou qualquer forma de vida, pois tudo que cai nessa dimensão é totalmente estraçalhado, a menos que seja divino.
+
+[FobiadoTártaro]
+Tecnica=Fobia do Tártaro 
+Desc01=O Tártaro é a camada mais profunda do inferno. Lá residem apenas as almas mais cruéis e que de modo algum podem pagar pelo o que fizeram. É um local horrível de extrema punição e sofrimento. As almas são enviadas para o Tártaro a comando do próprio Thanatos. Nessa técnica ele conjura várias almas do Tártaro, que descarregam sua dor e agonia no alvo designado pelo Deus da Morte. Essas almas vão atacando o corpo do oponente e aos poucos retirando sua alma. Quando o oponente morre, sua alma passa a eternidade no Tártaro.
+
+[Nenhum]
+Tecnica=Nenhum
+Desc01=É tão foda que não existe nenhum ser capaz de descrever o golpe, pois o adversário é pulverizado instantâneamente.... kukukukuku
+
+[TridenteDivino]
+Tecnica=Tridente Divino
+Desc01=Quando Poseidon é completamente despertado e sua enorme cosmo energia cobre o Mundo, seu Tridente é revivido liberando uma grande quantidade de cosmo energia, afetando todos no local.
+
+[FlechadaJustiça]
+Tecnica=Flecha da Justiça
+Armadura=sagitário
+Desc01=Golpe símbolo de Sagitário no qual ele arma seu arco e concentrando o seu cosmo e os daqueles que foram mortos pelo adversário, lança sua flecha dourada contra o mesmo. Ao atingi-lo libera grande quantidade de energia de maneira devastadora e até mortal. Nos episodios G Aiolos usa esse golpe para destruir Tiffon(do grego tufão) usando o seu cosmo e os das pessoas mortas pelo deus.
+[VinhasdeRosas]
+Tecnica=Vinhas de Rosas
+Armadura=Surplice de Peixes
+Desc01=As vinhas podem ser utilizadas em forma de ataque que vão em direção ao oponente, prendendo o mesmo, logo os espinhos tornam-se rosas vermelhas, que liberam um veneno, formando um jardim de rosas, pode envolver o cavaleiro, formando uma defesa, pode curar o cavaleiro ou quem ele quiser.
+[PinçadoCaranguejo]
+Tecnica=Pinça do Caranguejo
+Armadura=Câncer
+Desc01=Ataque em que o Cavaleiro de Câncer se aproxima do inimigo e o envolve com as duas pernas, então, causando uma enorme pressão com as mesmas.
+[ImpulsoLuminosodeQuiron]
+Tecnica=Impulso Luminoso de Quiron
+Armadura=Sagitário
+Desc01=O Cavaleiro de Sagitário realiza uma pressão cósmica com seu punho, gerando assim uma especie de ventania dourada de grande dimensão que segue como um raio na direção do alvo. Não é um golpe ofensivo.
+[ConquistadordeIndra]
+Tecnica=Conquistador de Indra
+Armadura=Garuda
+Desc01=O juiz concentra uma grande quantidade cosmo formando uma densa esfera de energia que é disparada para os céus em forma de uma poderosa rajada de cosmo. Mesmo que o golpe inicial não acerte, após atingir uma determinada altura o raio explode dispersando inúmeras plumas de fogo que caem fazendo uma grande chuva sobre o inimigo podendo causar grandes danos.
+[OlhardaMorteGaláctica]
+Tecnica=Olhar da Morte Galáctica
+Armadura=Garuda
+Desc01=O kyoto faz surgir no céu três grandes olhos galáticos que ficam atrás do mesmo, semelhante aos do helmo da armadura de Garuda, então jogando os braços pra frente ele dispara o golpe gerando um impacto direto no cérebro, não importantando se o inimigo está com os olhos fechados ou não. O intenso olhar queima os nervos do corpo do inimigo, que o rasga e fere por dentro, fazendo com que sinta uma dor terrível a ponto de não conseguir se mover.
+[OndasdoInferno]
+Tecnica=Ondas do Inferno
+Armadura=altar
+Desc01=É uma propagação de ondas espirituais que atinge a alma do oponente enviando ao famoso Yomotsu Hirasaka, a legendária colina que leva ao Meikai.
+[OndasdosEspiritosdoMundodosMortos]
+Tecnica=Ondas dos Espiritos do Mundo dos Mortos
+Armadura=altar
+Desc01=O Cavaleiro de Altar invoca as almas de todos os Cavaleiros da ultima Guerra Santa e todas essas almas concentram uma imensa quantidade de energia, que em seguida é disparada em direção ao inimigo em forma de um raio extremamente abrangente.

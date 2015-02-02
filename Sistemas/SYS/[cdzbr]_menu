@@ -1,0 +1,109 @@
+on *:text:!athena:#animerpg :{ dcc chat $nick }
+
+on *:notice:*nickserv*identify*:*:{ | if ($nick == nickserv) { | /nickserv identify koncorpnew | } | }
+
+on *:notice:*Senha*aceita*:*:{ | if ($nick == nickserv) { | /chanserv halfop #animerpg $me | } | }
+
+on *:chat:*:{
+  if $left($1-,1) == @ {
+    if ($readini cdz/dados/log/ $+ $nick $+ .db $date qtd == $null) { .writeini cdz/dados/log/ $+ $nick $+ .db $date qtd 1 }
+    var %log $readini cdz/dados/log/ $+ $nick $+ .db $date qtd
+    .writeini cdz/dados/log/ $+ $nick $+ .db $date %log $time $1-
+    .inc %log
+    .writeini cdz/dados/log/ $+ $nick $+ .db $date qtd %log
+    if $1 == @seção {
+      verificar
+      if ($2 == 1) { 
+        $inicial(SEÇÃO 1)
+        $m Aqui você irá alterar dados relacionados
+        $m ao seu cadastro básico do bot e comandos básicos do canal14.
+        $m
+        msgl $nick                  $destaque(*) $opcao(!,Hora)         $destaque(*) $opcao(!,Data)
+        msgl $nick                  $redtaque(*) $opcao(!,Descadastrar) $redtaque(*) $opcao(!,Cores do Bot)
+        msgl $nick                    $opcao(!,Trocar Senha)   $opcao(!,Solicitar Senha)
+        msgl $nick                    $opcao(!,StaffList)
+      }
+      if ($2 == 2) {
+        $inicial(SEÇÃO 2)
+        $m Aqui você irá verificar dados relacionados
+        $m ao seu cadastro geral e principais dados de batalhas14.
+        $m
+        msgl $nick                  $opcao(!,Dados)              $opcao(!,Dados Nick)
+        msgl $nick                $destaque(*) $opcao(!,Cosmo)            $destaque(*) $opcao(@,Cosmo Nick)        
+        msgl $nick                $destaque(*) $opcao(.,Cosmo)            $destaque(*) $opcao(.,Cosmo Nick)   
+        msgl $nick                  $opcao(!,Armaduras)          $opcao(!,Raças)
+        msgl $nick                  $opcao(!,Treinos)            $opcao(!,Sentidos)
+        msgl $nick                   $opcao(!,Auras)              $opcao(!,Técnicas)
+        msgl $nick                  $opcao(!,Atributos)          $opcao(!,Golpes)
+      }
+      if ($2 == 3) { 
+        verstaff
+        var %nivel $dados($nick,staff,lv)
+        $inicial(SEÇÃO 5 (RESTRITA))
+        msgl $nick                         0 ____________
+        msgl $nick                         0| Seu nivel: |
+        msgl $nick                         0|     $destaque(%nivel) $+ 0       | 
+        msgl $nick                         0|¯¯¯¯¯¯¯¯¯¯¯¯    
+        msgl $nick                         0|_1 - $destaque(Quebra-Galho)
+        msgl $nick                         0|_2 - $destaque(Pau-Mandado)
+        msgl $nick                         0|_3 - $destaque(Paga-Pau)
+        msgl $nick                         0|_4 - $destaque(Manda-Chuva)
+        msgl $nick                         0|_5 - $destaque(Poderoso-Chefão)
+        $m
+        if $dados($nick,staff,lv) >= 5 {
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(5) $+ 14) -> $opcao(!,RASTREAR ARMADURAS)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(5) $+ 14) -> $opcao(!,ALTERAR CLASSE) $subopcao(NOVA CLASSE) $SUBOPCAO(NOME DA ARMADURA)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(5) $+ 14) -> $opcao(!,SET AURA) $subopcao(nick) $subopcao(COR)
+        }
+        if $dados($nick,staff,lv) >= 4 {
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(4) $+ 14) -> $opcao(!,SET) 14COS/EXP/ATRIBUTOS $subopcao(NICK) $subopcao(VALOR)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(4) $+ 14) -> $opcao(!,DEL) 14COS/EXP/ATRIBUTOS $subopcao(NICK) $subopcao(VALOR)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(4) $+ 14) -> $opcao(!,SET) 14AURA $subopcao(NICK) $subopcao(COR)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(4) $+ 14) -> $opcao(!,ADDGOLPE) 
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(4) $+ 14) -> $opcao(!,ARRUMAR DESC) 
+        }
+        if $dados($nick,staff,lv) >= 3 {
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(3) $+ 14) -> $opcao(!,LIBERAR) $subopcao(ARMADURA)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(3) $+ 14) -> $opcao(!,BLOQUEAR) $subopcao(ARMADURA)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(3) $+ 14) -> $opcao(!,DESBLOQUEAR) $subopcao(ARMADURA)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(3) $+ 14) -> $opcao(!,ADICIONAR) $subopcao(NICK) $subopcao(NÍVEL)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(3) $+ 14) -> $opcao(!,REMOVER) $subopcao(NICK)
+        }
+        if $dados($nick,staff,lv) >= 2 {
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(2) $+ 14) -> $opcao(!,CANCELAR) $subopcao(ID)
+        }
+        if $dados($nick,staff,lv) >= 1 {
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(1) $+ 14) -> $opcao(!,ATUALIZAR) $subopcao(VENCEDOR) $subopcao(PERDEDOR) $subopcao(NARRADOR)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(1) $+ 14) -> $opcao(!,EMPATE) $subopcao(LUTADOR) $subopcao(LUTADOR) $subopcao(NARRADOR)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(1) $+ 14) -> $opcao(!,SORTEAR) $subopcao(LUTADOR) $subopcao(LUTADOR) $subopcao(LUTADOR) $subopcao(...)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(1) $+ 14) -> $opcao(!,INICIAR) $subopcao(LUTADOR) $subopcao(LUTADOR) $subopcao(NARRADOR)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(1) $+ 14) -> $opcao(!,ENTRAR) $subopcao(CANAL)
+          msgl $nick   $str($chr(160),3) $destaque(*) 14( $+ $destaque(1) $+ 14) -> $opcao(!,SAIR) $subopcao(CANAL)
+        }
+      }
+      if $2 >= 1 && $2 < 4 {
+        $m
+        msgl $nick 00        ( $destaque(*) 00) comandos que devem ser digitados no canal.
+        msgl $nick 00        ( 4x00 ) comandos que estão desabilitados.
+        $m
+        $m(15) Caso ainda tenha dúvidas digite $opcao(!,Ajuda)
+        $m(15) e aguarde que um dos membros da equipe de suporte o atenda
+        msgbase $nick
+      }
+    }
+    if $left($1-,1) == ! { 
+      if ($readini cdz/dados/log/ $+ $nick $+ .db $date qtd == $null) { .writeini cdz/dados/log/ $+ $nick $+ .db $date qtd 1 }
+      var %log $readini cdz/dados/log/ $+ $nick $+ .db $date qtd
+      .writeini cdz/dados/log/ $+ $nick $+ .db $date %log $time $1-
+      .inc %log
+      .writeini cdz/dados/log/ $+ $nick $+ .db $date qtd %log
+    }
+  }
+}
+
+on *:text:!set aura*:#:{
+  $verstaff(4)
+  if ($dados($3,dados,aura) == $4) { msg # $premsg($nick, o $upper($3) ja possuia a aura $upper($4) | halt }
+  $escrever($3,dados,aura,$4)
+  msg # $premsg($nick,Aura de $upper($3) foi alterada para $upper($4)) 
+}

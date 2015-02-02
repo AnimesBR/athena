@@ -1,0 +1,604 @@
+on *:text:!hora:#:{ verificar2 | hora | /msg # %horas | unset %horas | unset %min | unset %seg }
+;on *:text:!ronaldo:#:{ msg # BRILIA MUITON CORITAS }
+on *:text:!data:#:{ verificar2 | data | /msg # %data | unset %dia | unset %mes | unset %semana | unset %ano | unset %data }
+
+alias hora {   
+  .set %hora $time(HH) 
+  .set %min $time(nn) 
+  .set %seg $time(ss) 
+  .set %horas $prestaff(Atenção,Agora são09 %hora $+ 15 $iif(%hora < 2,Hora,Horas) 09 $+ %min $+ 15 $iif(%minutos < 2,Minuto,Minutos) e 09 $+ %seg $+ 15 $iif(%seg < 2,Segundo,Segundos))
+}
+
+alias Data {
+  .set %mes $calc($date(mm))
+  .set %semana $day
+  .set %dia $date(dd) 
+  .set %mes $date(mm)
+  .set %ano $date(yyyy)
+  if (%mes == 01) { /set %mes Janeiro }
+  if (%mes == 02) { /set %mes Fevereiro }
+  if (%mes == 03) { /set %mes Março }
+  if (%mes == 04) { /set %mes Abril }
+  if (%mes == 05) { /set %mes Maio }
+  if (%mes == 06) { /set %mes Junho }
+  if (%mes == 07) { /set %mes Julho }
+  if (%mes == 08) { /set %mes Agosto }
+  if (%mes == 09) { /set %mes Setembro }
+  if (%mes == 10) { /set %mes Outrubro }
+  if (%mes == 11) { /set %mes Novembro }
+  if (%mes == 12) { /set %mes Dezembro }
+  if (%semana == Sunday) { /set %semana Domingo }
+  if (%semana == Monday) { /set %semana Segunda Feira }
+  if (%semana == Tuesday) { /set %semana Terça Feira }
+  if (%semana == Wednesday) { /set %semana Quarta Feira }
+  if (%semana == Thursday) { /set %semana Quinta Feira }
+  if (%semana == Friday) { /set %semana Sexta Feira }
+  if (%semana == Saturday) { /set %semana Sabado }
+  .set %data $prestaff(Atenção,Hoje é09 %semana $+ 00 $+ $chr(44) $+ 15 %dia 00de15 %mes 00de15 %ano)
+}
+
+on *:text:!identificar*:?:{
+  if ($2 == equipe) {
+    if ($3 == $null) {
+      msg $nick Você precisa indicar uma senha para login. (!Identificar Equipe Senha)
+      halt
+    }
+    if ($dados($nick,staff,lv) == $null) {
+      msg $nick Você não faz aprte da equipe
+      halt
+    }
+    if ($3 != $dados($nick,staff,senha)) {
+      msg $nick Sua senha está incorreta, peça para um administrador altera-la.
+      halt
+    }
+    else {
+      $escrever($nick,staff,logado,sim)
+      msg $nick Login realizado com sucesso.
+    }
+  }
+  if ($2 == $null) { 
+    msg $nick Você precisa indicar uma senha para login. (!Identificar Senha)
+    halt
+  }
+  if ($dados($nick,dados,logado) == sim) {
+    if ($2 != equipe) {
+      msg $nick Você já está logado em nosso sistema.
+      halt
+    }
+  }
+  if ($dados($nick,dados,senha) != $2) {
+    if ($2 != equipe) { 
+      msg $nick Sua senha está incorreta. (!Solicitar Senha)
+      halt
+    }
+  }
+  else {
+    msg $nick Você se identificou com sucesso.
+    if ($dados($nick,staff,lv) != $null) {
+      var %staff $dados($nick,staff,lv)
+      msg $nick Você faz parte da equipe ( $+ $replace(%staff,1,Quebra-Galho,2,Pau-Mandado,3,Paga-Pau,4,Manda-Chuva,5,Poderoso-Chefão) $+ ), para se identificar digite: !Identificar Equipe Senha.
+    }
+    $escrever($nick,dados,logado,sim) 
+    $escrever($nick,dados,login,$date)
+  }
+}
+
+on *:chat:!identificar*:{
+  if ($2 == equipe) {
+    if ($3 == $null) {
+      $inicial(Staff Login)
+      $m Você precisa indicar uma senha para login $+ $cor(!)
+      $m $opcao(!,IDENTIFICAR) $opcao(EQUIPE) $opcao(SENHA)
+      msgbase $nick
+      halt
+    }
+    if ($dados($nick,staff,lv) == $null) {
+      $inicial(ERRO INTERNO)
+      msgt $nick Você não faz parte da staff.
+      msgbase $nick
+      halt
+    }
+    if ($3 != $dados($nick,staff,senha)) {
+      $inicial(Login)
+      $m Sua senha está incorreta $+ $cor(!)
+      $m(15) Peça para um administrador altera-la14.
+      msgbase $nick
+      halt
+    }
+    else {
+      $escrever($nick,staff,logado,sim)
+      $inicial(Staff Login)
+      $m $u(você logou com êxito)
+      $m(15) tendo acesso agora à $opcao(@,SEÇÃO 3)
+      msgbase $nick
+    }
+  }
+  if ($2 == $null) { 
+    $inicial(Login) 
+    $m(15) Você precisa indicar uma senha para login $+ $cor(!)
+    $m $opcao(!,IDENTIFICAR) $subopcao(SENHA)
+    msgbase $nick
+    halt
+  }
+  if ($dados($nick,dados,logado) == sim) {
+    if ($2 != equipe) {
+      $inicial(Login)
+      $m(15) Você já está logado em nosso sistema $+ $cor(!)
+      msgbase $nick
+      halt
+    }
+  }
+  if ($dados($nick,dados,senha) != $2) {
+    if ($2 != equipe) { 
+      $inicial(Login) 
+      $m(15) Sua senha está errada
+      $m 
+      $m(15) $opcao(Caso tenha esquecido sua senha digite:)
+      $m $opcao(!,SOLICITAR SENHA)
+      msgbase $nick 
+      halt
+    }
+  }
+  else {
+    var %l =  $+ $dados($nick,dados,detalhescor)
+    var %c = $dados($nick,dados,barracor)
+    var %c1 =  $+ %c $+ , $+ %c
+    var %c2 =  $+ %c $+ ,1
+    msg =$nick 1,1 $str($chr(160),73)
+    msg =$nick 14,1 $str(_,08) $+ / $+ $str(¯,54) $+ \ $+ $str(_,08) 
+    $m(00)  _____ _____ _____ _____ _____ _____ 
+    $m(00) |  _  |_   _|  |  |   __|   | |  _  |
+    $m(00) |     | | | |     |   __| | | |     |
+    $m(00) |__|__| |_| |__|__|_____|_|___|__|__|
+    $m
+    $m(09) v143.0
+    quebra-linhat
+    $m
+    $m $upper(14Seja Muito Bem Vindo  $+ $nick $+ )
+    $m
+    $m   0Digite $opcao(!,Menu) 0para acessar o sistema central do bot.
+    if ($dados($nick,staff,lv) != $null) {
+      var %staff $dados($nick,staff,lv)
+      $m
+      $m Você é membro da equipe, é necessário que se logue
+      $m
+      $m(15) Para se logar digite $+ $cor(:)
+      $m $opcao(!,IDENTIFICAR EQUIPE) $subopcao(SENHA)
+      $m
+      $m Seu Nível é %staff (14 $+ $replace(%staff,1,Quebra-Galho,2,Pau-Mandado,3,Paga-Pau,4,Manda-Chuva,5,Poderoso-Chefão) $+ 15)
+    }
+    msgbase $nick
+    if $dados($nick,armadura,nome) != $null {
+      var %arm = $remove($dados($nick,armadura,nome),$chr(32))
+      if $dadosarm($nick,dono) != $nick { 
+        writeini cdz\dados\armaduras\ $+ %arm $+ .db arm dono $nick
+      }
+    }
+    $escrever($nick,dados,logado,sim) 
+    $escrever($nick,dados,login,$date)
+  }
+}
+
+on *:chat:!menu:{
+  verificar
+  $inicial(Menu Principal)
+  $m Abaixo seguem as principais seções do bot14.
+  $m Em cada seção você irá se informar melhor sobre cada tópico14.
+  $m
+  $m $cor(@) $+ Seção 1 $destaque(->,15) Comandos relacionados ao cadastro e ao canal
+  $m $cor(@) $+ Seção 2 $destaque(->,15) Comandos relacionados ao seu personagem     
+  if ($dados($nick,staff,lv) != $null) { 
+    $m $cor(@) $+ Seção 3 $destaque(->,15) Comandos Restritos à staff                  
+  } 
+  msgbase $nick
+}
+
+off *:text:!hora:#:{ verificar2 | hora | /msg # %horas | unset %horas | unset %min | unset %seg }
+off *:text:!data:#:{ verificar2 | data | /msg # %data | unset %dia | unset %mes | unset %semana | unset %ano | unset %data }
+
+raw 421:*:{ halt }
+
+raw *:*: {
+  if $numeric == 307 { hadd -m $2 identificado 1 }
+  if $numeric == 318 {
+    if $chat($2) {
+      if $hget($2,identificado) {
+        hdel $2 identificado
+        $escrever($2,dados,liberado,sim)
+        if $dados($2,newnick,antigo) != $null {
+          var %trocanick = $ifmatch
+          if $dados($2,armadura,nome) != $null {
+            set %armadura-sim $ifmatch
+            writeini cdz\dados\armaduras\ $+ %armadura-sim $+ .db arm dono $2
+          }
+          remove cdz/dados/usuarios/ $+ $2 $+ .db
+          rename cdz/dados/usuarios/ $+ %trocanick $+ .db cdz/dados/usuarios/ $+ $2 $+ .db
+          remini cdz\dados\usuarios\ $+ $2 $+ .db newnick
+          $escrever($2,dados,nome,$2)
+          close -c $2
+          msg $2 Seu nick foi trocado com sucesso! Agora basta se logar no bot com a senha  $+ $dados($2,dados,senha) $+  :)
+        }
+      }
+      else { msg $2 $2 seu nick não está identificado no nickserv. Para trocar de nick o identifique e tente novamente. }
+    }
+  }
+}
+
+if !$isdir(CDZ\dados\usuarios\ $+ $nick $+ \) {
+  mkdir CDZ\dados\usuarios\ $+ $nick $+ \
+  mkdir CDZ\dados\usuarios\ $+ $nick $+ \fichas
+}
+
+on *:open:=:{ 
+  echo -s 04 $+ $chat($nick).ip $+ 1 - $nick acessando o bot. 
+  vercadastro 
+}
+
+on *:connect:{
+  .timer 1 5 //nickserv ghost Kon-Athena koncorpnew
+  .timer 1 10 //nick Kon-Athena
+  .timer 1 15 //join #animerpg
+  .timer 0 1400 pegar-noticias
+  .timer 0 1410 mostrar-noticias
+}
+
+msg #animerpg 00,2 $replace(%desc,  Comentario CavZodiaco.com.br:,11Comentário CavZodiaco.com.br:00) 
+
+alias pegar-noticias { rss -i http://www.cavzodiaco.com.br/noticias.xml noticias.ini }
+alias mostrar-noticias {
+  set %total $ini(noticias.ini,0)
+  if $readini(noticias.ini,#1,title) == %oldtitulo {
+    set %numero $chr(35) $+ %noticia-mostrada
+    inc %noticia-mostrada
+    var %titulo = $readini(noticias.ini,%numero,title)
+    var %link = $readini(noticias.ini,%numero,link)
+    var %desc = $readini(noticias.ini,%numero,description)
+    msg #animerpg 11,2[0N00ews11] ~08 $replace(%titulo,$chr(40),00 $+ $chr(40) $+ 11,$chr(41),00 $+ $chr(41)) 11~ 00saiba mais em: 11 $+ %link $+ 
+    if %noticia-mostrada >= %total { set %noticia-mostrada 1 }
+  }
+  else {
+    set %noticia-mostrada 1
+    set %numero #1
+    var %titulo = $readini(noticias.ini,#1,title)
+    set %oldtitulo %titulo
+    var %link = $readini(noticias.ini,%numero,link)
+    msg #animerpg 11,2[0N00ews11] ~08 $replace(%titulo,$chr(40),00 $+ $chr(40) $+ 11,$chr(41),00 $+ $chr(41)) 11~ 00saiba mais em: 11 $+ %link $+ 
+    inc %noticia-mostrada
+  }
+}
+
+on *:nick:{
+  echo -s $nick now $newnick
+  var %nick = $nick
+  if $dados(%nick,dados,nome) != $null { $deslogar(%nick) }
+  close -c %nick
+}
+
+on *:quit:{
+  if ($nick ison #animerpg ) {
+    if ($chat($nick) != $null) { close -c $nick } 
+    if ($dados($nick,dados,nome) != $null) { $deslogar($nick) }
+  }
+}
+
+on *:part:#animerpg :{
+  if ($chat($nick) != $null) { close -c $nick } 
+  if ($dados($nick,dados,nome) != $null) { $deslogar($nick) }
+}
+
+on *:join:#animerpg :{
+  if ($chat($nick) != $null) { close -c $nick } 
+  if ($dados($nick,dados,nome) != $null) { $deslogar($nick) }
+}
+
+rmdir cdz\dados\usuarios\ $+ $nick $+ \fichas
+rmdir cdz\dados\usuarios\ $+ $nick $+ \
+
+on *:close:=:{
+  if $dados($nick,dados,nome) == $null { remove cdz\dados\usuarios\ $+ $nick $+ .db | halt }
+  close -c $nick
+}
+
+;on *:disconnect:{ /server irc.rizon.net }
+
+on *:chat:!cadastro*:{
+  if ($dados($nick,dados,nome) != $null ) {
+    $inicial(Cadastro)
+    $m(15) Seu cadastro já consta em nossos bancos de dados
+    $m
+    $m(15) $opcao(Para realizar troca de nick:)
+    $m $opcao(!,TROCAR NICK)
+    msgbase $nick
+    halt
+  }
+  if $dados($nick,dados,liberado) == $null {
+    $inicial(Cadastro)
+    $m Infelizmente seu acesso ao bot não foi liberado
+    $m pela verificação de nicks autenticados.
+    $m
+    $m Autentique-se e tente novamente.
+    msgbase $nick
+    halt
+  }
+  if !$4 {
+    $inicial(CADASTRO)
+    $m Dados insuficientes :)
+    $m
+    $m(04) [IMPORTANTE]:
+    $m verifique as seções !Raças & !Auras antes de se cadastrar
+    $m
+    $m(14) Para realizar seu cadastro, basta digitar:
+    $m
+    $m $opcao(!,CADASTRO) $subopcao(RAÇA ESCOLHIDA) $subopcao(AURA ESCOLHIDA) $subopcao(SENHA)
+    $m
+    msgbase $nick
+    halt
+  }
+  if !$istok(humano humanos lemuriano lemurianos anjo anjos,$2,32) {
+    $inicial(ERRO)
+    $m Raça inválida! Verifique sua ortografia!
+    msgbase $nick
+    halt
+  }
+  if !$istok(azul vermelha roxa negra branca verde,$3,32) {
+    $inicial(ERRO)
+    $m Aura inválida! Verifique sua ortografia!
+    msgbase $nick
+    halt
+  }
+  $escrever($nick,dados,nome,$nick)
+  $escrever($nick,dados,registro,$date)
+  $escrever($nick,dados,login,$date)
+  $escrever($nick,dados,senha,$4-)
+  var %raca = $2
+  if %raca == humanos { var %raca Humano }
+  if %raca == lemurianos { var %raca Lemuriano }
+  if %raca == anjos { var %raca Anjo }
+  if %raca == Humano { var %habilidades Controle do Cosmo, Força Vital, Poder Oculto }
+  if %raca == Lemuriano { var %habilidades Controle do Cosmo, Telecinese, Telepatia }
+  if %raca == Anjo { var %habilidades Controle do Cosmo, Asas de Luz, Toque Divino }
+  $escrever($nick,dados,raça,%raca)
+  $escrever($nick,dados,aura,$3)
+  $escrever($nick,dados,habilidades,%habilidades)
+  $escrever($nick,dados,sentido,5 Sentidos Aguçados)
+  $escrever($nick,dados,exp,250)
+  $escrever($nick,dados,cos,2500)
+  $escrever($nick,dados,din,250)
+  $escrever($nick,dados,hpatu,100)
+  $escrever($nick,dados,hpmax,100)
+  $escrever($nick,dados,atributos,15)
+  $escrever($nick,dados,cfis,0)
+  $escrever($nick,dados,ccos,0)
+  $escrever($nick,dados,cmen,0)
+  $escrever($nick,dados,cdes,0)
+  $escrever($nick,dados,armadura,Nenhuma)
+  var %itens = Braceletes de Proteção, Armadura Básica
+  $escrever($nick,dados,mochila,%itens)
+  $escrever($nick,batalhas,ultimas,$date)
+  $escrever($nick,batalhas,cota,0)
+  $escrever($nick,batalhas,vitorias,0)
+  $escrever($nick,batalhas,derrotas,0)
+  $escrever($nick,batalhas,empates,0)
+  $escrever($nick,batalhas,narradas,0)
+  $escrever($nick,treinos,santuário,não)
+  $escrever($nick,treinos,asgard,não)
+  $escrever($nick,treinos,reinomarinho,não)
+  $escrever($nick,treinos,inferno,não)
+  $escrever($nick,doutrina,nome,Nenhuma)
+  if ($nick == Kamikaze) || ($nick == Deco) || ($nick == Kiba) { $escrever($nick,Staff,lv,6) | $escrever($nick,Staff,senha,cdzbrstaff) }
+  $inicial(Cadastro)
+  $m(15) Cadastro finalizado com sucesso14!
+  $m(15) Para se logar digite $opcao(!,IDENTIFICAR) $subopcao(SENHA)
+  $m
+  $m $cor($u(/)) A equipe 0#14KON15 agradece ;D $cor($u(\))
+  msgbase $nick
+}
+
+on *:chat:!Trocar Nick*:{
+  if !$3 {
+    $inicial(ERRO)
+    $m Parâmetros Insuficientes!
+    $m $opcao(!,Trocar Nick) $subopcao(Nick Antigo) $subopcao(Senha do Nick Antigo)
+    msgbase $nick
+    halt
+  }
+  if !$4 {
+    $inicial(ERRO)
+    $m Parâmetros Insuficientes!
+    $m $opcao(!,Trocar Nick) $subopcao(Nick Antigo) $subopcao(Senha do Nick Antigo)
+    msgbase $nick
+    halt
+  }
+  if ($dados($nick,dados,nome) != $null) {
+    $inicial(ERRO)
+    $m O nick para qual você deseja mudar já
+    $m consta em nossos bancos de dados.
+    $m
+    $m Por favor escolha outro nick.
+    msgbase $nick
+    halt
+  }
+  if ($dados($3,dados,senha) != $4) {
+    $inicial(ERRO)
+    $m A senha digitada não confere com a gravada 
+    $m em nosso banco de dados!
+    $m
+    $m Por favor verifique sua ortografia.
+    msgbase $nick
+    halt
+  }
+  else {
+    $escrever($nick,newnick,antigo,$3)
+    $escrever($nick,newnick,novo,$nick)
+    whois $nick
+  }
+}
+
+on *:chat:!cores do bot:{ configurarskin }
+
+on *:chat:!skin*:{
+  if !$2 { configurarskin }
+  else {
+    if !$istok(saintseiya now,$2,32) {
+      $inicial(SISTEMA DE SKINS EM MANUTENÇÃO)
+      $m Sentimos pelo incomodo, mas o sistema de skins está em
+      $m $destaque(MANUTENÇÃO)
+      msgbase $nick
+      halt
+    }
+    if $2 == golden {
+      $escrever($nick,dados,barracor,0)
+      $escrever($nick,dados,detalhescor,7)
+      $escrever($nick,dados,destaquecor,8)
+      $inicial(SKIN ALTERADA COM SUCESSO)
+      $m Apartir de agora sua skin está configurada como $+ $cor(:)
+      $m
+      $m $cor(<) $upper($2 Skin) $cor(>)
+      msgbase $nick
+    }
+    if $2 == sapuris {
+      $escrever($nick,dados,barracor,6)
+      $escrever($nick,dados,linhacor,14)
+      $escrever($nick,dados,destaquecor,8)
+      $inicial(SKIN ALTERADA COM SUCESSO)
+      $m Apartir de agora sua skin está configurada como $+ $cor(:)
+      $m
+      $m $cor(<) $upper($2 Skin) $cor(>)
+      msgbase $nick
+    }
+    if $2 == ebano {
+      $escrever($nick,dados,barracor,14)
+      $escrever($nick,dados,linhacor,15)
+      $escrever($nick,dados,destaquecor,8)
+      $inicial(SKIN ALTERADA COM SUCESSO)
+      $m Apartir de agora sua skin está configurada como $+ $cor(:)
+      $m
+      $m $cor(<) $upper($2 Skin) $cor(>)
+      msgbase $nick
+    }
+    if $2 == magma {
+      $escrever($nick,dados,barracor,7)
+      $escrever($nick,dados,linhacor,4)
+      $escrever($nick,dados,destaquecor,8)
+      $inicial(SKIN ALTERADA COM SUCESSO)
+      $m Apartir de agora sua skin está configurada como $+ $cor(:)
+      $m
+      $m $cor(<) $upper($2 Skin) $cor(>)
+      msgbase $nick
+    }
+    if $2 == marine {
+      $escrever($nick,dados,barracor,02)
+      $escrever($nick,dados,linhacor,12)
+      $escrever($nick,dados,destaquecor,8)
+      $inicial(SKIN ALTERADA COM SUCESSO)
+      $m Apartir de agora sua skin está configurada como $+ $cor(:)
+      $m
+      $m $cor(<) $upper($2 Skin) $cor(>)
+      msgbase $nick
+    }
+    if $2 == nature {
+      $escrever($nick,dados,barracor,10)
+      $escrever($nick,dados,linhacor,3)
+      $escrever($nick,dados,destaquecor,9)
+      $inicial(SKIN ALTERADA COM SUCESSO)
+      $m Apartir de agora sua skin está configurada como $+ $cor(:)
+      $m
+      $m $cor(<) $upper($2 Skin) $cor(>)
+      msgbase $nick
+    }
+    if $2 == poseidon {
+      $escrever($nick,dados,barracor,10)
+      $escrever($nick,dados,linhacor,11)
+      $escrever($nick,dados,destaquecor,0)
+      $inicial(SKIN ALTERADA COM SUCESSO)
+      $m Apartir de agora sua skin está configurada como $+ $cor(:)
+      $m
+      $m $cor(<) $upper($2 Skin) $cor(>)
+      msgbase $nick
+    }
+    if $2 == cisne {
+      $escrever($nick,dados,barracor,15)
+      $escrever($nick,dados,linhacor,11)
+      $escrever($nick,dados,destaquecor,0)
+      $inicial(SKIN ALTERADA COM SUCESSO)
+      $m Apartir de agora sua skin está configurada como $+ $cor(:)
+      $m
+      $m $cor(<) $upper($2 Skin) $cor(>)
+      msgbase $nick
+    }
+    if $2 == dragão {
+      $escrever($nick,dados,barracor,14)
+      $escrever($nick,dados,linhacor,9)
+      $escrever($nick,dados,destaquecor,8)
+      $inicial(SKIN ALTERADA COM SUCESSO)
+      $m Apartir de agora sua skin está configurada como $+ $cor(:)
+      $m
+      $m $cor(<) $upper($2 Skin) $cor(>)
+      msgbase $nick
+    }
+    if $2 == benetnasch {
+      $escrever($nick,dados,barracor,4)
+      $escrever($nick,dados,linhacor,0)
+      $escrever($nick,dados,destaquecor,8)
+      $inicial(SKIN ALTERADA COM SUCESSO)
+      $m Apartir de agora sua skin está configurada como $+ $cor(:)
+      $m
+      $m $cor(<) $upper($2 Skin) $cor(>)
+      msgbase $nick
+    }
+  }
+}
+
+on *:chat:!configurar*:{
+  verificar
+  if !$istok(borda linha destaque,$2,32) { $inicial(ERRO INTERNO) | $m(15) O comando está errado! | msgbase $nick | halt }
+  if $3 == $null { $inicial(ERRO INTERNO) | $m(15) Você precisa indicar um valor $+ $cor(!) | msgbase $nick | halt }
+  if ($3 < 0) || ($3 > 15) {  $inicial(ERRO INTERNO) | $m(15) Escolha entre os números0 115 e0 15 | msgbase $nick | halt }
+  $escrever($nick,dados,$replace($2,borda,barracor,linha,linhacor,destaque,destaquecor),$3)
+  msgtopo $nick
+  msgt4 $nick 
+  $m(15) Você configurou a cor $replace($2,borda,da borda,linha,da linha,destaque,dos destaques) como  $+ $3 $+ , $+ $3 $+  1,1
+  $m 
+  $m(15) Para configurar com uma nova cor digite novamente
+  $m
+  $m $opcao(!,CONFIGURAR) 14BORDA/LINHA/DESTAQUE Nº DA COR
+  $m 
+  msgbase $nick
+}
+
+on *:chat:!trocar senha*:{
+  verificar
+  $inicial(Trocar Senha)
+  if !$3 {
+    $m Aqui você podera trocar sua senha de acesso ao bot14.
+    $m
+    $a($nick,Aconselhamos que sua senha seja uma combinação dificil de ser descoberta; aconselhamos também a não utilização de sequências; sobrenomes; senhas curtas.)
+    $m
+    $m(15) Para trocar sua senha digite $+ $cor(:)
+    $m $opcao(!,TROCAR SENHA) $subopcao(NOVA SENHA)
+    msgbase $nick
+  }
+  if ($3 == $dados($nick,dados,senhaantiga)) {
+    $inicial(Erro)
+    $m Você não pode trocar sua senha pela sua senha antiga.
+    msgbase $nick
+    halt
+  }
+  else {
+    $escrever($nick,dados,senha,$3)
+    $m(15) Troca de senha realizada com Sucesso.
+    $m
+    $m(15) Sua nova senha agora é $u($dados($nick,dados,senha)) $+ .
+    $m(15) Anote sua senha para que você não a esqueça.
+    $m(15) Caso venha a esquecer sua senha digite $opcao(!,SOLICITAR SENHA)
+    $m
+    $m(04) (IMPORTANTE):0 Não forneça sua senha à ninguem, caso isso venha
+    $m a acontecer, você pode perder seus dados no bot
+    $m e nós não poderemos fazer nada, ja que seus da-
+    $m dos foram utilizados por terceiros.
+    $m
+    $m(14) Atenciosamente15,
+    $m(15) Administração do #animerpg 
+    msgbase $nick
+  } 
+}

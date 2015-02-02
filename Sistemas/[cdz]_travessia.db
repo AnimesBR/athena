@@ -1,0 +1,66 @@
+[manobras]
+1=Você segue na direção de %oponente e desfere uma poderosa seqüência de socos, porém %oponente os bloqueia facilmente e com uma explosão cósmica o lança longe
+2=%oponente segue na sua direção e você salta para o lado, antes de se estabilizar um flash de cosmo atinge seu abdomém o lançando contra uma coluna
+3=Você aguarda %oponente se aproximar e logo em seguida se move no último instante escapando do seu golpe e indo para as suas costas, desguarnecido %oponente recebe todo o impacto dos seus golpes
+4=Esferas de cosmo seguem em sua direção, você se move rapidamente, mas quando uma delas vem na direção do seu rosto e você esquiva nota %oponente à sua frente lançando um poderoso soco contra sua face
+5=Você expande seu cosmo fazendo todo o local tremer, %oponente parece não se abalar, vocês vão um de encontro ao outro e trocam poderosos golpes enquanto raios cortam o céu e fendas se abrem na terra
+6=Você salta e %oponente aparece as suas costas o golpeando e jogando de encontro ao chão, ao olhar para cima %oponente está bem próximo e ambos iniciam uma disputa de força com os braços entrelaçados
+7=%oponente lhe aplica um poderoso chute nas costelas e você voa, enquanto está no ar recebe uma joelhada no estômago caindo no chão, quando abre seus olhos %oponente segura sua cabeça e libera uma poderosa rajada cósmica
+8=Você se move rapidamente por diversos pontos da arena, enquanto %oponente está distraído você lança raios cósmicos em sua direção, sem poder evitar todos %oponente se ajoelha por um momento para respirar e você o pega de surpresa com um soco no rosto
+9=O cosmo de %oponente cresce de forma surpreendente você mal consegue se mover quando escuta %especial recebendo o golpe em cheio
+10=Você queima seu cosmo indo de encontro ao oponente, gradativamente seus golpes se tornam mais rápidos e %oponente fica incapacitado de defende-los sendo lançado contra o chão
+
+[santuário]
+base=100
+limite=5000
+total=12
+1=áries 8
+2=touro 8
+3=gêmeos 10
+4=câncer 10
+5=leão 13
+6=virgem 13
+7=libra 17
+8=escorpião 17
+9=sagitário 22
+10=capricórnio 22
+11=aquário 28
+12=peixes 28
+
+[inferno]
+base=750
+limite=2500
+total=8
+1=aqueronte 12
+2=balron 12
+3=esfinge 14
+4=pappilon 14
+5=lira 17
+6=wyvern 17
+7=garuda 21
+8=griffon 21
+
+[asgard]
+base=1000
+limite=2000
+total=8
+1=phecda 11
+2=alioth 11
+3=merak 13
+4=benetnasch 13
+5=megrez 16
+6=arkor 16
+7=mizar 20
+8=dubhe 20
+
+[reinomarinho]
+base=250
+limite=4250
+total=7
+1=cavalomarinho 14
+2=kraken 14
+3=chrysaor 16
+4=scylla 16
+5=lymnades 19
+6=sirene 19
+7=dragãomarinho 23

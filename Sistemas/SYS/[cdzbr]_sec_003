@@ -1,0 +1,492 @@
+on *:text:!alterar classe*:#:{
+  $verstaff(5)
+  if (a !isin $3) && (b !isin $3) && (c !isin $3) && (d !isin $3) && (s !isin $3) && (x !isin $3) { /msg # $prestaff(Atenção, Para alterar a classe de uma armadura digite !Alterar Classe Nova_Classe Nome_Da_Armadura) | halt }
+  var %arm = $remove($4-,$chr(32))
+  if ($dadosarm2(%arm,dono) != ninguém) { 
+    var %dono $dadosarm2(%arm,dono) 
+    $escrever(%dono,armadura,classe,$3)
+  }
+  $arm-(%arm,classe,$3)
+  /msg # $premsg(Atenção, Armadura de 8 $+ $Upper($4-) $+ 15 alterada para a classe 8 $+ $upper($3) $+ 15 com sucesso)
+}
+
+
+on *:text:!remover*:#:{
+  $verstaff(4)
+  if $2 == $null { halt }
+  if $dados($2,dados,nome) == $null { halt }
+  remini CDZ\Dados\usuarios\ $+ $2 $+ .db staff
+  msg # $prestaff(Atenção,o usuário $2 foi removido da equipe com sucesso)
+}
+
+on *:text:!liberar*:#:{
+  $verstaff(4)
+  if $2 == $null { halt }
+  var %arm = $dadosarm2($remove($2-,$chr(32)),nome)
+  if $dadosarm2(%arm,nome) == $null { halt }
+  echo -s %arm
+  var %dono = $dadosarm2(%arm,dono)
+  echo -s %dono
+  if %dono == Ninguém { /msg $chan $prestaff(Atenção,A armadura11 %arm 00não possui dono) | halt }
+  var %arm2 = $remove($dadosarm2(%arm,nome),$chr(32))
+  writeini cdz\dados\armaduras\ $+ %arm2 $+ .db arm dono Ninguém
+  remini cdz\dados\usuarios\ $+ %dono $+ .db armadura
+  $escrever(%dono,dados,invocada,não)
+  /msg $chan $prestaff(Atenção,A armadura11 %arm 00foi liberada com sucesso)
+}
+
+alias sorteio {
+  if ($3) {
+    msg $chan sorteio:
+    var %c = 1, %n = $1-, %t = $round($calc($numtok(%n,32) /1),0)
+    while (%c <= %t) {
+      var %s = $gettok(%n,$rand(1,$numtok(%n,32)),32), %n = $remtok(%n,%s,1,32)   
+      var %q = $gettok(%n,$rand(1,$numtok(%n,32)),32), %n = $remtok(%n,%q,1,32)
+      var %m = $gettok(%n,$rand(1,$numtok(%n,32)),32), %n = $remtok(%n,%m,1,32)
+      msg $chan $prestaff(%c $+ ª Luta,$iif(%q,%s vs %q - Narrador: %m,O Nick  $+ %s $+  ficou isento.))
+      inc %c 1
+    }
+  }
+  else { msg $chan $prestaff(Atenção,Deve-se colocar no minimo $destaque(2 usuários)) }
+}
+
+on *:text:!sortear*:#:{
+  verificar2
+  $verstaff(1)
+  if ($4 == $null) { /msg $chan  | halt }
+  if ($gettok($1-,0,32) == 4) {
+    /msg $chan $prestaff(1ª Luta,$2 14x15 $3 14/15 Narrador14: $destaque($4))
+    /msg $chan $prestaff(2ª Luta,$4 14x15 $3 14/15 Narrador14: $destaque($2))
+    /msg $chan $prestaff(3ª Luta,$2 14x15 $4 14/15 Narrador14: $destaque($3))
+    halt
+  }
+  if ($gettok($1-,0,32) == 5) {
+    /msg $chan $prestaff(1ª Luta,$2 14x15 $3 14/15 Narrador14: $destaque($4))
+    /msg $chan $prestaff(2ª Luta,$3 14x15 $4 14/15 Narrador14: $destaque($5))
+    /msg $chan $prestaff(3ª Luta,$4 14x15 $5 14/15 Narrador14: $destaque($2))
+    /msg $chan $prestaff(4ª Luta,$3 14x15 $5 14/15 Narrador14: $destaque($2))
+    /msg $chan $prestaff(5ª Luta,$5 14x15 $2 14/15 Narrador14: $destaque($3))
+    /msg $chan $prestaff(6ª Luta,$2 14x15 $4 14/15 Narrador14: $destaque($5))
+    halt
+  }
+  if ($gettok($1-,0,32) == 6) {
+    /msg $chan $prestaff(1ª Luta,$2 14x15 $3 14/15 Narrador14: $destaque($4))
+    /msg $chan $prestaff(2ª Luta,$3 14x15 $4 14/15 Narrador14: $destaque($5))
+    /msg $chan $prestaff(3ª Luta,$4 14x15 $5 14/15 Narrador14: $destaque($6))
+    /msg $chan $prestaff(4ª Luta,$5 14x15 $6 14/15 Narrador14: $destaque($2))
+    /msg $chan $prestaff(5ª Luta,$6 14x15 $2 14/15 Narrador14: $destaque($3))
+    /msg $chan $prestaff(6ª Luta,$3 14x15 $6 14/15 Narrador14: $destaque($5))
+    /msg $chan $prestaff(7ª Luta,$2 14x15 $5 14/15 Narrador14: $destaque($4))
+    /msg $chan $prestaff(8ª Luta,$4 14x15 $2 14/15 Narrador14: $destaque($6))
+    /msg $chan $prestaff(9ª Luta,$5 14x15 $3 14/15 Narrador14: $destaque($2))
+    halt
+  }
+  /msg $chan $prestaff(Atenção,Deve-se colocar no minimo $destaque(3) e no máximo $destaque(5 usuários))
+}
+
+on *:chat:!atualizar*:{
+  $verstaff(4)
+  if $2 { 
+    if $2 isnum {
+      var %tpi = $2 
+      if $3 { var %tipo = $3 }
+      else { var %tipo = cos }
+    }
+    else { var %tipo = $2 | var %tpi = 50 }
+  }
+  else { var %tipo = cos | var %tpi = 50 }
+  if $istok(cos exp,%tipo,32) {
+    if %tpi <= $findfile(cdz/dados/usuarios/,*,0) {
+      .set %a 1
+      window -kenl13S @top
+      .set %total $findfile(cdz/dados/usuarios/,*,0)
+      while (%a <= %total) {
+        set %caminho $findfile(cdz/dados/usuarios/,*,%a)
+        set %pre-nick $gettok(%caminho,9,92)
+        set %nick $gettok(%pre-nick,1,46)
+        set %cos $dados(%nick,dados,cos)
+        aline @top %cos %nick
+        inc %a
+      }
+      set %a $line(@top,0)
+      set %b 1
+      $inicial(atualizando TOP $replace(%tipo,vitórias,Vitórias,Derrotas,Derrotas,Narradas,Narradas,Empates,Empates,Dinheiro,Dinheiro,Cos,Cosmo))
+      while (%b <= %tpi) {
+        set %nick $gettok($line(@top,%a),2,32)
+        set %n $iif($abs($gettok($line(@top,%a),1,32)),$abs($gettok($line(@top,%a),1,32)),0)
+        if $dados(%nick,armadura,nome) != $null {
+          set %pre-arm Nenhuma
+        }
+        else { set %pre-arm $dados(%nick,armadura,nome) }
+        set %arm $replace(%pre-arm,$chr(32),_)
+        writeini cdz\sistemas\[cdz]_top.db %b nick %nick %arm %cos
+        inc %b | dec %a
+      }
+      $m
+      $m Atualização realizada com êxito.
+      writeini cdz\sistemas\[cdz]_top.db data data $date
+      msgbase $nick
+      inc %x
+    }
+    else { erro $nick | $m O bot só possui $nk($findfile(cdz/dados/usuarios/,*,0)) usuários cadastrados! | msgbase $nick } 
+  }
+  else { 
+    $inicial(ERRO INTERNO)
+    $m Esse top não existe. 
+    $m Top máximo é o 50.
+    msgbase $nick
+  }
+}
+
+
+on *:text:!set*:#animerpg :{
+  verificar2
+  $verstaff(4)
+  if !$istok(cos exp atributos,$2,32) { /msg $chan $prestaff(Atenção,Este comando é inválido) | halt }
+  if ($dados($3,dados,nome) == $null) { /msg $chan $prestaff(Atenção,Este usuário não está cadastrado) | halt }
+  if ($4 == $null) { /msg $chan $prestaff(Atenção,Sete o valor) | halt }
+  if ($4 !isnum) { /msg $chan $prestaff(Atenção,Sete apenas números ¬¬) | halt }
+
+  if $2 == cos {
+    set %basedados $dados($3,dados,cos)
+    var %dadosfinais $calc(%basedados + $4)
+    $adicionar-cosmo($3,$4)
+  }
+  if $2 == exp {
+    set %basedados $dados($3,dados,exp)
+    var %dadosfinais $calc(%basedados + $4)
+    $escrever($3,dados,exp,%dadosfinais)
+  }
+  if $2 == atributos {
+    set %basedados $dados($3,dados,atributos)
+    var %dadosfinais $calc(%basedados + $4)
+    $escrever($3,dados,atributos,%dadosfinais)
+  }
+  /msg #animerpg $prestaff(Atenção,Você adicionou $destaque( $+ $div($4) $+  $2) 0à conta de $opcao(0 $+ $3 $+ )  14(15 $+ $div(%basedados) $destaque(+) $div($4) $+ 14) $destaque(=) 0 $+ $div(%dadosfinais) $+ )
+  unset %basedados
+}
+
+on *:text:!del*:#animerpg :{
+  verificar2
+  $verstaff(4)
+  if !$istok(cos exp atributos,$2,32) { /msg $chan $prestaff(Atenção,Este comando é inválido) | halt }
+  if ($dados($3,dados,nome) == $null) { /msg $chan $prestaff(Atenção,Este usuário não está cadastrado) | halt }
+  if ($4 == $null) { /msg $chan $prestaff(Atenção,Sete o valor) | halt }
+  if ($4 !isnum) { /msg $chan $prestaff(Atenção, delete apenas números ¬¬) | halt }
+  if $2 == cos {
+    set %basedados $dados($3,dados,cos)
+    var %dadosfinais $calc(%basedados - $4)
+    $remover-cosmo($3,$4)
+  }
+  if $2 == exp {
+    set %basedados $dados($3,dados,exp)
+    var %dadosfinais $calc(%basedados - $4)
+    $escrever($3,dados,exp,%dadosfinais)
+  }
+  if $2 == atributos {
+    set %basedados $dados($3,dados,atributos)
+    var %dadosfinais $calc(%basedados - $4)
+    $escrever($3,dados,atributos,%dadosfinais)
+  }
+  /msg #animerpg $prestaff(Atenção,Você retirou $destaque( $+ $div($4) $+  $2) 0da conta de $opcao(0 $+ $3 $+ )  14(15 $+ $div(%basedados) $destaque(-) $div($4) $+ 14) $destaque(=) 0 $+ $div(%dadosfinais) $+ )
+  unset %basedados
+}
+
+on *:text:!lutas:#:{
+  /msg # $prestaff(Atenção,As lutas são realizadas nos canais 15#Athena0114(09 $+ $calc($nick(#Athena01,0) - 1) 0usuários14) 15#Athena0214(09 $+ $calc($nick(#Athena02,0) - 1) 0usuários14) 15#Athena0314(09 $+ $calc($nick(#Athena03,0) - 1) 0usuários14) 15#Athena0414(09 $+ $calc($nick(#Athena04,0) - 1) 0usuários14) 15#Athena0514(09 $+ $calc($nick(#Athena05,0) - 1) 0usuários14))  
+}
+
+on *:text:!entrar*:#animerpg :{
+  if db isin $1- { halt }
+  if yyh isin $1- { halt }
+  if ($dados($nick,staff,lv) == $null) {
+    msg # $prestaff(Atenção,Você não faz parte da equipe)
+    halt
+  }
+  if ($dados($nick,staff,logado) == não) { .msg $nick $prestaff(Atenção,Você não está devidamente logado) | halt }
+  if ($dados($nick,staff,lv) < 1) {
+    msg # $prestaff(Atenção,Você não tem nível suficiente)
+    halt
+  }
+  if ($2 == $null) { halt }
+  elseif ($istok(athena01 athena02 athena03 athena04 athena05 starhill santuario #athena01 #athena02 #athena03 #athena04 #athena05 #starhill #santuario,$2,32)) {
+    if ($left($2,1) == $chr(35)) { set %jc $2 }
+    else { set %jc $chr(35) $+ $2 }
+    if ($me ison %jc) { msg # $prestaff(Atenção,Já estou no %jc) | halt }
+    join %jc
+    msg # $prestaff(Atenção,Acabei de entrar no %jc)
+    unset %jc
+  }
+}
+
+on *:text:!sair*:#animerpg :{
+  if ($dados($nick,staff,lv) == $null) {
+    msg $nick $prestaff(Atenção,Você não faz parte da equipe)
+    halt
+  }
+  if ($dados($nick,staff,logado) == não) { .msg $nick $prestaff(Atenção,Você não está devidamente logado) | halt }
+  if ($dados($nick,staff,lv) < 1) {
+    msg $nick $prestaff(Atenção,Você não tem nível suficiente)
+    halt
+  }
+  if ($2 == $null) { halt }
+  elseif ($istok(sekai tenkai meikai kaikai #sekai #tenkai #kaikai #meikai,$2,32)) {
+    if ($left($2,1) == $chr(35)) { set %jc $2 }
+    else { set %jc $chr(35) $+ $2 }
+    if ($me !ison %jc) { msg # $prestaff(Atenção,Já não estou no %jc) | halt }
+    part %jc
+    msg # $prestaff(Atenção,Acabei de sair do %jc)
+    unset %jc
+  }
+}
+
+on *:text:!desbloquear*:#animerpg :{
+  verificar2
+  $verstaff(4)
+  if ($2 == $null) { 
+    msg # $prestaff(Atenção,Você precisa indicar uma armadura)
+    halt
+  }
+  if ($dadosarm2($2-,classe) == $null) {
+    msg # $prestaff(Atenção,A armadura $2- não existe)
+    halt
+  }
+  if ($dadosarm2($2-,livre) == sim) {
+    msg # $prestaff(Atenção,A armadura $2- 14(15 $+ $dadosarm2($2-,categoria) $+ 14/15 $+ $dadosarm2($2-,classe) $+ 14) 00já está liberada para cadastro)
+    halt
+  }
+  else {
+    writeini cdz\dados\armaduras\ $+ $remove($2-,$chr(32)) $+ .db arm livre sim
+    msg # $prestaff(Atenção,A armadura $destaque($2-) 14(15 $+ $dadosarm2($2-,categoria) $+ 14/15 $+ $dadosarm2($2-,classe) $+ 14) 00foi desbloqueada com êxito)
+  }
+}
+
+on *:text:!bloquear*:#animerpg :{
+  verificar2
+  $verstaff(4)
+  if ($2 == $null) {
+    msg # $prestaff(Atenção,Você precisa indicar uma armadura)
+    halt
+  }
+  if ($dadosarm2($2-,classe) == $null) {
+    msg # $prestaff(Atenção,A armadura $2- não existe)
+    halt
+  }
+  if ($dadosarm2($2-,livre) == não) {
+    msg # $prestaff(Atenção,A armadura $2- 14(15 $+ $dadosarm2($2-,categoria) $+ 14/15 $+ $dadosarm2($2-,classe) $+ 14) 00já está bloqueada para requisições)
+    halt
+  }
+  else {
+    writeini cdz\dados\armaduras\ $+ $remove($2-,$chr(32)) $+ .db arm livre não
+    msg # $prestaff(Atenção,A armadura $destaque($2-) 14(15 $+ $dadosarm2($2-,categoria) $+ 14/15 $+ $dadosarm2($2-,classe) $+ 14) 00foi bloqueada com êxito)
+  }
+}
+
+on *:text:!adicionar*:#animerpg :{
+  verificar2
+  $verstaff(4)
+  if ($dados($nick,staff,lv) < $dados($2,staff,lv)) { halt }
+  if ($3 > $dados($nick,staff,lv)) { halt }
+  if ($3 == $null) { /msg $chan $prestaff(Atenção,Sete o nível) | halt }
+  var %cargo $replace($3,1,quebra-galho,2,paga-pau,3,braço-direito,4,manda-chuva,5,poderoso-chefão)
+  $escrever($2,staff,lv,$3)
+  $escrever($2,staff,logado,não)
+  $escrever($2,staff,senha,cdzbrstaff)
+  /msg #animerpg $prestaff(Atenção,Você adicionou $2 como %cargo)
+  /msg $2 Você foi adicionado à equipe como  $+ %cargo $+  $+ . Para logar digite no chat: !Identificar Equipe cdzbrstaff.
+  /memoserv send $2 Você foi adicionado à equipe do Athena como  $+ %cargo $+  $+ . Para logar digite no chat: !identificar equipe cdzbrstaff.
+}
+
+on *:text:!iniciar*:#:{
+  verificar2
+  $verstaff(1)
+  if ($2 == $null) { .msg $nick $prestaff(Atenção,Parâmetros insuficientes. $ex(!Iniciar Lutador1 Lutador2 Narrador)) | halt }
+  if ($3 == $null) { .msg $nick $prestaff(Atenção,Parâmetros insuficientes. $ex(!Iniciar Lutador1 Lutador2 Narrador)) | halt }
+  if ($4 == $null) { .msg $nick $prestaff(Atenção,Parâmetros insuficientes) | halt }
+  if (!$dados($2,dados,nome)) { .msg $nick $prestaff(Atenção,$2 não está cadastrado em nosso sistema) | halt }
+  if (!$dados($3,dados,nome)) { .msg $nick $prestaff(Atenção,$3 não está cadastrado em nosso sistema) | halt }
+  if (!$dados($4,dados,nome)) { .msg $nick $prestaff(Atenção,$4 não está cadastrado em nosso sistema) | halt }
+  if $dados($2,dados,hpatu) <= 0 { msg # $prestaff(Atenção,$2 está a beira da morte logo morrerá) | halt }
+  if $dados($3,dados,hpatu) <= 0 { msg # $prestaff(Atenção,$3 está a beira da morte logo morrerá) | halt }
+  else { 
+    var %vez $replace($rand(1200,1201),1200,$2,1201,$3)
+    if ($dados($2,armadura,nome) == $null) {
+      set %sentido $dados($2,dados,sentido)
+    var %lutador1 $2 14/ 15Saúde14:09 $dados($2,dados,hpatu) $+ % 14/ 15Sentido14:0 %sentido }
+    else {
+      set %sentido $dados($2,dados,sentido)
+      var %vidaatu = $dados($2,armadura,vidaatu)
+      if %vidaatu == 0 { msg # $prestaff(Atenção,A proteção de $2 está destruida, logo, não pode lutar com ela invocada) | halt }
+    var %lutador1 $2 de $dados($2,armadura,nome) 14(15 $+ $replace($dados($2,dados,invocada),sim,invocada,não,retirada) $+ 14) 14(11 $+ %vidaatu $+ p $+ 14) $cor(->) 15Saúde14:09 $dados($2,dados,hpatu) $+ % 14/ 15Sentido14:0 %sentido }
+    if ($dados($3,armadura,nome) == $null) {
+      set %sentido $dados($3,dados,sentido)
+    var %lutador2 $3 14/ 15Saúde14:09 $dados($3,dados,hpatu) $+ % 14/ 15Sentido14:0 %sentido }
+    else {
+      set %sentido $dados($3,dados,sentido)
+      var %vidaatu = $dados($3,armadura,vidaatu)
+      var %vidamax = $dados($3,armadura,vidamax)
+      var %status = $int($calc(%vidaatu * 100 / %vidamax))
+      if %vidaatu == 0 { msg # $prestaff(Atenção,A proteção de $3 está destruida, logo, não pode lutar com ela invocada) | halt }
+      var %lutador2 $3 de $dados($3,armadura,nome) 14(15 $+ $replace($dados($3,dados,invocada),sim,invocada,não,retirada) $+ 14) 14(11 $+ %vidaatu $+ p $+ 14) $cor(->) 15Saúde14:09 $dados($3,dados,hpatu) $+ % 14/ 15Sentido14:0 %sentido
+    }
+    mode # +m
+    msg # $prenormal(11Iniciando Combate)
+    msg # $prenormal(%lutador1)
+    msg # $prenormal(%lutador2)
+    msg # $prenormal($read(CDZ\Sistemas\[cdz]_locais.db))
+    msg # $prenormal(15Fique atento11 $4 $+ 15, pois a luta 4COMEÇOU $+ $cor(!) 15Ataque11 %vez $+ $cor(!))
+    mode # -m
+    unset %vez
+  }
+}
+
+alias arm- {
+  if (!$3) { return $readini(CDZ\Dados\armaduras\ $+ $1 $+ .db,arm,$2) | halt }
+  return .writeini cdz\dados\armaduras\ $+ $1 $+ .db arm $2 $3
+}
+
+on *:chat:!addgolpe*:{
+  verificar2
+  $verstaff(4)
+  if ($2 == $null) { goto 2 | halt }
+  if ($2 != armadura) && ($2 != nome) && ($2 != descrição) { msgtopo $nick | $inicial(erro) | $m digite 0!14AddGolpe 0para ver os passos para se adicionar um golpe | msgbase $nick | halt }
+  :2
+  if ($3 == $null) { 
+    msgtopo $nick 
+    $inicial(Erro - Passos Para Adicionar um Novo Golpe)
+    $l          15Passo 1 - 0!14AddGolpe armadura NOME DA AMRADURA
+    $l          15Passo 2 - 0!14AddGolpe nome NOME DO GOLPE
+    $l          15Passo 3 - 0!14AddGolpe descrição DESCRIÇÃO DO GOLPE
+    msgbase $nick
+    halt
+  }
+  if ($2 == armadura) { set %armadurax $3- }
+  if ($2 == nome) { set %nomex $3- }
+  if ($2 == descrição) { set %descriçãox $3- }
+  $inicial(Adicionando golpe)
+  $l          14Armadura:0 %armadurax
+  $l          14Nome do Golpe:0 %nomex
+  $m
+  $m 14Descrição:
+  $a($nick,%descriçãox)
+  msgbase $nick
+  if (%armadurax == Nenhum) { halt }
+  if (%nomex == Nenhum) { halt }
+  if (%descriçãox == Nenhum) { halt }
+  if ($arm-(%armadurax,golpe1) == Nenhum) { var %addgolpe golpe1 | goto 1 | halt }
+  var %x = 1
+  while %x <= 20 { 
+    if ($arm-(%armadurax,golpe $+ %x) == $null) { var %addgolpe golpe $+ %x | goto 1 | halt }
+    .inc %x
+  }
+  :1
+  $arm-(%armadurax,%addgolpe,%nomex)
+  var %dono $arm-(%armadurax,dono)
+  if (%dono != Ninguém) { 
+    $escrever(%dono,doutrina,%addgolpe,%nomex)
+    $escrever(%dono,doutrina,t $+ $remove(%addgolpe,golpe),$calc($remove(%addgolpe,golpe) * 2))
+    .writeini cdz\sistemas\[cdz]_golpes2.db $remove(%nomex,$chr(32)) Tecnica %nomex
+    .writeini cdz\sistemas\[cdz]_golpes2.db $remove(%nomex,$chr(32)) Armadura %armadurax
+    .writeini cdz\sistemas\[cdz]_golpes2.db $remove(%nomex,$chr(32)) Desc01 %descriçãox
+    $n
+    msgtopo $nick
+    $m Golpe Adicionado Com Sucesso
+    msgbase $nick
+    /msg #animerpg 14,1Golpe Adicionado
+    /msg #animerpg 14,1Armadura:0 %Armadurax
+    /msg #animerpg 14,1Golpe:0 %nomex
+    /msg #animerpg 14,1Atual dono da Armadura:0 %dono
+    /msg #animerpg 14,1Descrição:0 %descriçãox
+    set %armadurax Nenhum | set %nomex Nenhum | set %descriçãox Nenhum
+  }
+}
+
+on *:chat:!arrumar desc*:{
+  $verstaff(4)
+  if ($3 != golpe) && ($3 != descrição) {
+    $inicial(Erro)
+    $m Para arrumar uma descrição siga os passos a seguir
+    $m
+    $l 15Passo 1 - 0!14Arrumar Desc Golpe NOME DO GOLPE
+    $l 15Passo 2 - 0!14Arrumar Desc Descrição NOVA DESCRIÇÃO
+    $m
+    $m 4NÃO TEM COMO ALTERAR O NOME DO GOLPE, APENAS A DESCRIÇÃO.
+    msgbase $nick
+    halt 
+  }
+  if $readini(CDZ\Sistemas\[cdz]_golpes.db,$remove(%golpenovo,$chr(32)),Tecnica) == $null { var %1 Não }
+  if $readini(CDZ\Sistemas\[cdz]_golpes2.db,$remove(%golpenovo,$chr(32)),Tecnica) == $null { var %1 Não }
+  if (%1 == Não) && (%2 == não) { 
+    $inicial(ERRO INTERNO)
+    $m O golpe indicado não existe $+ $cor(!)
+    msgbase $nick
+    halt
+  }
+  if ($3 == golpe) { set %golpenovo $4- }
+  if ($3 == descrição) { set %novadesc $4- }
+  $inicial(Arrumando Descrição)
+  $m 14Golpe
+  $m %golpenovo
+  $m
+  $m 14Descrição
+  $a($nick,%novadesc)
+  msgbase $nick
+  if (%golpenovo == nenhum) { halt }
+  if (%novadesc == nenhum) { halt }
+  if $readini(CDZ\Sistemas\[cdz]_golpes.db,$remove(%golpenovo,$chr(32)),Tecnica) != $null { .writeini CDZ\Sistemas\[cdz]_golpes.db $remove(%golpenovo,$chr(32)) desc01 %novadesc }
+  if $readini(CDZ\Sistemas\[cdz]_golpes2.db,$remove(%golpenovo,$chr(32)),Tecnica) != $null { .writeini CDZ\Sistemas\[cdz]_golpes2.db $remove(%golpenovo,$chr(32)) desc01 %novadesc }
+  msgtopo $nick
+  $m Troca de descrição do golpe14 %golpenovo 0realizada com sucesso!
+  msgbase $nick
+  set %novadesc nenhum | set %golpenovo nenhum
+}
+
+on *:chat:!Stafflist:{
+  $inicial(Listando Staff)
+  var %x = 1 
+  while %x <= $findfile(cdz\dados\usuarios\,*,0) {
+    var %nome = $remove($remove($findfile(cdz\dados\usuarios\,*,%x),$left($findfile(cdz\dados\usuarios\,*,%x),37)),.db)
+    if ($dados(%nome,dados,nome) != $null) { 
+      if ($dados(%nome,staff,lv) >= 1) { 
+        if (%nome !ison #animerpg ) { var %nome1 = 15 $+ %nome | $escrever(%nome,staff,logado,não) }
+        if (%nome ison #animerpg )  { var %nome1 = 14 $+ %nome }
+      $l                   $replace($dados(%nome,staff,logado),sim,9,não,4) $+ @14 $+ %nome1 $str($chr(95),$calc(15 - $len(%nome))) $+ $dados(%nome,staff,lv) $replace($dados(%nome,staff,lv),1,Quebra-Galho,2,Pau-Mandado,3,Paga-Pau,4,Segurança,5,Manda-Chuva,6,Poderoso-Chefão) }
+    }
+    inc %x
+  }
+  $m
+  $m  9Logado 0/ 4Deslogado
+  $m 14On 0/ 15Off
+  msgbase $nick
+}
+
+on *:chat:!rastrear armaduras:{
+  $verificar(4)
+  $inicial(Rastreando Armaduras/Usuários)
+  var %x = 1 
+  while %x <= $findfile(cdz\dados\usuarios\,*,0) {
+    var %nome = $remove($remove($findfile(cdz\dados\usuarios\,*,%x),$left($findfile(cdz\dados\usuarios\,*,%x),37)),.db)
+    if ($dados(%nome,dados,nome) != $null) { 
+      if ($dados(%nome,armadura,nome) == $null) { var %arm Nenhuma }
+      else { var %arm $dados(%nome,armadura,nome) }
+      if (%arm != nenhuma) { $l %nome $str($chr(0160),$calc(15 - $len(%nome))) Login: $dados(%nome,dados,login) - Armadura: %arm }
+    }
+    inc %x
+  }
+  msgbase $nick
+}
+
+alias trocarsenha1 {
+  var %x = 1
+  while %x <= $findfile(cdz/dados/usuarios/,*,0) {
+    var %nome = $remove($remove($findfile(cdz\dados\usuarios\,*,%x),$left($findfile(cdz\dados\usuarios\,*,%x),37)),.db)
+    if ($dados(%nome,dados,nome) != $null) { 
+      $escrever(%nome,dados,logado,não)
+      $escrever(%nome,dados,senhaantiga,$dados(%nome,dados,senha))
+      var %senha $rand(a,z) $+ $rand(1,9) $+ $rand(1,9) $+ $rand(1,9) $+ $rand(1,9) $+ $rand(a,z) $+ $rand(a,z)
+      $escrever(%nome,dados,senha,%senha)
+      //echo -a %nome ok 
+    }
+    .inc %x
+  }
+}

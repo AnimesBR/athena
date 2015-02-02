@@ -1,0 +1,2238 @@
+on *:start:{ /server irc.rizon.net | /titlebar - Athena 3.0 }
+
+on *:chat:!ajuda:{
+  ;msg #animerpg $prestaff(Atenção,O usuário $nick está precisando de ajuda)
+}
+
+alias adicionar-cosmo {
+  var %cos1 = $dados($1,dados,cos)
+  var %cos2 = $calc(%cos1 + $2)
+  var %lev1 = $pre-level(%cos1)
+  var %lev2 = $pre-level(%cos2)
+  $escrever($1,dados,cos,%cos2)
+  if %lev2 > %lev1 {
+    var %pontos1 = $dados($1,dados,atributos)
+    var %pontos2 = $calc(%pontos1 + (3 * (%lev2 - %lev1)))
+    $escrever($1,dados,atributos,%pontos2)
+  }
+}
+
+alias remover-cosmo {
+  var %cos1 = $dados($1,dados,cos)
+  var %cos2 = $calc(%cos1 - $2)
+  var %lev1 = $pre-level(%cos1)
+  var %lev2 = $pre-level(%cos2)
+  var %dedulevel = $calc((%lev2 - %lev1) * 3)
+  msg First %dedulevel
+  $escrever($1,dados,cos,%cos2)
+  if %lev2 < %lev1 {
+    var %pontos1 = $dados($1,dados,atributos)
+    var %pontos2 = $calc(%pontos1 %dedulevel)
+    msg First %pontos2
+    $escrever($1,dados,atributos,%pontos2)
+  }
+}
+
+alias doutrina {
+  $escrever($nick,doutrina,nome,%arm)
+  $escrever($nick,doutrina,classe,$dadosarm2(%arm,classe))
+  if $dadosarm2(%arm,golpe1) != $null { 
+    var %treinos 2
+    $escrever($nick,doutrina,golpe1,$ifmatch)
+    $escrever($nick,doutrina,t1,%treinos)
+  }
+  if $dadosarm2(%arm,golpe2) != $null {
+    var %treinos 4
+    $escrever($nick,doutrina,golpe2,$ifmatch)
+    $escrever($nick,doutrina,t2,%treinos)
+  }
+  if $dadosarm2(%arm,golpe3) != $null { 
+    var %treinos 6
+    $escrever($nick,doutrina,golpe3,$ifmatch)
+    $escrever($nick,doutrina,t3,%treinos)
+  }
+  if $dadosarm2(%arm,golpe4) != $null { 
+    var %treinos 8
+    $escrever($nick,doutrina,golpe4,$ifmatch)
+    $escrever($nick,doutrina,t4,%treinos)
+  }
+  if $dadosarm2(%arm,golpe5) != $null { 
+    var %treinos 10
+    $escrever($nick,doutrina,golpe5,$ifmatch)
+    $escrever($nick,doutrina,t5,%treinos)
+  }
+  if $dadosarm2(%arm,golpe6) != $null { 
+    var %treinos 12
+    $escrever($nick,doutrina,golpe6,$ifmatch)
+    $escrever($nick,doutrina,t6,%treinos)
+  }
+  if $dadosarm2(%arm,golpe7) != $null { 
+    var %treinos 14
+    $escrever($nick,doutrina,golpe7,$ifmatch)
+    $escrever($nick,doutrina,t7,%treinos)
+  }
+  unset %arm
+}
+
+on *:chat:!dados*:{
+  verificar
+  if (!$2) { var %dadosnick = $dados($nick,dados,nome) }
+  else {
+    if ($dados($2,dados,nome) == $null) { 
+      $inicial(ERRO)
+      $m o usuário $2 não está cadastrado em nosso sistema!
+      msgbase $nick
+      halt    
+    }
+    else { var %dadosnick = $dados($2,dados,nome) }
+  }
+
+  var %login $dados(%dadosnick,dados,login)
+  var %registro $dados(%dadosnick,dados,registro)
+  var %cota $dados(%dadosnick,batalhas,cota)
+  var %datacota $dados(%dadosnick,batalhas,ultimas)
+  var %totalcos $dados(%dadosnick,dados,cos)
+  var %sentido $dados(%dadosnick,dados,sentido)
+  var %hptotal $dados(%dadosnick,dados,hpatu)
+  if %hptotal < 10 { var %condicao = 4grave }
+  if %hptotal > 10 && %hptotal <= 25 { var %condicao = 4ferido }
+  if %hptotal > 25 && %hptotal <= 50 { var %condicao = 4debilitada }
+  if %hptotal > 50 && %hptotal <= 90 { var %condicao = 10saudável }
+  if %hptotal > 90 { var %condicao = 11alta }
+  if $pre-level(%totalcos) >= 30 {
+    if $pre-level(%totalcos) > 30 { var %prot = 10p }
+    if $pre-level(%totalcos) > 40 { var %prot = 20p }
+    if $pre-level(%totalcos) > 50 { var %prot = 30p }
+    if $pre-level(%totalcos) > 60 { var %prot = 40p }
+    if $pre-level(%totalcos) > 70 { var %prot = 50p }
+    if $pre-level(%totalcos) > 80 { var %prot = 60p }
+    if $pre-level(%totalcos) > 90 { var %prot = 70p }
+    if $pre-level(%totalcos) > 100 { var %prot = 80p }
+    if $pre-level(%totalcos) > 110 { var %prot = 90p }
+    if $pre-level(%totalcos) > 120 { var %prot = 100p }
+    if $pre-level(%totalcos) > 200 { var %prot = 150p }
+    if $pre-level(%totalcos) > 300 { var %prot = 200p }
+  }
+  $inicial(Ficha de $dados(%dadosnick,dados,nome))
+  $m $opcao(Cota,00) %cota $alerta(%datacota)
+  $m $opcao(Registro,09) %registro $separador $opcao(Login,09) %login
+  $m $opcao(Raça,00) $dados(%dadosnick,dados,raça) $separador $opcao(Vitalidade,00) $dados(%dadosnick,dados,hpatu) $+ % $+ $cor(/,Bor) $+ $upper(%condicao)
+  $m $opcao(Cosmo,00) $u($div($dados(%dadosnick,dados,cos))) $+ 14( $+ $DESTAQUE($pre-level(%totalcos) $+ x) $+ 14) $separador $opcao(Aura,00) $dados(%dadosnick,dados,aura) $+ $iif($left(%sentido,1) >= 7,$separador $+ 08Dourada, ) $iif(%prot != $null,14(08 $+ %prot $+ 14), ))
+  if $dados(%dadosnick,armadura,nome2) != $null { var %narm $ifmatch }
+  else { var %narm $dados(%dadosnick,armadura,nome) }
+  var %vidaatu $dados(%dadosnick,armadura,vidaatu)
+  var %vidamax $dados(%dadosnick,armadura,vidamax)
+  var %status $int($calc(%vidaatu * 100 / %vidamax))
+  $m $opcao(Sentido,00) %sentido $separador $opcao(Exp,00) $div($dados(%dadosnick,dados,exp))
+  if $dados(%dadosnick,treinos,local) != $null {
+    $m $opcao(Local) $upper($dados(%dadosnick,treinos,local)) 14( $+ $destaque(+ $+ $dados(%dadosnick,treinos,quantidade)) $+ 14)
+  }
+  $m $opcao(Pontos Restantes,00) $dados(%dadosnick,dados,atributos)
+  set %raca $dados(%dadosnick,dados,raça)
+  var %cfis $invocacao(%dadosnick,$dados(%dadosnick,dados,cfis)) | var %base1 10
+  var %ccos $invocacao(%dadosnick,$dados(%dadosnick,dados,ccos)) | var %base2 10
+  var %cmen $invocacao(%dadosnick,$dados(%dadosnick,dados,cmen)) | var %base3 10
+  var %cdes $invocacao(%dadosnick,$dados(%dadosnick,dados,cdes)) | var %base4 10
+  $l
+  var %fator = $replace(%raca,lemuriano,4,humano,5,anjo,5,shinigami,10,one winged angel,10)
+  $l(08) $str($chr(160),20) /¯¯¯15 $zerando($calc(%base1 + (%cfis * %fator)),09) $+ p 15- $zerando(%cfis,15) pontos 08¯\
+  if %cmen != 0 { 
+    $l(14) $str($chr(160),10) $+ Capacidade08 ----15 $zerando($calc(%base2 + (%ccos * %fator)),11) $+ p 15- $zerando(%ccos,15) pontos $str($chr(160),1) 08--07 $calc(%base4 + (%cdes * %fator)) $+ p
+    $l(08) $str($chr(160),20) \___15 $zerando($calc(%base3 + (%cmen * %fator)),06) $+ p 15- $zerando(%ccos,15) pontos 08_/
+  }
+  else {
+    $l(14) $str($chr(160),10) $+ Capacidade $str($chr(160),26) 08--07 $calc(%base4 + (%cdes * %fator)) $+ p
+    $l(08) $str($chr(160),20) \___15 $zerando($calc(%base2 + (%ccos * %fator)),11) $+ p 15- $zerando(%ccos,15) pontos 08_/
+  }
+  unset %raca
+  $m
+  $m(09)  $chr(124) 15Física 11 $+ $chr(124) $+ 15 Cósmica 06 $+ $chr(124) $+ 15 Mental 07 $+ $chr(124) $+ 15 Destrutiva
+  $l
+  $m(14) Travessias Completas15:
+  $m
+  msgl $nick $str($chr(160),8) $+ 15Santuário 14 $+ $complete(183,34,Santuário) $replace($dados(%dadosnick,treinos,santuário),não,4não,sim,9sim)
+  msgl $nick $str($chr(160),12) $+ 15Asgard 14 $+ $complete(183,34,Asgard) $replace($dados(%dadosnick,treinos,asgard),não,4não,sim,9sim)
+  msgl $nick $str($chr(160),16) $+ 15Atlântida 14 $+ $complete(183,34,Atlântida) $replace($dados(%dadosnick,treinos,reinomarinho),não,4não,sim,9sim)
+  msgl $nick $str($chr(160),20) $+ 15Inferno 14 $+ $complete(183,34,Inferno) $replace($dados(%dadosnick,treinos,inferno),não,4não,sim,9sim)
+
+  $m
+  $m(14) < Técnicas >
+  $l
+  if %habilidades == não { $l $destaque($iif(%dadosnick != $nick,%dadosnick,Você) ainda não possui habilidades) | $m }
+  else {
+    if $dados(%dadosnick,dados,habilidades) != $null { var %habilidades2 $dados(%dadosnick,dados,habilidades) $+ , %habilidades $+ . }
+    else { var %habilidades2 %habilidades $+ . }
+    set -u0 %cora 15
+    $a2($nick,%habilidades2)
+    $l
+  }
+  if $dados(%dadosnick,doutrina,nome) != Nenhuma {
+    var %classe $dados(%dadosnick,doutrina,classe)
+    $quebra-linha
+    $m
+    if $dados(%dadosnick,armadura,nome) != $null {
+      if $dadosarm(%dadosnick,nome2) != $null { var %narm $ifmatch }
+      else { var %narm $dadosarm(%dadosnick,nome) }
+      $m(11) $upper($dadosarm(%dadosnick,patente) $iif(da !isin $dadosarm($nick,patente),de,) %narm)
+      $m
+      var %vidaatu = $dados(%dadosnick,armadura,vidaatu)
+      var %vidamax = $dados(%dadosnick,armadura,vidamax)
+      var %status = $int($calc(%vidaatu * 100 / %vidamax))
+      $m(14) $iif($dados(%dadosnick,armadura,vidaatu) <= 0,14[04Proteção Destruída14],14Proteção15:11 %status $+ $chr(37)) 14(15 $+ %vidaatu $+ p14/09 $+ %vidamax $+ p14)
+      var %cabeca = ok
+      var %tronco = ok
+      var %cintura = ok
+      var %pernad = ok
+      var %pernae = ok
+      var %ombrod = ok
+      var %ombroe = ok
+      var %bracod = ok
+      var %bracoe = ok
+      if %status <= 90 { var %ombrod = des }
+      if %status <= 80 { var %ombrod = des | var %cintura = des }
+      if %status <= 70 { var %ombrod = des | var %cintura = des | var %bracoe = des }
+      if %status <= 60 { var %ombrod = des | var %cintura = des | var %bracoe = des | var %pernae = des }
+      if %status <= 50 { var %ombrod = des | var %cintura = des | var %bracoe = des | var %pernae = des | var %cabeca des }
+      if %status <= 40 { var %ombrod = des | var %cintura = des | var %bracoe = des | var %pernae = des | var %cabeca des | var %ombroe = des }
+      if %status <= 30 { var %ombrod = des | var %cintura = des | var %bracoe = des | var %pernae = des | var %cabeca des | var %ombroe = des | var %bracod = des }
+      if %status <= 20 { var %ombrod = des | var %cintura = des | var %bracoe = des | var %pernae = des | var %cabeca des | var %ombroe = des | var %bracod = des | var %pernad = des }
+      if %status <= 10 { var %ombrod = des | var %cintura = des | var %bracoe = des | var %pernae = des | var %cabeca des | var %ombroe = des | var %bracod = des | var %pernad = des | var %tronco = des }
+      $m
+      $m $upper(CABEÇA E TRONCO)
+      $m
+      $m $UPPER(ombro dir) $str($chr(160),3) $replace(%ombroe,ok,11,des,04) $+ _ $+ $replace(%cabeca,ok,11,des,04) $+ ð $+ $replace(%ombrod,ok,11,des,04) $+ _ $str($chr(160),3) $upper(00ombro esq)
+      $m $UPPER(braço dir) $str($chr(160),10) $replace(%bracoe,ok,11,des,04) $+ / $+ $replace(%tronco,ok,11,des,04) $+ $chr(165) $+ $replace(%bracod,ok,11,des,04) $+ $chr(92) $str($chr(160),10) $UPPER(00braço esq)
+      $l $str($chr(160),32) $replace(%cintura,ok,11,des,04) $+ .÷.
+      $m $UPPER(perna dir) $str($chr(160),4) $replace(%pernae,ok,11,des,04) $+ / $replace(%pernad,ok,11,des,04) $+ \ $str($chr(160),4) $UPPER(00perna esq)
+      $m
+      $m $UPPER(CINTURA)
+      if $dadosarm(%dadosnick,extra) != $null {
+        $m
+        $m $opcao(Esta armadura vem equipada com:)
+        $m
+        $m(00) $replace($dadosarm(%dadosnick,extra),&,14&0,[,14[,],14],!,$cor(!)) 14(09!00INVOCADA14)
+      }
+      $m
+    }
+    else {
+      var %narm0 $dados(%dadosnick,doutrina,nome)
+      if $dadosarm(%narm0,nome2) != $null { var %narm $ifmatch }
+      else { var %narm $dadosarm2(%narm0,nome) }
+
+      $m(11) $upper(protegido de %narm)
+      $m
+    }
+    if ($dados(%dadosnick,doutrina,golpe1) != nenhum) {
+      if ($dados(%dadosnick,doutrina,golpe1) != $null) { var %treinosnecessarios $dados(%dadosnick,doutrina,t1) | msgt $nick 14< Doutrina > | msgl $nick | msgl $nick $str($chr(160),8) $+ 11 $+ $replace(%classe,d, 5,c,10,b,20,a,50,s,125,x,200) $+ x 15· $ifmatch 14 $+ $complete(183,34,$ifmatch) $iif(%treinosnecessarios > 0,$redtaque(+ $+ %treinosnecessarios Treinos),08Dominada) } | else { $m(14) Você ainda não aprendeu nenhuma doutrina14. | goto cont }
+      if ($dados(%dadosnick,doutrina,golpe2) != $null) { var %treinosnecessarios $dados(%dadosnick,doutrina,t2) | msgl $nick $str($chr(160),8) $+ 11 $+ $replace(%classe,d,10,c,15,b,25,a,55,s,130,x,205) $+ x 15· $ifmatch 14 $+ $complete(183,34,$ifmatch) $iif(%treinosnecessarios > 0,$redtaque(+ $+ %treinosnecessarios Treinos),08Dominada) }
+      if ($dados(%dadosnick,doutrina,golpe3) != $null) { var %treinosnecessarios $dados(%dadosnick,doutrina,t3) | msgl $nick $str($chr(160),8) $+ 11 $+ $replace(%classe,d,15,c,20,b,30,a,60,s,135,x,210) $+ x 15· $ifmatch 14 $+ $complete(183,34,$ifmatch) $iif(%treinosnecessarios > 0,$redtaque(+ $+ %treinosnecessarios Treinos),08Dominada) } 
+      if ($dados(%dadosnick,doutrina,golpe4) != $null) { var %treinosnecessarios $dados(%dadosnick,doutrina,t4) | msgl $nick $str($chr(160),8) $+ 11 $+ $replace(%classe,d,20,c,25,b,35,a,65,s,140,x,215) $+ x 15· $ifmatch 14 $+ $complete(183,34,$ifmatch) $iif(%treinosnecessarios > 0,$redtaque(+ $+ %treinosnecessarios Treinos),08Dominada) } 
+      if ($dados(%dadosnick,doutrina,golpe5) != $null) { var %treinosnecessarios $dados(%dadosnick,doutrina,t5) | msgl $nick $str($chr(160),8) $+ 11 $+ $replace(%classe,d,25,c,30,b,40,a,70,s,145,x,220) $+ x 15· $ifmatch 14 $+ $complete(183,34,$ifmatch) $iif(%treinosnecessarios > 0,$redtaque(+ $+ %treinosnecessarios Treinos),08Dominada) }
+      if ($dados(%dadosnick,doutrina,golpe6) != $null) { var %treinosnecessarios $dados(%dadosnick,doutrina,t6) | msgl $nick $str($chr(160),8) $+ 11 $+ $replace(%classe,d,30,c,35,b,45,a,75,s,150,x,225) $+ x 15· $ifmatch 14 $+ $complete(183,34,$ifmatch) $iif(%treinosnecessarios > 0,$redtaque(+ $+ %treinosnecessarios Treinos),08Dominada) }
+      if ($dados(%dadosnick,doutrina,golpe7) != $null) { var %treinosnecessarios $dados(%dadosnick,doutrina,t7) | msgl $nick $str($chr(160),8) $+ 11 $+ $replace(%classe,d,35,c,40,b,50,a,80,s,155,x,230) $+ x 15· $ifmatch 14 $+ $complete(183,34,$ifmatch) $iif(%treinosnecessarios > 0,$redtaque(+ $+ %treinosnecessarios Treinos),08Dominada) }
+      if ($dados(%dadosnick,doutrina,golpe8) != $null) { var %treinosnecessarios $dados(%dadosnick,doutrina,t8) | msgl $nick $str($chr(160),8) $+ 11 $+ $replace(%classe,d,40,c,45,b,55,a,85,s,160,x,235) $+ x 15· $ifmatch 14 $+ $complete(183,34,$ifmatch) $iif(%treinosnecessarios > 0,$redtaque(+ $+ %treinosnecessarios Treinos),08Dominada) }
+    }
+    $m  
+    $quebra-linha
+    $m
+  }
+  :cont
+  var %vitorias $dados(%dadosnick,batalhas,vitorias)
+  var %derrotas $dados(%dadosnick,batalhas,derrotas)
+  var %empates $dados(%dadosnick,batalhas,empates)
+  var %narradas $zerando($dados(%dadosnick,batalhas,narradas),08)
+  var %total $calc(%vitorias + %derrotas + %empates)
+  var %aproveitamento $int($calc(%vitorias * 100 / %total))
+  var %total $zerando(%total,04)
+  var %vitorias $zerando(%vitorias,08)
+  var %derrotas $zerando(%derrotas,08)
+  var %empates $zerando(%empates,08)
+  $m Vitórias: %vitorias $separador(00) Derrotas: %derrotas $separador(00) Empates: %empates
+  $m Narradas: %narradas $separador(00) Total de Lutas: %total
+  $m
+  $m %aproveitamento $+ % de aproveitamento :)
+  msgbase $nick
+  unset %level
+  unset %totalcos
+}
+
+on *:text:!T?cnicas*:#:{
+  verificar2
+  if $2 {
+    if $dados($2,dados,nome) == $null { halt }
+    var %dadosnick = $2 | 
+  }
+  else { var %dadosnick = $nick }
+  $pre-personagem(%dadosnick)
+  set %tecnicas = $replace($dados(%dadosnick,dados,habilidades),$chr(44),$chr(172))
+
+  msg # $premsg(%msgnick,$iif(%dadosnick == $nick,Suas técnicas de combate,As técnicas de combate de %dadosnick) são:)
+  var %x 2 
+  var %tec $null
+  while %x <= $gettok(%tecnicas,0,32) {
+    //echo -s %x %tec
+    var %tec %tec $gettok(%tecnicas,%x,32)
+    if ($len(%tec) > 300) { msg # $premsg(%msgnick,$replace(%tec,$chr(172),$chr(44))) | var %tec $null }
+    .inc %x
+  }
+  msg # $premsg(%msgnick,$replace(%tec,$chr(172),$chr(44)))
+}
+
+on *:text:!cosmo*:#:{
+  verificar2
+  set %totalcos $dados($nick,dados,cos)
+  var %sentido $dados($nick,dados,sentido)
+  var %aura $dados($nick,dados,aura)
+  $pre-variacao($nick)
+  $pre-personagem($nick)
+  $pre-armadura($nick)
+  if $dados($nick,armadura,nome) != $null {
+    var %patente = $dadosarm($nick,patente) 15 $+ $iif(da !isin $dadosarm($nick,patente),de,) $+ 14
+  }
+  else {
+    if $dados($nick,doutrina,nome) != Nenhuma {
+      var %patente = Protegido 15de00
+      var %armadura = $dados($nick,doutrina,nome)
+    }
+    else {
+      var %patente = Guerreiro 15em00
+      var %armadura = Treinamento
+    }
+  }
+  var %base1 = 10 | var %base2 = 10 | var %base3 = 10 | var %base4 = 10
+  set %fator $replace(%raca,lemuriano,4,humano,5,anjo,5,shinigami,10,one winged angel,10)
+  echo -s %fator
+  var %cfis = $calc(%base1 + ($invocacao($nick,$dados($nick,dados,cfis)) * %fator)) $+ p
+  var %ccos = $calc(%base2 + ($invocacao($nick,$dados($nick,dados,ccos)) * %fator)) $+ p
+  if $dados($nick,dados,cmen) > 0 {
+    var %cmen = $calc(%base3 + ($invocacao($nick,$dados($nick,dados,cmen)) * %fator)) $+ p
+  }
+  var %cdes = $calc(%base4 + ($invocacao($nick,$dados($nick,dados,cdes)) * %fator)) $+ p
+  if 9 isin %sentido { var %sentido 049º Sentido }
+  if 8 isin %sentido { var %sentido 098º Sentido }
+  if 7 isin %sentido { var %sentido 087º Sentido }
+  if 6 isin %sentido { var %sentido 116º Sentido }
+  if 5 isin %sentido { var %sentido 005 Sentidos Aguçados }
+  msg # $premsg(%msgnick,$upper(%patente %armadura) $separador Cosmo15:00 $div(%totalcos) $+ 14(08 $+ $pre-level(%totalcos) $+ x $+ 14) $separador Atributos15: $zerando2(%cfis,09) $+ $cor(·) $+ $zerando2(%ccos,11) $+ $iif(%cmen != $null,$cor(·) $+ $zerando2(%cmen,06) ,) $+ $cor(·) $+ $zerando2(%cdes,07) $separador Possui $iif(5 isin %sentido,os,o) $destaque(%sentido) $separador 14Aura15: %aura $+ $iif($left($strip(%sentido),1) >= 7,$separador $+ 08Dourada,))
+
+}
+
+on *:text:!comparar*:#:{
+  verificar2
+  if !$2 { halt }
+  if !$3 { halt }
+  set %totalcos $dados($2,dados,cos)
+  set %totalcos2 $dados($3,dados,cos)
+  var %raca $dados($2,dados,raça)
+  var %raca2 $dados($3,dados,raça)
+  var %sentido $dados($2,dados,sentido)
+  var %sentido2 $dados($3,dados,sentido)
+  var %aura $dados($nick,dados,aura)
+  var %base1 = 10 | var %base2 = 10 | var %base3 = 10 | var %base4 = 10
+  set %fator $replace(%raca,lemuriano,4,humano,5,anjo,5,shinigami,10)
+  set %fator2 $replace(%raca2,lemuriano,4,humano,5,anjo,5,shinigami,10)
+  ;;echo -s %fator | ;;echo -s %fator2
+  var %cfis = $calc(%base1 + ($invocacao($2,$dados($2,dados,cfis)) * %fator)) | echo -s %cfis
+  var %cfis2 = $calc(%base1 + ($invocacao($3,$dados($3,dados,cfis)) * %fator2)) | echo -s %cfis2
+  var %ccos = $calc(%base2 + ($invocacao($2,$dados($2,dados,ccos)) * %fator)) | echo -s %ccos
+  var %ccos2 = $calc(%base2 + ($invocacao($3,$dados($3,dados,ccos)) * %fator2)) | echo -s %ccos2
+  if $dados($2,dados,cmen) > 0 { var %cmen = $calc(%base3 + ($invocacao($2,$dados($2,dados,cmen)) * %fator)) }
+  else { var %cmen = 0 | inc %mm 1 }
+  if $dados($3,dados,cmen) > 0 { var %cmen2 = $calc(%base3 + ($invocacao($3,$dados($3,dados,cmen)) * %fator2)) }
+  else { var %cmen2 = 0 | inc %mm 1 }
+  echo -s %cmen | echo -s %cmen2
+  var %cdes = $calc(%base4 + ($invocacao($2,$dados($2,dados,cdes)) * %fator)) | echo -s %cdes
+  var %cdes2 = $calc(%base4 + ($invocacao($3,$dados($3,dados,cdes)) * %fator2)) | echo -s %cdes2
+  if 9 isin %sentido { var %sentido 049º Sentido }
+  if 8 isin %sentido { var %sentido 098º Sentido }
+  if 7 isin %sentido { var %sentido 087º Sentido }
+  if 6 isin %sentido { var %sentido 116º Sentido }
+  if 5 isin %sentido { var %sentido 005 Sentidos Aguçados }
+  if %cfis == %cfis2 { var %msg1 = a capacidade física de $2 equivale a de $3 | inc %empate }
+  else {
+    if %cfis > %cfis2 { var %msg1 = a capacidade física de $2 supera a de $3 | inc %ve2 }
+    else { var %msg1 = a capacidade física de $3 supera a de $2 | inc %ve3 }
+  }
+  if %ccos == %ccos2 { var %msg2 = a capacidade cósmica de $2 equivale a de $3 | inc %empate }
+  else {
+    if %ccos > %ccos2 { var %msg2 = a capacidade cósmica de $2 supera a de $3 | inc %ve2 }
+    else { var %msg2 = a capacidade cósmica de $3 supera a de $2 | inc %ve3 }
+  }
+  if %cmen > 0 {
+    if %cmen == %cmen2 { var %msg3 = a capacidade mental de $2 equivale a de $3 | inc %empate }
+    else {
+      if %cmen > %cmen2 { var %msg3 = a capacidade mental de $2 supera a de $3 | inc %ve2 }
+      else { var %msg3 = a capacidade mental de $3 supera a de $2 | inc %ve3 }
+    }
+  }
+  if %cmen2 > 0 {
+    if %cmen == %cmen2 { var %msg3 = a capacidade mental de $2 equivale a de $3 | inc %empate }
+    else {
+      if %cmen2 > %cmen { var %msg3 = a capacidade mental de $3 supera a de $2 | inc %ve2 }
+      else { var %msg3 = a capacidade mental de $2 supera a de $3 | inc %ve3 }
+    }
+  }
+  ;;echo -s %mm
+  if %mm == 2 { var %msg3 = nenhum dos dois possui capacidade mental }
+  if %cdes == %cdes2 { var %msg4 = a capacidade destrutiva de $2 equivale a de $3 | inc %empate }
+  else {
+    if %cdes > %cdes2 { var %msg4 = a capacidade destrutiva de $2 supera a de $3 | inc %ve2 }
+    else { var %msg4 = a capacidade destrutiva de $3 supera a de $2 | inc %ve3 }
+  }
+  echo -s %msg1 | echo -s %msg2 | echo -s %msg3 | echo -s %msg4
+  msg # $premsg(comparação,$upper($2) 00vs15 $upper($3) 14::15 %msg1 14/15 %msg2 14/15 $iif(%msg3 != $null,%msg3 14/15,14/15) %msg4 14::15 $2 14(09 $+ $iif(%ve2 != $null,%ve2,0) $+ 14) 0vs 14(09 $+ $iif(%ve3 != $null,%ve3,0) $+ 14)15 $3 $iif(%empate != $null,- empates: %empate,))
+  unset %mm | unset %ve2 | unset %ve3 | unset %empate
+}
+
+on *:text:@cosmo*:#:{
+  if !$2 { halt }
+  verificar2
+  if $dados($2,dados,nome) == $null { halt }
+  set %totalcos $dados($2,dados,cos)
+  var %sentido $dados($2,dados,sentido)
+  var %aura $dados($2,dados,aura)
+  $pre-personagem($2)
+  $pre-armadura($2)
+  if $dados($2,armadura,nome) != $null {
+    var %patente = $dadosarm($2,patente) 15 $+ $iif(da !isin $dadosarm($2,patente),de,) $+ 14
+  }
+  else {
+    if $dados($2,doutrina,nome) != Nenhuma {
+      var %patente = Protegido 15de00
+      var %armadura = $dados($2,doutrina,nome)
+    }
+    else {
+      var %patente = Guerreiro 15em00
+      var %armadura = Treinamento
+    }
+  }
+  var %base1 = 10 | var %base2 = 10 | var %base3 = 10 | var %base4 = 10
+  set %fator $replace(%raca,lemuriano,4,humano,5,anjo,5,shinigami,10,one winged angel,10)
+  echo -s %fator
+  var %cfis = $calc(%base1 + ($invocacao($2,$dados($2,dados,cfis)) * %fator)) $+ p
+  var %ccos = $calc(%base2 + ($invocacao($2,$dados($2,dados,ccos)) * %fator)) $+ p
+  if $dados($2,dados,cmen) > 0 {
+    var %cmen = $calc(%base3 + ($invocacao($2,$dados($2,dados,cmen)) * %fator)) $+ p
+  }
+  var %cdes = $calc(%base4 + ($invocacao($2,$dados($2,dados,cdes)) * %fator)) $+ p
+  if 9 isin %sentido { var %sentido 049º Sentido }
+  if 8 isin %sentido { var %sentido 098º Sentido }
+  if 7 isin %sentido { var %sentido 087º Sentido }
+  if 6 isin %sentido { var %sentido 116º Sentido }
+  if 5 isin %sentido { var %sentido 005 Sentidos Aguçados }
+  msg # $premsg(%msgnick,$upper(%patente %armadura) $separador Cosmo15:00 $div(%totalcos) $+ 14(08 $+ $pre-level(%totalcos) $+ x $+ 14) $separador Atributos15: $zerando2(%cfis,09) $+ $cor(·) $+ $zerando2(%ccos,11) $+ $iif(%cmen != $null,$cor(·) $+ $zerando2(%cmen,06) ,) $+ $cor(·) $+ $zerando2(%cdes,07) $separador Possui $iif(5 isin %sentido,os,o) $destaque(%sentido) $separador 14Aura15: %aura $+ $iif($left($strip(%sentido),1) >= 7,$separador $+ 08Dourada,))
+
+}
+
+on *:text:.level*:#:{ 
+  verificar2
+  if !$2 { halt }
+  if x isin $2 {
+
+    if $remove($2,$chr(120)) > 500 { halt }
+    set %cos 1
+
+    while $pre-level(%cos) < $int($remove($2,$chr(120))) { inc %cos 1000 }
+
+    msg # $premsg(Atenção,Se ligue $nick $+ ! 0 $+ $2 15requer09 $div($calc(%cos - 1)) 15de cosmo)
+
+  }
+
+  else {
+
+    if $2 < 2500 { msg # $premsg(Atenção,Pero que melhor verificar valores acima de 3500 de cosmo) | halt }
+    if $2 > 100000000 { halt }
+    var %level $pre-level($2)
+    msg # $premsg(Atenção,Se ligue $nick $+ !9 $div($2) 15de cosmo equivale ao level 00 $+ %level $+ )
+
+  }
+}
+
+on *:text:.cosmo*:#:{
+  verificar2
+  if !$2 { var %dadosnick = $nick }
+  else { 
+    if $dados($2,dados,nome) == $null { halt }
+    var %dadosnick = $2
+  }
+  $pre-personagem(%dadosnick)
+  set %totalcos $dados(%dadosnick,dados,cos)
+  set %level $pre-level(%totalcos)
+  if %level >= 0 { var %aumento = 2000 }
+  if %level >= 20 { var %aumento = 3000 }
+  if %level >= 40 { var %aumento = 4000 }
+  if %level >= 60 { var %aumento = 5000 }
+  if %level >= 80 { var %aumento = 6000 }
+  if %level >= 150 { var %aumento = 8000 }
+  set %l1 $criar-cosmo(%level)
+  set %l2 $criar-cosmo($calc(%level + 1))
+  msg # $premsg(%msgnick,$iif(%dadosnick != $nick,Ele,Você) já subiu de level08 %level $+ x 15tendo0 $div(%totalcos) 15de cosmo14.15 Para alcançar o level08 $calc(%level + 1) 15 $+ $iif(%dadosnick != $nick,ele,você) precisa de09 $div(%l1) $+ 14.15 Ainda lhe faltam 0+ $+ $div($calc(%l1 - %totalcos)) 15de cosmo)
+}
+
+alias criar-cosmo {
+  var %x = 0
+  var %y = $1
+  var %base = 0
+  :inicio
+  while %x <= %y {
+    if %x >= 150 { var %base = $calc(%base + 8000) | inc %x | goto inicio }
+    if %x >= 80 { var %base = $calc(%base + 6000) | inc %x | goto inicio }
+    if %x >= 60 { var %base = $calc(%base + 5000) | inc %x | goto inicio }
+    if %x >= 40 { var %base = $calc(%base + 4000) | inc %x | goto inicio }
+    if %x >= 20 { var %base = $calc(%base + 3000) | inc %x | goto inicio }
+    if %x >= 0 { var %base = $calc(%base + 2000) | inc %x | goto inicio }
+  }
+  return %base
+}
+
+on *:text:!invocar:#:{
+  verificar2
+  $pre-personagem($nick)
+  $pre-armadura($nick)
+  if $dados($nick,armadura,nome) == $null { msg # $premsg(%msgnick,Você não possui uma armadura para lhe proteger) | halt }
+  if ($dados($nick,dados,invocada) == sim) { msg # $premsg(%msgnick,Você já está com sua armadura invocada) | halt }
+  else {
+    $escrever($nick,dados,invocada,sim)
+    var %vidaatu = $dados($nick,armadura,vidaatu)
+    var %vidamax = $dados($nick,armadura,vidamax)
+    var %status = $int($calc(%vidaatu * 100 / %vidamax))
+    msg # $premsg(%msgnick,A caixa de pandora em suas costas se abre e você veste a armadura de09 %armadura $+ 14. 0Aumentando suas capacidades em08 $replace($dadosarm($nick,classe),d,2,c,3,b,4,a,5,s,6,x,7) $+ x14.15 A integridade de sua armadura é de0 %status $+ % $+  14(15 $+ %vidaatu $+ p14/09 $+ %vidamax $+ p14)08.)
+  }
+  unset %msgnick | unset %armadura
+}
+
+on *:text:!retirar:#:{
+  verificar2
+  verificarficha2
+  $pre-personagem($nick)
+  $pre-armadura($nick)
+  if $dados($nick,armadura,nome) == $null { msg # $premsg(%msgnick,Você não possui uma armadura para lhe proteger) | halt }
+  if ($dados($nick,dados,invocada) == não) { msg $nick $premsg(%msgnick,Você já está com sua armadura retirada) | halt }
+  else {
+    $escrever($nick,dados,invocada,não)
+    var %vidaatu = $dados($nick,armadura,vidaatu)
+    var %vidamax = $dados($nick,armadura,vidamax)
+    var %status = $int($calc(%vidaatu * 100 / %vidamax))
+    msg # $premsg(%msgnick,A caixa de pandora em suas costas se abre e recolhe a armadura de09 %armadura $+ 14. 0Diminuindo suas capacidades em08 $replace($dadosarm($nick,classe),d,2,c,3,b,4,a,5,s,6,x,7) $+ x14.15 A integridade de sua armadura é de0 %status $+ % $+  14(15 $+ %vidaatu $+ p14/09 $+ %vidamax $+ p14)08.)
+  }
+  unset %msgnick | unset %armadura
+}
+
+on *:chat:!sentidos:{
+  verificar
+  $inicial(Sentidos do Guerreiro)
+  $m Os sentidos se apuram conforme você acumula experiência.
+  $m Lembrando que a experiência será gasta ao despertar algum sentido.
+  $m
+  $l $str($chr(160),6) !005 Sentidos Aguçados     15Sentidos Iniciais
+  $l $str($chr(160),6) !116º Sentido              155.000 exp
+  $l $str($chr(160),6) !087º Sentido              1525.000 exp
+  $l $str($chr(160),6) !098º Sentido              1550.000 exp
+  $l $str($chr(160),6) !049º Sentido              15250.000 exp
+  $m
+  $m(00) Para elevar seus sentidos digite: $opcao(!,DESPERTAR) $subopcao(NOME DO SENTIDO)
+  msgbase $nick
+}
+
+on *:chat:!Despertar*:{
+  verificar
+  var %sentido $dados($nick,dados,sentido)
+  if !$2 {
+    $inicial(ERRO INTERNO)
+    $m Indique um sentido para ser despertado!
+    msgbase $nick
+    halt
+  }
+  var %expd $dados($nick,dados,exp)
+  if $2- == 6º Sentido {
+    var %custod 5000
+    if $left(%sentido,1) >= 6 {
+      $inicial(ERRO INTERNO)
+      $m Você já despertou o 6º Sentido!
+      msgbase $nick
+      halt
+    }
+    else {
+      if %expd < %custod {
+        $inicial(ERRO INTERNO)
+        $m Você não tem experiência suficiente para despertar a14:
+        $m(14) Premonição Instantânea ou 6º Sentido
+        msgbase $nick
+        halt
+      }
+      var %finald = $calc(%expd - %custod)
+      $inicial(6º Sentido)
+      $m Você permaneceu durante 24hrs em uma sala escura,
+      $m sendo atacado por todas as direções!
+      $m
+      $m Despertando assim no final do dia o 6º Sentido
+      var %nhab = $chr(32) $+ Premonição Instantânea, Velocidade do Som
+      if $dados($nick,dados,raça) == humano {
+        var %nhab = %nhab $+ , Prece Divina
+        $m(07) Ao atingir o 6º Sentido você alcançou domínio sobre a Prece Divina!
+      }
+      msgbase $nick
+      $escrever($nick,dados,exp,%finald)
+      $escrever($nick,dados,sentido,6º Sentido)
+      var %fhab = $addtok($dados($nick,dados,habilidades),%nhab,44)
+      $escrever($nick,dados,habilidades,%fhab)
+      halt
+    }
+  }
+  if $2- == 7º Sentido {
+    var %custod 25000
+    if $left(%sentido,1) < 6 {
+      $inicial(ERRO INTERNO)
+      $m Antes você precisa despertar o 6º Sentido!
+      msgbase $nick
+      halt
+    }
+    else {
+      if $left(%sentido,1) == 7 {
+        $inicial(ERRO INTERNO)
+        $m Você já despertou o 7º Sentido!
+        msgbase $nick
+        halt
+      }
+      if %expd < %custod {
+        $inicial(ERRO INTERNO)
+        $m Você não tem experiência suficiente para despertar o14:
+        $m(14) Controle do Microcosmo ou 7º Sentido
+        msgbase $nick
+        halt
+      }
+      var %finald = $calc(%expd - %custod)
+      $inicial(7º Sentido)
+      $m Você permaneceu durante 1 mês treinando,
+      $m liberando seu cosmo o máximo que conseguia e o manipulando
+      $m das mais variadas formas possíveis $+ $cor(!)
+      $m
+      $m Despertando assim no final do mês o 7º Sentido
+      var %nhab = $chr(32) $+ Controle do Microcosmo, Velocidade da Luz, Punho de Luz
+      if $dados($nick,dados,raça) == lemuriano {
+        var %nhab = %nhab $+ , Teletransporte
+        $m(09) Ao atingir o 7º Sentido você alcançou domínio sobre o Teletransporte!
+      }
+      if $dados($nick,dados,raça) == anjo {
+        var %nhab = %nhab $+ , Sopro de Vida
+        $m(09) Ao atingir o 7º Sentido você alcançou domínio sobre o Sopro de Vida!
+      }
+      if $dados($nick,dados,aura) == branca { 
+        var %nhab = %nhab $+ , Zero Absoluto
+        $m(11) Ao atingir o 7º Sentido você alcançou domínio sobre o Zero Absoluto!
+      }
+      msgbase $nick
+      var %fhab = $addtok($dados($nick,dados,habilidades),%nhab,44)
+      $escrever($nick,dados,dourada,sim)
+      $escrever($nick,dados,exp,%finald)
+      $escrever($nick,dados,sentido,7º Sentido)
+      $escrever($nick,dados,habilidades,%fhab)
+      halt
+    }
+  }
+  if $2- == 8º Sentido {
+    var %custod 50000
+    if $left(%sentido,1) < 7 {
+      $inicial(ERRO INTERNO)
+      $m Antes você precisa despertar o 7º Sentido!
+      msgbase $nick
+      halt
+    }
+    else {
+      if $left(%sentido,1) == 8 {
+        $inicial(ERRO INTERNO)
+        $m Você já despertou o 8º Sentido!
+        msgbase $nick
+        halt
+      }
+      if %expd < %custod {
+        $inicial(ERRO INTERNO)
+        $m Você não tem experiência suficiente para despertar a14:
+        $m(14) Plenitude sobre a Existência ou 8º Sentido
+        msgbase $nick
+        halt
+      }
+      var %finald = $calc(%expd - %custod)
+      $inicial(8º Sentido)
+      $m Você permaneceu durante 1 mês treinando,
+      $m despertando e suportando ao máximo com seu cosmo
+      $m uma fenda dimensional que leva ao Meikai!
+      $m
+      $m Despertando assim no final do mês o 8º Sentido
+      var %nhab = $chr(32) $+ Arayashiki
+      msgbase $nick
+      $escrever($nick,dados,exp,%finald)
+      $escrever($nick,dados,sentido,8º Sentido)
+      var %fhab = $addtok($dados($nick,dados,habilidades),%nhab,44)
+      $escrever($nick,dados,habilidades,%fhab)
+      halt
+    }
+  }
+  if $2- == 9º Sentido {
+    var %custod 250000
+    if $left(%sentido,1) < 8 {
+      $inicial(ERRO INTERNO)
+      $m Antes você precisa despertar o 8º Sentido!
+      msgbase $nick
+      halt
+    }
+    else {
+      if $left(%sentido,1) == 9 {
+        $inicial(ERRO INTERNO)
+        $m Você já despertou o 9º Sentido!
+        msgbase $nick
+        halt
+      }
+      if %expd < %custod {
+        $inicial(ERRO INTERNO)
+        $m Você não tem experiência suficiente para despertar a14:
+        $m(14) Plenitude sobre a Existência ou 8º Sentido
+        msgbase $nick
+        halt
+      }
+      var %finald = $calc(%expd - %custod)
+      $inicial(9º Sentido)
+      $m O cosmo universal agora flui pelo seu corpo,
+      $m um surto de conhecimento toma conta de sua mente
+      $m e você toma pleno conhecimento das leis universais!
+      $m
+      $m Despertando assim o 9º Sentido
+      var %nhab = $chr(32) $+ Atarashi, Misopheta Menos
+      msgbase $nick
+      $escrever($nick,dados,exp,%finald)
+      $escrever($nick,dados,sentido,9º Sentido)
+      var %fhab = $addtok($dados($nick,dados,habilidades),%nhab,44)  
+      $escrever($nick,dados,habilidades,%fhab)
+      halt
+    }
+  }
+  else {
+    $inicial(ERRO INTERNO)
+    $m Este não é um sentido válido!
+    msgbase $nick
+  }
+}
+
+on *:chat:!5 sentidos aguçados:{
+  verificar
+  var %sentidoa 5 Sentidos Aguçados
+  var %sentidod Indeterminado
+  var %sentidou Ilimitado
+  $inicial(5 Sentidos Aguçados)
+  $m(14) O guerreiro dispõe de seus 5 sentidos básicos, sendo eles $+ $cor(:)
+  $m
+  $m $upper(visão / audição / tato / paladar / olfato)
+  $m
+  $m(15) Sendo guerreiros treinados seus sentidos são mais aguçados que
+  $m(15) os de pessoas normais, quaisquer destes sentidos podem ser
+  $m(15) utilizados sem limites iniciais, podendo receber limitações
+  $m(15) no decorrer das lutas14.
+  $m
+  $m(14) Duração15:00 %sentidod $separador $opcao(Custo por Ação:) 5% de Capacidade Cósmica
+  msgbase $nick
+}
+
+on *:chat:!6º Sentido*:{
+  verificar
+  var %sentidoa $iif($3 != Aguçado,6º Sentido,6º Sentido Aguçado)
+  var %sentidod $iif($3 != Aguçado,1 ação,1 ação)
+  var %sentidou $iif($3 != Aguçado,1 vez,1 vezes)
+  $inicial(%sentidoa)
+  $a($nick,O guerreiro atinge o estado de Premonição Instantânea e passa a executar golpes na velocidade do som14.)
+  $m
+  $m(14) Duração15:00 %sentidod $separador $opcao(Custo por Golpe:) 50% de Capacidade Cósmica
+  $m
+  $m(14) dominando o 087º sentido14 o custo cai para 25%
+  msgbase $nick
+}
+
+on *:chat:!7º Sentido*:{
+  verificar
+  var %sentidoa $iif($3 != Aguçado,7º Sentido,7º Sentido Aguçado)
+  var %sentidod $iif($3 != Aguçado,1 ação,1 ação)
+  var %sentidou $iif($3 != Aguçado,1 vez,1 vezes)
+  $inicial(%sentidoa)
+  $a($nick,O guerreiro atinge o estado de Controle do Microcosmo e passa a executar golpes na velocidade da luz14.)
+  $m
+  $m(14) Duração15:00 %sentidod $separador $opcao(Custo por Golpe:) 250% de Capacidade Cósmica
+  $m
+  $m(14) dominando o 098º sentido14 o custo cai para 125%
+  msgbase $nick
+}
+
+on *:chat:!8º Sentido:{
+  verificar
+  var %sentidoa 8º Sentido
+  var %sentidod IMENSURÁVEL
+  var %sentidou 1 Vez
+  $inicial(%sentidoa)
+  $a($nick,O guerreiro alcança a Plenitude Sobre a Existência e passa a ter liberdade de ir e vir ao Meikai sem estar morto14.)
+  $m
+  $m(14) Duração15:00 %sentidod $separador $opcao(Custo por Ação:) 500% de Capacidade Cósmica
+  $m
+  $m(14) dominando o 049º sentido14 o custo cai para 250%
+  $m(14) podendo ir e voltar de diferentes planos existenciais14.
+  msgbase $nick
+}
+
+on *:chat:!9º Sentido:{
+  verificar
+  var %sentidoa 9º Sentido
+  var %sentidod CONTINUA
+  var %sentidou 1 Vez
+  $inicial(%sentidoa)
+  $a($nick,O guerreiro alcança a Vontade Suprema; tornando-se um ser Divino e capaz; doinando a BIG-WILL14.)
+  $m
+  $m(14) Duração15:00 %sentidod $separador $opcao(Custo por Ação:) 2500% de Capacidade Cósmica
+  $m
+  $m(14) Com a imortalidade alcançada o guerreiro se funde com o universo.
+  $m(14) Logo tem compreensão de como as coisas acontecem em sua escência.
+  msgbase $nick
+}
+on *:chat:!golpe*:{
+  verificar
+  if !$2 {
+    $inicial(Descrição)
+    $m Esse comando é utilizado para que as descrições
+    $m dos golpes sejam analizadas pelos jogadores14.
+    $m
+    $m $opcao(Sintaxe:)
+    $m $opcao(!,GOLPE) $subopcao(NOME DO GOLPE)
+    msgbase $nick
+    halt
+  }
+  var %golpeaser $remove($2-,$chr(32))
+  if $readini(CDZ\Sistemas\[cdz]_golpes.db,%golpeaser,Tecnica) == $null { var %1 Não }
+  if $readini(CDZ\Sistemas\[cdz]_golpes2.db,%golpeaser,Tecnica) == $null { var %2 Não }
+  if (%1 == Não) && (%2 == não) { 
+    $inicial(ERRO INTERNO)
+    $m O golpe indicado não existe $+ $cor(!)
+    msgbase $nick
+    halt
+  }
+  if ($readini(CDZ\Sistemas\[cdz]_golpes.db,%golpeaser,Tecnica) != $null) { 
+    var %nomeg = $readini(CDZ\Sistemas\[cdz]_golpes.db,%golpeaser,Tecnica)
+    var %descg = $readini(CDZ\Sistemas\[cdz]_golpes.db,%golpeaser,Desc01)
+    var %armog = $readini(CDZ\Sistemas\[cdz]_golpes.db,%golpeaser,Armadura)
+  }
+  else { 
+    var %nomeg = $readini(CDZ\Sistemas\[cdz]_golpes2.db,%golpeaser,Tecnica)
+    var %descg = $readini(CDZ\Sistemas\[cdz]_golpes2.db,%golpeaser,Desc01)
+    var %armog = $readini(CDZ\Sistemas\[cdz]_golpes2.db,%golpeaser,Armadura)
+  }
+  $inicial($upper(%nomeg))
+  $a($nick,%descg)
+  msgbase $nick
+}
+
+on *:chat:!treinos:{
+  verificar
+  $inicial(Treinos Disponíveis)
+  $m $opcao(!,Treino Diário)
+  $m
+  $m Treino cotidiano de diferentes aplicações,
+  $m onde você aumentará seu cosmo e experiência
+  $m
+  $m $opcao(!,Treino de Cota)
+  $m
+  $m Treino diário, onde caso você complete sua cota
+  $m de lutas diárias, poderá realizar o treinamento
+  $m
+  $m $opcao(!,Viagens)
+  $m
+  $m Com esse treino você treina por temporadas mundo afora,
+  $m fazendo assim seu cosmo aumentar de acordo com o local
+  $m
+  $m $opcao(!,Travessias)
+  $m
+  $m Escolha atravessar um dos locais disponíveis,
+  $m durante sua jornada você irá aumentar seu cosmo
+  if $dados($nick,doutrina,nome) != Nenhuma {
+    $m
+    $m $opcao(!,TREINAR DOUTRINA)
+    $m
+    $m Treino básico onde através dos dias,
+    $m você dominará os golpes de sua armadura
+  }
+  msgbase $nick
+}
+
+on *:chat:!travessias:{
+  verificar
+  $inicial(Travessias)
+  $m As travessias são cruzadas através de lugares distintos,
+  $m ao iniciar em um dos locais disponíveis você irá enfrentar
+  $m todos os guerreiros daquela região em ordem e assim aumentará
+  $m seu cosmo após cada turno de batalha que é automatizado.
+  $m
+  $m(14) os locais disponíveis para travessia são15:
+  $m
+  $m(15) santuário / inferno / asgard / reino marinho
+  $m
+  $m(14) para iniciar sua travessia digite15:
+  $m $opcao(!,TRAVESSIA) $subopcao(NOME DO LOCAL)
+  $m
+  $m(15) para continuar uma travessia: $opcao(!,CONTINUAR TRAVESSIA)
+  $m
+  $m $ex(!travessia santuário)
+  msgbase $nick
+}
+
+on *:chat:!travessia*:{
+  verificar
+  if !$2 {
+    $inicial(ERRO)
+    $m você não indicou um local para iniciar sua travessia!
+    $m
+    $m(14) os locais disponíveis para travessia são15:
+    $m
+    $m(15) santuário / inferno / asgard / reino marinho
+    $m
+    $m(14) para iniciar sua travessia digite15:
+    $m $opcao(!,TRAVESSIA) $subopcao(NOME DO LOCAL)
+    $m
+    $m $ex(!travessia santuário)
+    msgbase $nick
+    halt
+  }
+  var %local = $remove($2-,$chr(32))
+  if $dados($nick,travessia,nome) != $null {
+    $inicial(ERRO)
+    $m você ja está realizando uma travessia!
+    msgbase $nick
+    halt
+  }
+  if !$istok(santuário inferno asgard reinomarinho,%local,32) {
+    $inicial(ERRO)
+    $m você não indicou um local correto para iniciar sua travessia!
+    $m
+    $m(14) os locais disponíveis para travessia são15:
+    $m
+    $m(15) santuário / inferno / asgard / reino marinho
+    $m
+    $m(14) para iniciar sua travessia digite15:
+    $m $opcao(!,TRAVESSIA) $subopcao(NOME DO LOCAL)
+    $m
+    $m $ex(!travessia santuário)
+    msgbase $nick
+    halt
+  }
+  if $dados($nick,treinos,$remove($2-,$chr(32))) == sim {
+    $inicial(ERRO)
+    $m você já realizou a travessia do $2- $+ !
+    msgbase $nick
+    halt
+  }
+  $escrever($nick,travessia,nome,%local)
+  var %base = $readini(CDZ\Sistemas\[cdz]_travessia.db,%local,base)
+  var %limite = $readini(CDZ\Sistemas\[cdz]_travessia.db,%local,limite)
+  $escrever($nick,travessia,base,%base)
+  $escrever($nick,travessia,limite,%limite)
+  var %x = 1
+  var %y = $readini(CDZ\Sistemas\[cdz]_travessia.db,%local,total)
+  $escrever($nick,travessia,total,%y)
+  while %x <= %y {
+    var %cont = $readini(CDZ\Sistemas\[cdz]_travessia.db,%local,%x)
+    $escrever($nick,travessia,%x,%cont)
+    inc %x
+  }
+  $inicial(Travessia Iniciada)
+  $m você iniciou sua travessia $replace($2-,santuário,pelo santuário,inferno,pelo inferno,asgard,por asgard,reinomarinho,através do reino marinho) com sucesso!
+  $m(14) para iniciar seu primeiro combate digite:
+  $m 
+  $m $opcao(!,CONTINUAR TRAVESSIA)
+  msgbase $nick
+}
+
+on *:chat:!continuar travessia:{
+  verificar
+  var %local = $dados($nick,travessia,nome)
+  if %local == $null {
+    $inicial(ERRO)
+    $m você não está realizando nenhuma travessia!
+    msgbase $nick
+    halt
+  }
+  if $dados($nick,treinos,travessia) == $date {
+    $inicial(ERRO INTERNO)
+    $m Você já realizou parte da travessia hoje!
+    msgbase $nick
+    halt
+  }
+  var %x = 1
+  var %y = $dados($nick,travessia,total)
+  while %x <= %y {
+    var %z = $dados($nick,travessia,%x)
+    echo -s %z
+    var %arm = $gettok(%z,1,32)
+    echo -s %arm
+    var %ife = $gettok(%z,2,32)
+    echo -s %ife
+    if %ife > 0 {
+      var %treinos = $calc(%ife - 1)
+      if $dadosarm2(%arm,dono) != Ninguém { var %oponente = $dadosarm2(%arm,dono) }
+      else { var %oponente = $dadosarm2(%arm,mestre) }
+      if $nick == %oponente { var %oponente = $dadosarm2(%arm,mestre) }
+      if $dadosarm2(%arm,nome2) != $null { var %arm2 = $dadosarm2(%arm,nome2) }
+      else { var %arm2 = $dadosarm2(%arm,nome) }
+      var %oponente2 = %oponente de %arm2
+      var %sentido = $dados($nick,dados,sentido)
+      if %sentido == 5 sentidos aguçados { var %pre-base = 0 }
+      if %sentido == 6º sentido { var %pre-base = 450 }
+      if %sentido == 7º sentido { var %pre-base = 650 }
+      if %sentido == 8º sentido { var %pre-base = 850 }
+      if %sentido == 9º sentido { var %pre-base = 1050 }
+      echo -s 02 $+ %pre-base
+      var %base = $calc($dados($nick,travessia,base) + %pre-base)
+      echo -s 02 $+ %base
+      var %limite = $dados($nick,travessia,limite)
+      echo -s 02 $+ %limite
+      var %ganho = $rand(%base,%limite)
+      var %especial = 08 $+ $dadosarm2(%arm,golpe $+ $rand(1,2)) $+ 00
+      var %batalha = $readini(CDZ\Sistemas\[cdz]_travessia.db,manobras,$rand(1,10))
+      $inicial(Travessia $replace(%local,santuário,do santuário,inferno,do inferno,asgard,de asgard,reinomarinho,do reino marinho))
+      quebra-linha
+      $m Luta contra %oponente2
+      quebra-linha
+      $m
+      $a($nick,%batalha $+ 9...)
+      $m
+      $m seu poder aumenta, você sente seu cosmo crescer em $div(%ganho) pontos
+      $m
+      if %treinos == 0 {
+        $m A batalha cessa!
+        if %x == %y {
+          $m(11) parabéns! 0você completou a travessia $lower($replace(%local,santuário,pelo santuário,inferno,pelo inferno,asgard,por asgard,reinomarinho,pelo reino marinho)) $+ .
+          $m
+          set %nhab $replace(%local,santuário,$chr(32) $+ Esperança Final,inferno,$chr(32) $+ Submissão Infernal,asgard,$chr(32) $+ Clemência Nórdica,reinomarinho,$chr(32) $+ Corrente dos 7 Mares)
+          $m(07) Ao completar esta travessia o você dominou a técnica %nhab $+ !
+          var %fhab = $addtok($dados($nick,dados,habilidades),%nhab,44)
+          $m(07)
+          $escrever($nick,treinos,$remove(%local,$chr(32)),sim)
+          $escrever($nick,dados,habilidades,%fhab)
+          remini cdz/dados/usuarios/ $+ $nick $+ .db travessia
+          goto semi-final
+        }
+        $m %oponente $iif($rand(1,2) == 1,notou o seu valor,está exausto) e deixará você passar!
+        $m(09) prepare-se ;)
+      }
+      else {
+        $l(14) continua no próximo episódio...
+      }
+      var %novo = %arm %treinos
+      $escrever($nick,travessia,%x,%novo)
+      :semi-final
+      msgbase $nick
+      $escrever($nick,treinos,travessia,$date)
+      $adicionar-cosmo($nick,%ganho)
+      goto final
+    }
+    else { inc %x }
+  }
+  :final
+}
+
+on *:chat:!Viagens:{
+  verificar
+  $inicial(VIAGENS)
+  $m As viagens são treinos que você poderá fazer por temporadas
+  $m em diferentes locais do mundo, tendo cada um seu custo e seu
+  $m respectivo aumento de cosmo, sendo eles:
+  $m
+  $m Ilha de Andrômeda
+  $m Sibéria
+  $m Grécia
+  $m 5 Picos Antigos de Rozan
+  $m Ilha da Rainha da Morte
+  $m
+  $m $opcao(Para detalhes quanto aos locais digite:)
+  $m $opcao(!,LOCALIDADE) $subopcao(NOME DO LOCAL)
+  msgbase $nick
+}
+
+on *:chat:!localidade*:{
+  verificar
+  if !$2 { halt }
+  else {
+    var %local $remove($2-,$chr(32))
+    if $readini(CDZ\Sistemas\[cdz]_via.db,%local,on) == $null { halt }
+    else {
+      $inicial($2-)
+      $a($nick,$readini(CDZ\Sistemas\[cdz]_via.db,%local,desc))
+      $m
+      $m $opcao(Duração:) $readini(CDZ\Sistemas\[cdz]_via.db,%local,dur) dias $separador $opcao(Ganho:) $div($readini(CDZ\Sistemas\[cdz]_via.db,%local,ganho)) $separador $opcao(Custo:) $div($readini(CDZ\Sistemas\[cdz]_via.db,%local,custo)) EXP
+      $m
+      $m Para iniciar seu treinamento digite:
+      $m $opcao(!,INICIAR $upper($2-))
+      msgbase $nick
+    }
+  }
+}
+
+on *:chat:!iniciar*:{
+  verificar
+  if $dados($nick,local) != $null {
+    $inicial(ERRO INTERNO)
+    $m Você já está treinando em um local especial!
+    msgbase $nick
+    halt
+  }
+  if !$2 { halt }
+  else {
+    var %local = $remove($2-,$chr(32))
+    if $readini(CDZ\Sistemas\[cdz]_via.db,%local,on) == $null { halt }
+    var %custoviagem = $readini(CDZ\Sistemas\[cdz]_via.db,%local,custo)
+    if $dados($nick,dados,exp) < %custoviagem {
+      $inicial(ERRO INTERNO)
+      $m experiência insuficiente para iniciar esta viagem $+ $cor(!)
+      msgbase $nick
+      halt
+    }
+    var %custoviagem2 = $calc($dados($nick,dados,exp) - %custoviagem)
+    $inicial(PARABÉNS)
+    $m Você chegou com êxito ao seu destino14,
+    $m podendo iniciar seu treinamento imediatamente,
+    $m ficando assim com $div(%custoviagem2) EXP!
+    $m
+    $m utilize o comando:
+    $m $opcao(!,Treino Especial)
+    msgbase $nick
+    set %ficha $dadosficha($nick,nome)
+    $escrever($nick,dados,exp,%custoviagem2)
+    $escrever($nick,treinos,local,$2-)
+    $escrever($nick,treinos,quantidade,$readini(CDZ\Sistemas\[cdz]_via.db,%local,dur))
+    $escrever($nick,treinos,ganho,$readini(CDZ\Sistemas\[cdz]_via.db,%local,ganho))
+    unset %ficha
+  }
+}
+
+on *:chat:!treino especial:{
+  verificar
+  if $dados($nick,treinos,local) == $null {
+    $inicial(ERRO INTERNO)
+    $m Você não está treinando em um local especial!
+    msgbase $nick
+    halt
+  }
+  if $dados($nick,treinos,especial) == $date {
+    $inicial(ERRO INTERNO)
+    $m Você já realizou o seu treinamento de hoje!
+    msgbase $nick
+    halt
+  }
+  set %ganhocos $dados($nick,treinos,ganho)
+  var %cosmofinal = $calc($dados($nick,dados,cos) + %ganhocos)
+  var %finaldias $calc($dados($nick,treinos,quantidade) - 1)
+  $inicial(TREINAMENTO ESPECIAL)
+  $m Você acabou de realizar o seu treinamento especial
+  $m na seguinte localidade:
+  $m
+  $m $upper(14 $+ $dados($nick,treinos,local)) ( $+ $destaque(+ $+ $div(%ganhocos)) $+ 14)
+  $m
+  $m ficando assim com14: 00 $+ $div(%cosmofinal) $+  cos
+  $m
+  if %finaldias == 0 {
+    $m(11) este foi seu último treino especial
+    remini cdz/dados/usuarios/ $+ $nick $+ .db treinos local
+    remini cdz/dados/usuarios/ $+ $nick $+ .db treinos ganho
+    remini cdz/dados/usuarios/ $+ $nick $+ .db treinos quantidade
+  }
+  else {
+    $m Ainda lhe restam %finaldias dias de treino neste local
+    $escrever($nick,treinos,quantidade,%finaldias)
+  }
+  $escrever($nick,treinos,especial,$date)
+  $adicionar-cosmo($nick,%ganhocos)
+  msgbase $nick
+}
+
+on *:chat:!Treino Di?rio:{
+  verificar
+  if ($dados($nick,treinos,diario) == $date) {
+    $inicial(ERRO)
+    $m Você já realizou o seu treino de hoje.
+    msgbase $nick
+    halt
+  }
+  var %ganhoexp $rand(400,850)
+  set %ganhocos $rand(750,1250)
+  $inicial(Treino Diário)
+  $m $read(CDZ\Sistemas\Treinos\Diário.txt) $+ 14!
+  $m Com esse treino você ganhou14:
+  $m %ganhoexp EXP & %ganhocos COS
+  msgbase $nick
+  var %expfinal $calc($dados($nick,dados,exp) + %ganhoexp)
+  $adicionar-cosmo($nick,%ganhocos)
+  $escrever($nick,dados,exp,%expfinal)
+  $escrever($nick,treinos,diario,$date)
+}
+
+on *:chat:!Treino de Cota:{
+  verificar
+  if ($dados($nick,treinos,cota) == $date) {
+    $inicial(ERRO)
+    $m Você já realizou o seu treino de hoje14.
+    msgbase $nick
+    halt
+  }
+  if $dados($nick,batalhas,ultimas) == $date {
+    if $dados($nick,batalhas,cota) >= 5 {
+      var %ganhoexp 2500
+      set %ganhocos 2500
+      $inicial(Treino de Cotas)
+      $m você supriu sua cota diária de batalhas
+      $m e com isso você ganhou14:
+      $m %ganhoexp EXP & %ganhocos COS
+      msgbase $nick
+      var %expfinal $calc($dados($nick,dados,exp) + %ganhoexp)
+      $escrever($nick,dados,exp,%expfinal)
+      $adicionar-cosmo($nick,%ganhocos)
+      $escrever($nick,treinos,cota,$date)
+      $escrever($nick,batalhas,cota,0)
+    }
+    else {
+      $inicial(ERRO)
+      $m Você ainda não atingiu sua cota de lutas diárias14.
+      msgbase $nick
+    }
+    else {
+      $inicial(ERRO)
+      $m Você ainda não realizou nenhuma batalha hoje14.
+      msgbase $nick
+    }
+  }
+}
+
+on *:chat:!Aura*:{
+  if !$2 {
+    $inicial(Auras)
+    $m A aura é no anime vista como uma energia colorida,
+    $m que aparece ao redor dos cavaleiros quando estes lutam.
+    $m 
+    $m Cada aura possui uma bonificação diferente
+    $m sendo assim um Q a mais na hora das batalhas.
+    $m
+    $m(15) Escolhendo um tipo de aura,
+    $m(15) você fica apto a utiliza-la quando for batalhar.
+    $m
+    $m $destaque(Os tipos de Aura são) $+ $cor(:,Bor)
+    $m
+    $m(15) Azul 14/ 15Vermelha 14/ 15Roxa 14/15 Negra 14/ 15Branca 14/ 15Verde 14/ 15Dourada
+    $m
+    $m(04) A DOURADA NÃO PODE SER ESCOLHIDA COMO INICIAL! ¬¬
+    $m
+    $m(15) Para maiores informações quanto a uma aura digite:
+    $m $opcao(!,AURA) $subopcao(COR DA AURA)
+    msgbase $nick
+    halt
+  }
+  if !$istok(verde roxa negra vermelha azul dourada branca,$2,32) {
+    $inicial(ERRO INTERNO)
+    $m Essa Aura não é válida!
+    $m Escolha entre14:
+    $m
+    $m(15) Azul 14/ 15Vermelha 14/ 15Roxa 14/15 Negra 14/ 15Branca 14/ 15Verde 14/ 15Dourada
+    $m
+    $m(15) Para maiores informações quanto a uma aura digite:
+    $m $opcao(!,AURA) $subopcao(COR DA AURA)
+    msgbase $nick
+    halt
+  }
+  var %a $2
+  $inicial(Aura %a)
+  $a($nick,$readini(CDZ\Sistemas\[cdz]_aura.db,%a,desc))
+  $m
+  $m(14) $upper(AURA DO TIPO $readini(CDZ\Sistemas\[cdz]_aura.db,%a,tipo))
+  msgbase $nick
+}
+
+on *:chat:!ra?a*:{
+  if !$2 {
+    $inicial(Raças)
+    $a($nick,Temos agora um pequeno diferencial em nosso sistema que são as raças; sendo elas Humanos; Lemurianos e Anjos!)
+    $m 
+    $a($nick,Cada raça começa com técnicas especiais diferentes e uma em comum que é o Controle do Cosmo. Ao se cadastrar como Anjo ou Humano você não terá sua capacidade mental despertada; visto que é exclusiva de paranormais; no caso os Lemurianos; talvez seja possível despertar sua capacidade mental como um Humano ou Anjo; mas isso ainda é um mistério.)
+    $m
+    $m(08) As raças disponíveis $+ $cor(:,Bor)
+    $m
+    $m(15) Humanos 14/ 15Lemurianos 14/ 15Anjos
+    $m
+    $m(15) Para maiores informações quanto a uma raça digite:
+    $m $opcao(!,RAÇA) $subopcao(NOME DA RAÇA)
+    msgbase $nick
+    halt
+  }
+  if !$istok(humanos lemurianos anjos humano lemuriano anjo,$2,32) {
+    $inicial(ERRO INTERNO)
+    $m Essa raça não existe!
+    $m Escolha entre14:
+    $m
+    $m(15) Humanos 14/ 15Lemurianos 14/ 15Anjos
+    $m
+    $m(15) Para maiores informações quanto a uma raça digite:
+    $m $opcao(!,RAÇA) $subopcao(NOME DA RAÇA)
+    msgbase $nick
+    halt
+  }
+  if $chr(115) !isin $2 { var %a $2 $+ $chr(115) }
+  else { var %a $2 }
+  $inicial(%a)
+  $a($nick,$readini(CDZ\Sistemas\[cdz]_raças.db,%a,desc))
+  $m
+  $m(15) Técnicas iniciais dos %a $+ :
+  $m(11) $readini(CDZ\Sistemas\[cdz]_raças.db,%a,inicial)
+  $m
+  $m(15) Para maiores informações quanto a uma técnica digite:
+  $m $opcao(!,TÉCNICA) $subopcao(NOME DA TÉCNICA)
+  msgbase $nick
+}
+
+Em japonês, Sekai é o nome dado a superfície da Terra onde vivem grande parte dos seres vivos, tendo os humanos como raça dominante.O Sekai é a própria Biosfera da Terra, porém o Mundo dos Homens divide-se em vários reinos, países, cidades, tribos e etc.
+
+on *:chat:!sekai:{
+  $inicial(Mundo dos Humanos)
+  $a($nick,$readini(cdz/sistemas/[cdz]_mundos.db,sekai,desc))
+  $m
+  $m Mundo protegido por $readini(cdz/sistemas/[cdz]_mundos.db,sekai,deus) e regido por $readini(cdz/sistemas/[cdz]_mundos.db,sekai,regente)
+  $m
+  $m(14) contingente de soldados $+ $cor(:) $div($readini(cdz/sistemas/[cdz]_mundos.db,sekai,soldados))
+  msgbase $nick
+}
+
+on *:chat:!meikai:{
+  $inicial(Mundo dos Mortos)
+  $a($nick,$readini(cdz/sistemas/[cdz]_mundos.db,meikai,desc))
+  $m
+  $m Mundo protegido por $readini(cdz/sistemas/[cdz]_mundos.db,meikai,deus) e regido por $readini(cdz/sistemas/[cdz]_mundos.db,meikai,regente)
+  $m
+  $m(14) contingente de soldados $+ $cor(:) $div($readini(cdz/sistemas/[cdz]_mundos.db,meikai,soldados))
+  msgbase $nick
+}
+
+on *:chat:!tenkai:{
+  $inicial(Mundo Celeste)
+  $a($nick,$readini(cdz/sistemas/[cdz]_mundos.db,tenkai,desc))
+  $m
+  $m Mundo protegido por $readini(cdz/sistemas/[cdz]_mundos.db,tenkai,deus) e regido por $readini(cdz/sistemas/[cdz]_mundos.db,tenkai,regente)
+  $m
+  $m(14) contingente de soldados $+ $cor(:) $div($readini(cdz/sistemas/[cdz]_mundos.db,tenkai,soldados))
+  msgbase $nick
+}
+
+on *:chat:!kaikai:{
+  $inicial(Mundo das Águas)
+  $a($nick,$readini(cdz/sistemas/[cdz]_mundos.db,kaikai,desc))
+  $m
+  $m Mundo protegido por $readini(cdz/sistemas/[cdz]_mundos.db,kaikai,deus) e regido por $readini(cdz/sistemas/[cdz]_mundos.db,kaikai,regente)
+  $m
+  $m(14) contingente de soldados $+ $cor(:) $div($readini(cdz/sistemas/[cdz]_mundos.db,kaikai,soldados))
+  msgbase $nick
+}
+
+on *:chat:!makai:{
+  $inicial(Mundo dos Demônios)
+  $a($nick,$readini(cdz/sistemas/[cdz]_mundos.db,makai,desc))
+  $m
+  $m Mundo protegido por $readini(cdz/sistemas/[cdz]_mundos.db,makai,deus) e regido por $readini(cdz/sistemas/[cdz]_mundos.db,makai,regente)
+  $m
+  $m(14) contingente de soldados $+ $cor(:) $div($readini(cdz/sistemas/[cdz]_mundos.db,makai,soldados))
+  msgbase $nick
+}
+
+on *:chat:!armaduras*:{
+  if !$2 {
+    $inicial(Armaduras)
+    $m Você acabou de entrar na seção das sagradas armaduras.
+    $m As armaduras são separadas por mundos, sendo eles:
+    $m 
+    $l $str($chr(160),8) !14Kaikai 15- Mundo das Águas      14/ $opcao(Deus:) $readini(cdz/sistemas/[cdz]_regentes.db,kaikai,reg)
+    $l $str($chr(160),8) !14Meikai 15- Mundo dos Mortos     14/ $opcao(Deus:) $readini(cdz/sistemas/[cdz]_regentes.db,meikai,reg)
+    $l $str($chr(160),8) !14Sekai  15- Mundo dos Humanos    14/ $opcao(Deus:) $readini(cdz/sistemas/[cdz]_regentes.db,sekai,reg)
+    $l $str($chr(160),8) !14Makai  15- Mundo dos Demônios   14/ $opcao(Deus:) $readini(cdz/sistemas/[cdz]_regentes.db,makai,reg)
+    $l $str($chr(160),8) !14Tenkai 15- Mundo Celeste        14/ $opcao(Deus:) $readini(cdz/sistemas/[cdz]_regentes.db,tenkai,reg)
+    $m
+    $m No universo de SaintSeiya temos 5 planos existenciais
+    $m diferentes, sendo cada um deles regido à sua forma e com
+    $m suas próprias características.
+    $m
+    $m(14) Armaduras por mundo08: $opcao(!,ARMADURAS) $subopcao(NOME DO MUNDO)
+    $m 
+    $m(14) Armaduras por classe08: $opcao(!,ARMADURAS POR CLASSE)
+    msgbase $nick
+    halt
+  }
+  if !$istok(Kaikai Meikai Sekai Tenkai Makai por classe,$2,32) {
+    $inicial(ERRO INTERNO)
+    $m $opcao(Escolha entre os seguintes mundos:)
+    $m
+    $m(15) Tenkai $cor(/) Sekai $cor(/) Meikai $cor(/) Kaikai $cor(/) Makai
+    $m
+    $m $opcao(15Abaixo segue um exemplo:)
+    $m $opcao(!,ARMADURAS TENKAI)
+    msgbase $nick
+    halt
+  }
+  if ($2 == Kaikai) { 
+    $inicial(Kaikai - Mundo das Águas)
+    $l(14) $str($chr(160),16) Classe A $+ $cor(:) ESCAMAS $separador(15) ROBES DIVINOS I
+    $l(14) $str($chr(160),16) Classe C $+ $cor(:) ROBES DIVINOS II
+    $l(14) $str($chr(160),16) Classe D $+ $cor(:) FANTASMAS II
+    $l
+  }
+  if ($2 == Makai) {
+    $inicial(Makai - Mundo dos demônios)
+    $l(14) $str($chr(160),22) Classe S $+ $cor(:) SOHMAS
+    $l(14) $str($chr(160),22) Classe A $+ $cor(:) ADAMAS
+    $l(14) $str($chr(160),22) Classe B $+ $cor(:) ANJOS DA MORTE
+    $l
+  }
+  if ($2 == Meikai) { 
+    $inicial(Meikai - Mundo dos Mortos)
+    $l(14) $str($chr(160),15) Classe A $+ $cor(:) JUÍZES DA MORTE $separador(15) SAPURIS II
+    $l(14) $str($chr(160),15) Classe B $+ $cor(:) SAPURIS
+    $l(14) $str($chr(160),15) Classe C $+ $cor(:) FANTASMAS I
+    $l(14) $str($chr(160),15) Classe D $+ $cor(:) NEGRAS
+    $l
+  }
+  if ($2 == Sekai) { 
+    $inicial(Sekai - Mundo dos Humanos) 
+    $l(14) $str($chr(160),26) Classe A $+ $cor(:) OURO
+    $l(14) $str($chr(160),26) Classe B $+ $cor(:) PRATA
+    $l(14) $str($chr(160),26) Classe C $+ $cor(:) BRONZE
+    $l(14) $str($chr(160),26) Classe D $+ $cor(:) AÇO
+    $l
+  }
+  if ($2 == Tenkai) { 
+    $inicial(Tenkai - Mundo Celeste) 
+    $l(14) $str($chr(160),23) Classe A $+ $cor(:) GLÓRIAS
+    $l(14) $str($chr(160),23) Classe B $+ $cor(:) COROA DO SOL
+    $l
+  }
+  if ($2- == por classe) {
+    $inicial(Armaduras por Classes)
+    $m $DESTAQUE(CLASSE EXTREMA)
+    $M
+    $m(15) KAMUIS
+    $m
+    $m $DESTAQUE(CLASSE ESPECIAL)
+    $m
+    $m(15) DIVINAS $cor(/) 15SOHMAS $cor(/) 15ADAMAS
+    $m 
+    $m(14) Classe A $+ $cor(:)
+    $m
+    $m(15) OURO $cor(/) 15GLÓRIAS $cor(/) 15ESCAMAS $cor(/) 15ROBES DIVINOS I
+    $m(15) JUÍZES DA MORTE $cor(/) 15SAPURIS II
+    $m 
+    $m(14) Classe B $+ $cor(:)
+    $m
+    $m(15) PRATA $cor(/) 15COROA DO SOL $cor(/) 15ANJOS DA MORTE $cor(/) 15SAPURIS
+    $m
+    $m(14) Classe C $+ $cor(:)
+    $m
+    $m(15) BRONZE $cor(/) 15ROBES DIVINOS II $cor(/) 15FANTASMAS I
+    $m 
+    $m(14) Classe D $+ $cor(:)
+    $m
+    $m(15) AÇO $cor(/) 15NEGRAS $cor(/) 15FANTASMAS II
+    $m
+  }
+  $m 14Armaduras por classe08: $opcao(!,VISUALIZAR) $subopcao(NOME DA CLASSE)
+  $m
+  $m $opcao(15Abaixo segue um exemplo:)
+  $m $opcao(!,VISUALIZAR BRONZE)
+  msgbase $nick
+}
+
+on *:chat:!doutrina*:{
+  verificar
+  if !$2 {
+    $inicial(DOUTRINAS)
+    $a($nick,Mesmo não sendo dono de uma armadura; ainda assim é possível utilizar as técnicas desta; mas para isso é necessário um grande sacrifício... se privar de utilizar uma proteção especial como armadura; robe; surplice ou qualquer outra.)
+    $m
+    $m(15) Ao se aprender uma doutrina você não deve estar usando uma armadura,
+    $m(15) e caso já tenha aprendido uma outra doutrina, esta será totalmente
+    $m(15) descartada e você terá que treinar os novos golpes.
+    $m
+    $m Após requisitar a proteção de uma constelação, ou estrela,
+    $m ou qualquer outra coisa, você se tornará seu Protegido. Sendo que
+    $m não há limites de protegidos, uma mesma constelação pode ter 1.000
+    $m protegidos. O único limite que há é o de retentor da armadura!
+    $m
+    $m Se tornar retentor de uma armadura disputada é uma grande
+    $m responsabilidade. Enquanto você for o retentor oficial poderá ser
+    $m(09) desafiado por algum protegido 0que deseje a armadura,
+    $m logo a luta será sem armadura e apenas com os golpes da mesma,
+    $m sem os extras como habilidades e itens. Lembrando também que ao
+    $m aprender uma doutrina como Andrômeda que necessita de suas correntes
+    $m para a maioria dos seus ataques, o jogador não possuirá essas
+    $m correntes mas sim correntes normais.
+    $m
+    $m(15) Para conhecer melhor uma doutrina14:
+    $m $opcao(!,STATUS) $subopcao(NOME DA DOUTRINA)
+    $m $ex(!STATUS DRAGÃO)
+    $m
+    $m(15) e para conhecer melhor os golpes da doutrina, digite14:
+    $m $opcao(!,GOLPE) $subopcao(NOME DO GOLPE)
+    msgbase $nick
+    halt
+  }
+  set %arm $remove($2-,$chr(32))
+  var %classe = $dadosarm2(%arm,classe)
+  var %sentido = $dados($nick,dados,sentido)
+  var %totalcos = $dados($nick,dados,cos)
+  if (%classe == $null) {
+    $inicial(APRENDIZADO DE DOUTRINA)
+    $m(15) A doutrina $2- não existe,
+    $m(15) verifique sua ortografía e tente novamente!
+    msgbase $nick
+    halt
+  }
+  if ($dados($nick,armadura,nome) != $null) {
+    $inicial(APRENDIZADO DE DOUTRINA)
+    $m(14) Você já é retentor de $dados($nick,armadura,nome) $+ !
+    $m(15) Se desfaça de sua armadura atual para solicitar uma nova doutrina.
+    msgbase $nick
+    halt
+  }
+  if ($dadosarm2(%arm,livre) != sim) {
+    $inicial(APRENDIZADO DE DOUTRINA)
+    $m A doutrina de $2- não está liberada para aprendizagem.
+    msgbase $nick
+    halt
+  }
+
+  if %classe == d {
+    if $pre-level(%totalcos) < 5 {
+      $inicial(APRENDIZADO DE DOUTRINA)
+      $m Você ainda não atingiu o level 5 para que possa
+      $m aprender uma doutrina de classe c.
+      msgbase $nick
+      halt
+    }
+  }
+  if %classe == c {
+    if $pre-level(%totalcos) < 10 {
+      $inicial(APRENDIZADO DE DOUTRINA)
+      $m Você ainda não atingiu o level 10 para que possa
+      $m aprender uma doutrina de classe c.
+      msgbase $nick
+      halt
+    }
+  }
+  if %classe == b {
+    if $pre-level(%totalcos) < 20 {
+      $inicial(APRENDIZADO DE DOUTRINA)
+      $m Você ainda não atingiu o level 20 para que possa
+      $m aprender uma doutrina de classe b.
+      msgbase $nick
+      halt
+    }
+  }
+  if %classe == a {
+    if $pre-level(%totalcos) < 50 {
+      $inicial(APRENDIZADO DE DOUTRINA)
+      $m Você ainda não atingiu o level 50 para que possa
+      $m aprender uma doutrina de classe a.
+      msgbase $nick
+      halt
+    }
+  }
+  if %classe == x {
+    if $pre-level(%totalcos) < 125 {
+      $inicial(APRENDIZADO DE DOUTRINA)
+      $m Você ainda não atingiu o level 125 para que possa
+      $m aprender uma doutrina de classe extrema.
+      msgbase $nick
+      halt
+    }
+  }
+  if %classe == s {
+    if $pre-level(%totalcos) < 200 {
+      $inicial(APRENDIZADO DE DOUTRINA)
+      $m Você ainda não atingiu o level 200 para que possa
+      $m aprender uma doutrina de classe especial.
+      msgbase $nick
+      halt
+    }
+  }
+  else {
+    msg #animerpg $prestaff(Atenção,$nick acaba de se tornar o novo protegido de14:11 $2-)
+    $inicial(Doutrina)
+    $m(15) Você começou o treinamento da doutrina de $2-
+    $m(15) Para começar a treinar seus novos golpes digite:
+    $m
+    $m $opcao(!,TREINAR DOUTRINA)
+    msgbase $nick
+    doutrina
+  }
+}
+
+on *:text:!solicitar*:?:{
+  if $2 == senha {
+    if $dados($nick,dados,nome) == $null {
+      msg $nick Que tal se cadastrar antes?
+      halt
+    }
+    /msg $nick Solicite sua senha mediante um administrador do canal. | halt
+    /memoserv send $nick Sua senha foi solicitada no dia $date às $time horas. Ela é $dados($nick,dados,senha) $+ . Recomendamos que a guarde em um local seguro :)
+    msg $nick Sua senha foi enviada por memo para você.
+    halt
+  }
+}
+
+$inicial(Temporariamente off)
+$m solicite sua senha mediante um administrador do canal.
+msgbase $nick
+halt
+on *:chat:!solicitar*:{
+  if $2 == senha {
+    if $dados($nick,dados,nome) == $null { $inicial(ERRO) | $m Que tal se cadastrar antes? | msgbase $nick | halt }
+    /memoserv send $nick Sua senha foi solicitada no dia $date às $time horas. Ela é $dados($nick,dados,senha) $+ . Recomendamos que a guarde em um local seguro :)
+    $inicial(Solicitação de senha)
+    $m Sua senha foi enviada por memo para você.
+    msgbase $nick
+    halt
+  }
+  verificar
+  var %sentido = $dados($nick,dados,sentido)
+  var %totalcos = $dados($nick,dados,cos)
+  if ($2 == $null) {
+    $inicial(Solicitação de Armadura)
+    $m Você precisa indicar o nome de uma armadura.
+    $m $opcao(!,SOLICITAR) $subopcao(NOME DA ARMADURA)
+    msgbase $nick
+    halt
+  }
+  set %arm $remove($2-,$chr(32))
+  set %dou $dados($nick,doutrina,nome)
+  if %dou != $null { echo -s %dou }
+  echo -s %arm
+  var %classe = $dadosarm2(%arm,classe)
+  if (%classe == $null) {
+    $inicial(Solicitação de Armadura)
+    $m(15) A armadura $2- não existe,
+    $m(15) verifique sua ortografía e tente novamente!
+    msgbase $nick
+    halt
+  }
+  if ($dadosarm2(%arm,dono) != Ninguém) {
+    $inicial(Solicitação de Armadura)
+    $m(15) A armadura de $2- já possui dono.
+    $m(15) Procure outra armadura do seu agrado.
+    msgbase $nick
+    halt
+  }
+  if ($dados($nick,armadura,nome) != $null) {
+    $inicial(Solicitação de Armadura)
+    $m(14) Você já é representante de $dados($nick,armadura,nome) $+ !
+    $m(15) Se desfaça de sua armadura atual para solicitar uma nova.
+    msgbase $nick
+    halt
+  }
+  if ($dadosarm2(%arm,livre) != sim) {
+    $inicial(Solicitação de Armadura)
+    $m A armadura de $2- não está liberada para cadastro.
+    msgbase $nick
+    halt
+  }
+  else { goto continuacao }
+  :continuacao
+  if %classe == d {
+    if $pre-level(%totalcos) < 5 {
+      $inicial(Solicitação de Armadura)
+      $m Você ainda não atingiu o level 5 para que possa
+      $m requisitar uma armadura de classe d.
+      msgbase $nick
+      halt
+    }
+  }
+  if %classe == c {
+    if $pre-level(%totalcos) < 10 {
+      $inicial(Solicitação de Armadura)
+      $m Você ainda não atingiu o level 10 para que possa
+      $m requisitar uma armadura de classe c.
+      msgbase $nick
+      halt
+    }
+  }
+  if %classe == b {
+    if $pre-level(%totalcos) < 20 {
+      $inicial(Solicitação de Armadura)
+      $m Você ainda não atingiu o level 20 para que possa
+      $m requisitar uma armadura de classe b.
+      msgbase $nick
+      halt
+    }
+  }
+  if %classe == a {
+    if $pre-level(%totalcos) < 50 {
+      $inicial(Solicitação de Armadura)
+      $m Você ainda não atingiu o level 50 para que possa
+      $m requisitar uma armadura de classe a.
+      msgbase $nick
+      halt
+    }
+  }
+  if %classe == s {
+    if $pre-level(%totalcos) < 125 {
+      $inicial(Solicitação de Armadura)
+      $m Você ainda não atingiu o level 125 para que possa
+      $m requisitar uma armadura de classe extrema.
+      msgbase $nick
+      halt
+    }
+  }
+  if %classe == x {
+    if $pre-level(%totalcos) < 250 {
+      $inicial(Solicitação de Armadura)
+      $m Você ainda não atingiu o level 250 para que possa
+      $m requisitar uma armadura de classe especial.
+      msgbase $nick
+      halt
+    }
+  }
+
+  msg #animerpg $prestaff(Atenção,$nick acaba de se tornar o novo dono da armadura14:09 $2-)
+  $inicial(Armadura)
+  $m(15) Você recebeu com êxito a proteção de $2-
+  $m(15) Para começar a treinar sua nova doutrina de golpes digite:
+  $m
+  $m $opcao(!,TREINAR DOUTRINA)
+  msgbase $nick
+  writeini cdz\dados\armaduras\ $+ %arm $+ .db arm dono $nick
+  $escrever($nick,dados,invocada,não)
+  $escrever($nick,armadura,nome,$2-)
+  $escrever($nick,armadura,classe,$dadosarm2(%arm,classe))
+  $escrever($nick,armadura,vidaatu,$replace($dadosarm2(%arm,classe),D,100,C,250,B,500,A,1000,S,1500,X,3000))
+  $escrever($nick,armadura,vidamax,$replace($dadosarm2(%arm,classe),D,100,C,250,B,500,A,1000,S,1500,X,3000))
+
+  if %dou != %arm { remini cdz\dados\usuarios\ $+ $nick $+ .db doutrina | doutrina }
+
+}
+
+on *:chat:!Desfazer:{
+  verificar
+  var %armsg = $dados($nick,armadura,nome)
+  var %arm = $remove($dados($nick,armadura,nome),$chr(32))
+  if ($dados($nick,armadura,nome) == $null) {
+    $inicial(Armadura)
+    $m(15) Você não possui uma armadura para se desfazer
+    msgbase $nick
+    halt
+  }
+  else {
+    if ($dados($nick,dados,exp) < 7500) { $inicial(Erro) | $m Você não tem 7.500 exp para desatar o laço com sua armadura) | msgbase $nick | halt }
+    remini cdz\dados\usuarios\ $+ $nick $+ .db armadura
+    writeini cdz\dados\armaduras\ $+ %arm $+ .db arm dono Ninguém
+    $escrever($nick,dados,invocada,não)
+    $escrever($nick,dados,exp,$calc($dados($nick,dados,exp) - 7500))
+    $inicial(Armadura)
+    $m(15) Você desatou a relação com sua proteção,
+    $m(15) para escolher uma nova proteção visite a seção !ARMADURAS :)
+    $m(15) Você gastou 7.500 exp para realizar essa troca.
+    msgbase $nick
+  }
+}
+
+on *:chat:!atributos:{
+  verificar
+  $inicial(Atributos)
+  $m Os atributos são a base do novo sistema de luta,
+  $m sendo o principal ponto de comparação de poderes.
+  $m
+  $m(15) O cosmo irá apenas fornecer pontos conforme você
+  $m(15) sobe de level para distribuir entre esses atributos.
+  $m
+  $m Com um total de 4 atributos, cada um terá sua porcentagem
+  $m específica, na hora de batalhar ataques físicos vão ser deduzidos
+  $m da Capacidade Física, já os Cósmicos e Mentais, respectivamente,
+  $m das Capacidades Cósmicas e Mentais, sendo a última inicialmente
+  $m exclusivas do Lemuriano, sendo despertada na hora do cadastro.
+  $m Outros raças podem também conseguir o uso da capacidade mental,
+  $m mas apenas em condições especiais como RPG`s.
+  $m
+  $m Já a porcentagem utilizada nos golpes de armadura será deduzida
+  $m dos pontos que você tem distribuídos em Capacidade Destrutiva.
+  $m
+  $m Lembrando que 1 ponto de atributo distribuído, equivale a um aumento
+  $m de 5p para humanos e anjos e 4p para lemurianos.
+  $m
+  $m Por Exemplo:
+  $m Um humano/anjo tendo capacidade cósmica 160p, ao distribuir um ponto
+  $m neste atributo, passará a ter capacidade cósmica 165p.
+  $m Um lemuriano tendo capacidade cósmica 160p, ao distribuir um ponto
+  $m neste atributo, passará a ter capacidade cósmica 164p.
+  $m
+  $m Para maiores informações sobre cada capacidade:
+  $m $opcao(!,CAPACIDADE) $subopcao(TIPO DA CAPACIDADE) $ex(capacidade cósmica)
+  $m
+  $m Para distribuir os pontos:
+  $m $opcao(!,DISTRIBUIR) $subopcao(ATRIBUTO) $subopcao(Nº DE PONTOS)
+  msgbase $nick
+}
+
+on *:chat:!capacidade*:{
+  verificar
+  if !$2 { halt }
+  if !$istok(física cósmica mental destrutiva,$2,32) { halt }
+  $inicial(Capacidade $2)
+  if $2 == física {
+    $a($nick,Compreende toda a capacidade física do personagem; seja para ataque ou defesa; esse atributo não reflete na aparência do personagem; alguém com capacidade física alta não necessariamente será um troglodita.)
+  }
+  if $2 == cósmica {
+    $a($nick,Compreende toda a capacidade cósmica do personagem; seja para ataque ou defesa; sua manipulação vai depender das habilidades e sentidos do guerreiro; coisas mais elaboradas apenas com aura dourada e controle do microcosmo.)
+  }
+  if $2 == mental {
+    $a($nick,É a representação do poder mental do guerreiro; lemurianos são mestres psíquicos; poucos humanos tem controle sobre sua capacidade mental.)
+  }
+  if $2 == destrutiva {
+    $a($nick,Resumidamente é o poder destrutivo dos golpes de armadura.)
+  }
+  msgbase $nick
+}
+
+on *:chat:!distribuir*:{
+  verificar
+  if $2 isnum {
+    $inicial(ERRO)
+    $m você não está usando a ordem correta!
+    $m para utilizar o comando corretamente digite:
+    $m
+    $m $opcao(!,DISTRIBUIR) $subopcao(NOME DO ATRIBUTO) $subopcao(VALOR)
+    $m
+    $m $ex(!distribuir capacidade cósmica 10)
+    msgbase $nick
+    halt
+  }
+  if !$2 {
+    $inicial(ERRO)
+    $m Indique o atributo!
+    msgbase $nick
+    halt
+  }
+  if $istok(fisica física cósmica cosmica mental destrutiva,$2,32) {
+    $inicial(ERRO)
+    $m sintaxe errada! execute o comando segundo o exemplo.
+    $m $ex(!DISTRIBUIR CAPACIDADE CÓSMICA 1)
+    msgbase $nick
+    halt
+  }
+  if !$4 {
+    $inicial(ERRO)
+    $m Indique o valor!
+    msgbase $nick
+    halt
+  }
+  $trapassa($4)
+  var %atributos $dados($nick,dados,atributos)
+  if %atributos < $4 {
+    $inicial(ERRO)
+    $m Você não tem pontos de atributo suficientes!
+    msgbase $nick
+    halt
+  }
+  if %atributos < 1 {
+    $inicial(ERRO)
+    $m Você não tem pontos de atributo!
+    msgbase $nick
+    halt
+  }
+  else {
+    if $2 $+ $3 == capacidadefísica { var %atrid = cfis }
+    if $2 $+ $3 == capacidadefisica { var %atrid = cfis }
+    if $2 $+ $3 == capacidadecósmica { var %atrid = ccos }
+    if $2 $+ $3 == capacidadecosmica { var %atrid = ccos }
+    if $2 $+ $3 == capacidademental { var %atrid = cmen }
+    if $2 $+ $3 == capacidadedestrutiva { var %atrid = cdes }
+    if %atrid == $null {
+      $inicial(ERRO)
+      $m Esse atributo é inexistente!
+      msgbase $nick
+      halt
+    }
+    if %atrid == cmen {
+      if $dados($nick,dados,raça) != lemuriano {
+        $inicial(ERRO)
+        $m Apenas lemurianos podem aumentar sua capacidade mental
+        msgbase $nick
+        halt
+      }
+      goto continuacao
+    }
+    else { goto continuacao }
+    :continuacao
+    var %gastando = $4
+    var %gastofinal = $calc(%atributos - %gastando)
+    set %atributobase $dados($nick,dados,%atrid)
+    var %ganhando = $calc($4 + %atributobase)
+    $escrever($nick,dados,atributos,%gastofinal)
+    $escrever($nick,dados,%atrid,%ganhando)
+    $inicial(Distribuição Concluída)
+    $m Você distribuiu $4 pontos com sucesso!
+    $m Ficando assim com $dados($nick,dados,%atrid) pontos em $2-3
+    msgbase $nick
+  }
+}
+
+
+on *:chat:!Visualizar*:{
+  var %visualizar $remove($2-,$chr(32))
+  if ($readini(CDZ\Sistemas\[cdz]_vis.db,%visualizar,on) != sim) {
+    $inicial(Classe Inexistente)
+    $m(15) Essa classe não existe ou não está habilitada14.
+    $m
+    $m $opcao(Sintaxe:)
+    $m $opcao(!,VISUALIZAR) $subopcao(NOME DA CLASSE)
+    msgbase $nick
+    halt
+  }
+  if (!$istok(A B C D E F,$2,32)) {
+    $inicial(Seção $2-) 
+    $m(15) LISTAGEM DAS SAGRADAS ARMADURAS
+    $m
+    quebra-linha
+    $m
+    var %fullv CDZ\Sistemas\visualizar\ $+ $remove($2-,$chr(32)) $+ .txt
+    var %clasv $remove($2-,$chr(32)) $+ .txt
+    var %x 1
+    var %x2 $lines(%fullv)
+    while %x <= %x2 {
+      var %arm = $remove($read(%fullv,%x),$chr(32))
+      var %armnome = $dadosarm2(%arm,nome)
+      var %dono = $dadosarm2(%arm,dono)
+      var %aura $dadosarm2(%arm,aura)
+      var %aura $replace(%aura,Desconhecida,N/A)
+      var %status $replace($dadosarm2(%arm,livre),sim,14(9L14),não,14(4B14))
+      if ($dadosarm2(%arm,dono) != ninguém) { var %status 14(6O14) }
+      if ($dadosarm2(%arm,nome2) != $null) { var %armnome $dadosarm2(%arm,nome2) }
+      if (%dono ison #animerpg ) { var %dono 14 $+ %dono }
+      else { var %dono 15 $+ %dono }
+      $l             $opcao(Arm:) $destaque(%armnome) $complete(160,20,%armnome) %status $opcao(Dono:) %dono
+      inc %x 1
+    }
+    $m
+    $m 6O15cupada 0| 9L15ivre 0| 4B15loqueada
+    $m 14On0/15Off
+    $m
+    $m $alerta(detalhes) $+ : $opcao(!,STATUS) $subopcao(NOME DA ARMADURA)
+    $m $alerta(solicitar) $+ : $opcao(!,SOLICITAR) $subopcao(NOME DA ARMADURA)
+    msgbase $nick
+  }
+}
+
+$l $str($chr(160),1) $opcao(Arm:) $destaque(%armnome) $iif($dadosarm2(%arm,livre) == não,14(09R14),   ) $complete(160,16,%armnome) $opcao(Aura:) %aura $complete(160,10,%aura) $opcao(Dono:) %dono
+
+on *:chat:!status*:{
+  verificar
+  if ($2 == $null) { $inicial(Armadura)) | $m Você precisa indicar uma armadura. | $m $opcao(!,STATUS) $subopcao(NOME DA ARMADURA) | msgbase $nick | halt }
+  if ($dadosarm2($2-,nome) == $null) { $inicial(Armadura) | $m A armadura $2- não existe! | msgbase $nick | halt }
+  else {
+    $inicial(PANDORA BOX)
+    $m $opcao(Representante:) $dadosarm2($2-,dono) $separador $opcao(Categoria:) $upper($dadosarm2($2-,categoria) $+ $cor(/,Bor) $+ $replace($dadosarm2($2-,classe),d,04d,c,11c,b,09b,a,08a,s,07s,x,10x))
+    $m $opcao(Level Necessário:) $replace($dadosarm2($2-,classe),d,5,c,10,b,20,a,50,s,125,x,200) $separador $opcao(Vida:) $replace($dadosarm2($2-,classe),D,100,C,250,B,500,A,1000,S,1500,X,3000)
+    $m
+    $m $iif($dadosarm2($2-,livre) == sim,11ARMADURA LIVRE PARA REQUISIÇÃO,11ARMADURA BLOQUEADA PARA EVENTOS)
+    $m
+    if ($dadosarm2($2-,golpe1) != Nenhum) {
+      $m(00) $upper(< Doutrina de $2 >)
+      $m
+      var %classe = $dadosarm2($2-,classe)
+    var %experiencia 2 | msgl $nick 15      11 $+ $replace(%classe,d, 5,c,10,b,20,a,50,s,125,x,200) $+ x 15· $dadosarm2($2-,golpe1) $complete(45,30,$dadosarm2($2-,golpe1)) $opcao(Treinos:) $destaque(0 $+ %experiencia) dias }
+    else { $m(15) Esta armadura ainda não possui doutrina14. }
+    if ($dadosarm2($2-,golpe2) != $null) { var %experiencia 04 | msgl $nick 15      11 $+ $replace(%classe,d,10,c,10,b,20,a,55,s,130,x,205) $+ x 15· $ifmatch $complete(183,30,$ifmatch) $opcao(Treinos:) $destaque(%experiencia) dias }
+    if ($dadosarm2($2-,golpe3) != $null) { var %experiencia 06 | msgl $nick 15      11 $+ $replace(%classe,d,15,c,20,b,25,a,60,s,135,x,210) $+ x 15· $ifmatch $complete(45,30,$ifmatch) $opcao(Treinos:) $destaque(%experiencia) dias } 
+    if ($dadosarm2($2-,golpe4) != $null) { var %experiencia 08 | msgl $nick 15      11 $+ $replace(%classe,d,20,c,25,b,30,a,65,s,140,x,215) $+ x 15· $ifmatch $complete(183,30,$ifmatch) $opcao(Treinos:) $destaque(%experiencia) dias } 
+    if ($dadosarm2($2-,golpe5) != $null) { var %experiencia 10 | msgl $nick 15      11 $+ $replace(%classe,d,25,c,30,b,35,a,70,s,145,x,220) $+ x 15· $ifmatch $complete(45,30,$ifmatch) $opcao(Treinos:) $destaque(%experiencia) dias }
+    if ($dadosarm2($2-,golpe6) != $null) { var %experiencia 12 | msgl $nick 15      11 $+ $replace(%classe,d,30,c,35,b,40,a,75,s,150,x,225) $+ x 15· $ifmatch $complete(183,30,$ifmatch) $opcao(Treinos:) $destaque(%experiencia) dias }
+    if ($dadosarm2($2-,golpe7) != $null) { var %experiencia 14 | msgl $nick 15      11 $+ $replace(%classe,d,35,c,40,b,45,a,80,s,155,x,230) $+ x 15· $ifmatch $complete(45,30,$ifmatch) $opcao(Treinos:) $destaque(%experiencia) dias }
+    if ($dadosarm2($2-,golpe8) != $null) { var %experiencia 16 | msgl $nick 15      11 $+ $replace(%classe,d,40,c,45,b,50,a,85,s,160,x,235) $+ x 15· $ifmatch $complete(183,30,$ifmatch) $opcao(Treinos:) $destaque(%experiencia) dias }
+    if $dadosarm2($2-,extra) != $null {
+      $m
+      $m $opcao(Esta armadura vem equipada com:)
+      $m
+      $m(00) $replace($dadosarm2($2-,extra),&,14&0,[,14[,],14],!,$cor(!)) 14(09!00INVOCADA14)
+      $m
+    }
+    if $dadosarm2($2-,habilidades) != $null {
+      $m
+      $m(14) Habilidades Extras $+ $cor(:)
+      $m
+      $a($nick,15 $+ $dadosarm2($2-,habilidades) $+ .)
+    }
+    msgbase $nick
+  }
+  unset %totalcos
+  unset %level
+}
+
+on *:chat:!t?cnicas:{
+  verificar
+  var %x 1
+  var %y $ini(CDZ\sistemas\[cdz]_tec.db,0)
+  $inicial(Descrição)
+  $m São técnicas que podem ser utilizadas durante os combates,
+  $m sendo elas divididas de acordo com os atributos.
+  $m
+  while %x <= %y {
+    var %tec = $readini(CDZ\Sistemas\[cdz]_tec.db,$ini(CDZ\sistemas\[cdz]_tec.db,%x),nome)
+    var %tip = $readini(CDZ\Sistemas\[cdz]_tec.db,$ini(CDZ\sistemas\[cdz]_tec.db,%x),tipo)
+    var %lev = $readini(CDZ\Sistemas\[cdz]_tec.db,$ini(CDZ\sistemas\[cdz]_tec.db,%x),l)
+    $l(14) $str($chr(160),3) %tec $complete(160,23,%tec) $opcao(Tipo:) $replace(%tip,habilidade,00habilidade,manobra ofensiva,4Manobra Ofensiva,manobra defensiva,11Manobra Defensiva,técnica mental,9Técnica Mental) $complete(160,18,%tip) $opcao(Level:) $replace(%lev,x,1,y,N/A)
+    inc %x
+  }
+  $m
+  $m para maiores informações: $opcao(!,TÉCNICA) $subopcao(NOME DA TÉCNICA)
+  msgbase $nick
+}
+
+on *:chat:!t?cnica*:{
+  if !$2 {
+    $inicial(ERRO)
+    $m(15) Você não indicou nenhuma técnica!
+    msgbase $nick
+    halt
+  }
+  var %nome = $readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),nome)
+  if $readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),nome) == $null {
+    $inicial(ERRO)
+    $m(15) Esta técnica não existe, verifique sua ortografia!
+    msgbase $nick
+    halt
+  }
+  var %desc $readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),desc)
+  var %level0 = $readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),l)
+  if %level0 isnum { var %custo = $calc(%level0 * 750) }
+  else { var %custo = 04N/A }
+  var %tipo = $replace($readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),tipo),Habilidade,00Habilidade,manobra ofensiva,4Manobra Ofensiva,manobra defensiva,11Manobra Defensiva,técnica mental,9Técnica Mental)
+  var %level = $replace($readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),l),x,1,y,N/A)
+  $inicial(%nome)
+  $a($nick,%desc)
+  $m
+  $m(14) Custo15: $iif(%custo isnum,$div(%custo),%custo) $separador(14) Level15: %level $separador(14) Tipo15: %tipo
+  if %custo isnum { $m | $m(15) Para aprende-la: $opcao(!,$upper(aprender $2-)) }
+  msgbase $nick
+}
+
+on *:chat:!aprender*:{
+  verificar
+  if !$2 {
+    $inicial(ERRO)
+    $m(15) Você não indicou nenhuma técnica!
+    msgbase $nick
+    halt
+  }
+  var %nome = $readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),nome)
+  if $readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),nome) == $null {
+    $inicial(ERRO)
+    $m(15) Esta técnica não existe, verifique sua ortografia!
+    msgbase $nick
+    halt
+  }
+  if $readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),l) == x {
+    $inicial(ERRO)
+    $m(15) Você não pode aprender técnicas iniciais de cadastro!
+    msgbase $nick
+    halt
+  }
+  if $readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),l) == y {
+    $inicial(ERRO)
+    $m(15) Você não pode aprender esse tipo de técnicas!
+    $m(15) Pois são adqüiridas por armaduras ou sentidos específicos.
+    msgbase $nick
+    halt
+  }
+  var %custo = $calc($readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),l) * 750)
+  var %expfi = $dados($nick,dados,exp)
+  if %custo > %expfi {
+    $inicial(ERRO)
+    $m(15) Você não tem experiência o suficiente para aprender
+    $m(15) esta técnica. Ainda lhe faltam $div($calc(%custo - %expfi)) pontos.
+    msgbase $nick
+    halt
+  }
+  if $matchtok($dados($nick,dados,habilidades),$2-,0,44) > 0 {
+    $inicial(ERRO)
+    $m(15) Você já aprendeu esta técnica!
+    msgbase $nick
+    halt
+  }
+  if $pre-level($dados($nick,dados,cos)) < $readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),l) {
+    $inicial(ERRO)
+    $m(15) Você ainda não tem level suficiente para aprender esta técnica!
+    msgbase $nick
+    halt
+  }
+  if $readini(CDZ\Sistemas\[cdz]_tec.db,$remove($2-,$chr(32)),tipo) == técnica mental {
+    if $dados($nick,dados,raça) != lemuriano {
+      $inicial(ERRO)
+      $m(15) Apenas lemurianos podem desenvolver técnicas mentais!
+      msgbase $nick
+      halt
+    }
+  }
+  var %expfi2 $calc(%expfi - %custo)
+  $inicial(NOVA TÉCNICA)
+  $m(15) Você acabou de aprender a técnica %nome $+ !
+  $m(15) A partir de agora você pode utiliza-la nas lutas.
+  $m
+  $m agora você possui $div(%expfi2) pontos de experiência
+  msgbase $nick
+  $escrever($nick,dados,exp,%expfi2)
+  var %fhab = $addtok($dados($nick,dados,habilidades),$chr(32) $+ %nome,44)
+  $escrever($nick,dados,habilidades,%fhab)
+}
+
+on *:chat:!Treinar Doutrina:{
+  verificar
+  if $dados($nick,treinos,golpe) == $date {
+    $inicial(ERRO INTERNO)
+    $m Você já realizou o seu treino diário!
+    msgbase $nick
+    halt
+  }
+  if $dados($nick,doutrina,t1) != $null { var %total = 1 }
+  if $dados($nick,doutrina,t2) != $null { var %total = 2 }
+  if $dados($nick,doutrina,t3) != $null { var %total = 3 }
+  if $dados($nick,doutrina,t4) != $null { var %total = 4 }
+  if $dados($nick,doutrina,t5) != $null { var %total = 5 }
+  if $dados($nick,doutrina,t6) != $null { var %total = 6 }
+  if $dados($nick,doutrina,t7) != $null { var %total = 7 }
+  if $dados($nick,doutrina,t8) != $null { var %total = 8 } 
+  var %subtotal = 1
+  while %subtotal <= %total {
+    if $dados($nick,doutrina,t $+ %subtotal) > 1 {
+      var %valortreino $dados($nick,doutrina,t $+ %subtotal)
+      var %valortreino2 $calc(%valortreino - 1)
+      $inicial(Treino de Golpe)
+      $m Você realizou o treinamento do golpe14:
+      $m(08) $dados($nick,doutrina,golpe $+ %subtotal)
+      $m
+      $m(14) Agora $iif(%valortreino2 > 1,faltam,falta) %valortreino2 $iif(%valortreino2 > 1,treinos,treino) para dominar o golpe $+ $cor(!)
+      msgbase $nick
+      $escrever($nick,doutrina,t $+ %subtotal,%valortreino2)
+      $escrever($nick,treinos,golpe,$date)
+      halt
+    }
+    elseif $dados($nick,doutrina,t $+ %subtotal) == 1 {
+      var %valortreino = $dados($nick,doutrina,t $+ %subtotal)
+      var %valortreino2 = $calc(%valortreino - 1)
+      $inicial(Treino de Golpe)
+      $m Você realizou seu último treino do golpe14:
+      $m(08) $dados($nick,doutrina,golpe $+ %subtotal)
+      $m
+      if $dados($nick,doutrina,t $+ $calc(%subtotal + 1)) != $null {
+        $m(14) Agora você passa a treinar o golpe $dados($nick,doutrina,golpe $+ $calc(%subtotal + 1)) $+ $cor(!)
+        msgbase $nick
+        $escrever($nick,doutrina,t $+ %subtotal,%valortreino2)
+        $escrever($nick,treinos,golpe,$date)
+        halt
+      }
+      else {
+        $m(14) Com este treinamento você concluiu a doutrina de $dados($nick,doutrina,nome) $+ $cor(!)
+        msgbase $nick
+        $escrever($nick,doutrina,t $+ %subtotal,%valortreino2)
+        $escrever($nick,treinos,golpe,$date)
+        halt
+      }
+    }
+    elseif $dados($nick,doutrina,t $+ %subtotal) == 0 { goto final }
+    :final
+    inc %subtotal
+  }
+}
+
+on *:chat:!restaurar armadura:{
+  verificar
+  var %classe $dados($nick,armadura,classe)
+  if %classe == $null {
+    $inicial(ERRO)
+    $m você não possui uma armadura para utilizar esse comando!
+    msgbase $nick
+    halt
+  }
+  var %hpatu $dados($nick,dados,hpatu)
+  var %vidaatu $dados($nick,armadura,vidaatu)
+  var %vidamax $dados($nick,armadura,vidamax)
+  if %vidaatu == %vidamax {
+    $inicial(Restauração de Armadura)
+    $m Sua armadura está em perfeitas condições $+ $cor(!)
+    msgbase $nick
+    halt
+  }
+  else {
+    var %vidaperdida $replace(%classe,d,40,c,50,b,60,a,70,s,80,x,90)
+    if %hpatu < %vidaperdida {
+      $inicial(Restauração de Armadura)
+      $m(15) Você não tem sangue o suficiente para a restauração $+ $cor(!)
+      msgbase $nick
+      halt
+    }
+
+    var %restaur = $calc(%vidamax / 4)
+    var %vidafin = $calc(%vidaatu + %restaur)
+    if %vidafin > %vidamax { var %vidafin = %vidamax }
+    var %vidafinal = $calc(%hpatu - %vidaperdida)
+    $inicial(Restauração de Armadura)
+    $m Você foi ao encontro de Mú de Áries e ao conceder %vidaperdida $+ %
+    $m do seu sangue, sua armadura foi restaurada em 25%. %restaur %vidafin
+    $m
+    if %vidafinal > 0 { $m Após a restauração sua capacidade vital está em %vidafinal $+ % }
+    else { $m Após a restauração você caiu desmaiado, em estado crítico de vida }
+    msgbase $nick
+    $escrever($nick,armadura,vidaatu,%vidafin)
+    $escrever($nick,dados,hpatu,%vidafinal)
+  }
+}
+
+on *:chat:!cti:{
+  verificar
+  if ($dados($nick,dados,hpatu) != 0) {
+    $inicial(CTI)
+    $m Seu estado de vida não está crítico!
+    msgbase $nick
+    halt
+  }
+  if ($dados($nick,dados,exp) < 5000) {
+    $inicial(Internamento em CTI)
+    $m Você não pode utilizar a cti sem 5.000 exp14.
+    msgbase $nick
+    halt
+  }
+  else {
+    $inicial(Internamento em CTI)
+    $m Você se internou na CTI, recuperando-se totalmente
+    $m Isso lhe custou $destaque(5.000 EXP)
+    msgbase $nick
+    var %dincti $calc($dados($nick,dados,exp) - 5000)
+    $escrever($nick,dados,exp,%dincti)
+    $escrever($nick,dados,hpatu,100)
+  }
+}
+
+on *:chat:!Meditar:{
+  verificar
+  if $dados($nick,dados,hpatu) == 0 {
+    $inicial(Descansar)
+    $m Seu estado de vida está crítico!
+    $m Você precisa ir até a $opcao(!,CTI)
+    msgbase $nick
+    halt
+  }
+  else {
+    if $dados($nick,treinos,meditacao) == $date {
+      $inicial(ERRO)
+      $m Você já realizou sua meditação de hoje $+ $cor(!)
+      msgbase $nick
+      halt
+    }
+    var %hpinicial = $dados($nick,dados,hpatu)
+    var %hpfinal = $calc(%hpinicial + 20)
+    if (%hpfinal >= 100) { var %hpfinal = 100 }
+    $inicial(Meditação)
+    $m Você meditou e recuperou 20% de sua capacidade vital.
+    $m Ficando assim com %hpfinal de sua capacidade $+ $cor(!)
+    msgbase $nick
+    $escrever($nick,dados,hpatu,%hpfinal)
+    $escrever($nick,treinos,meditacao,$date)
+  }
+}

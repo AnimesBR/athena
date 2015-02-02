@@ -1,0 +1,55 @@
+[ilhadarainhadamorte]
+desc=Ilha vasta com campos de magma em sua extensão, calor intenso e terreno pedregoso fazem desse local um excelente campo para treinamento.
+dur=30
+ganho=2500
+on=sim
+custo=25000
+
+[grécia]
+desc=Local onde fica o santuário de Athena, grandes construções monumentos e templos zodiacais, onde diversos guerreiros treinam insesantemente.
+dur=30
+ganho=2000
+on=sim
+custo=20000
+
+[grÉcia]
+desc=Local onde fica o santuário de Athena, grandes construções monumentos e templos zodiacais, onde diversos guerreiros treinam insesantemente.
+dur=30
+ganho=2000
+on=sim
+custo=20000
+
+[sibéria]
+desc=Vastidão gélida e sólida, isolada do restante do mundo, paredes de gelo eterna existem em diversos locais assim como o mar congelado que se extende por grande parte.
+dur=30
+ganho=1750
+on=sim
+custo=15000
+
+[sibÉria]
+desc=Vastidão gélida e sólida, isolada do restante do mundo, paredes de gelo eterna existem em diversos locais assim como o mar congelado que se extende por grande parte.
+dur=30
+ganho=1750
+on=sim
+custo=15000
+
+[ilhadeandrômeda]
+desc=ilha pedregosa e vasta, não possui grande variedade vegetal ou animal, liderada pelo cavaleiro de prata de Cefeu.
+dur=30
+ganho=1500
+on=sim
+custo=10000
+
+[ilhadeandrÔmeda]
+desc=ilha pedregosa e vasta, não possui grande variedade vegetal ou animal, liderada pelo cavaleiro de prata de Cefeu.
+dur=30
+ganho=1500
+on=sim
+custo=10000
+
+[5picosantigosderozan]
+desc=Localizados na china são cercados por grandes cachoeiras, local muito agradavel apesar de esconder grande perigo em seus rochedos íngremes.
+dur=30
+ganho=2250
+on=sim
+custo=22500

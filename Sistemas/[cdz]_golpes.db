@@ -1,0 +1,726 @@
+===SEKAI===
+
+[vamosprafrentebrasil]
+tecnica=Vamos pra Frente Brasil
+desc01=Fusão dos golpes: Explosão de Fótons e Explosão Galáctica com super nova em seu estado perfeito.
+
+[helpmepls!]
+tecnica=Help Me PLS!
+desc01=Vader surge a frente do oponente e imediatamente o fatia em incontáveis pedaços com seu sabre de luz.
+
+
+---AÇO---
+
+[Ondulatória]
+Tecnica=Ondulatória
+Armadura=Mar
+Desc01=A armadura do Mar tem a capacidade de emitir ondas numa frequência alta, afetando diretamente o oponente, impedindo-o de lutar, e também servindo para revidar ondas psíquicas.
+
+[FuracãodeAço]
+Tecnica=Furacão de Aço
+Armadura=Céu / Terra / Mar
+Desc01=O cavaleiro corre em alta velocidade ao redor do inimigo, criando em seu rastro um enorme furacão que paralisa e neutraliza as técnicas dele, tendo um efeito maior quando usada em conjunto com os outros cavaleiros de aço.
+
+[Agilidade]
+Tecnica=Agilidade
+Armadura=Terra
+Desc01=A armadura da Terra possui propulsores internos que permitem ao cavaleiro movimentar-se em alta velocidade, seja correndo, saltando, esquivando, sendo um ótimo artifício de combate. 
+
+[Sucção]
+Tecnica=Sucção
+Armadura=Céu
+Desc01=A armadura do Céu possui ventoinhas que conseguem sugar certos tipos de ataques do inimigo, armazenando nela mesma, e permitindo ao cavaleiro liberar o poder acumulado contra o próprio oponente.
+
+---Bronze---
+
+[Pódediamante]
+Tecnica=Pó de Diamante
+Armadura=Cisne / Midgard / Coroa Boreal / Aquário
+Desc01=O cavaleiro usa o punho para criar um ar frio intenso e o desfere contra o inimigo podendo chegar a congelá-lo, geralmente causa danos razoáveis.
+
+[CírculodeGelo]
+Tecnica=Círculo de Gelo
+Armadura=Cisne / Midgard / Aquário
+Desc01=O Cavaleiro concentra seu cosmo gelado em seu dedo indicador e o lança contra seu oponente, deixando-o paralizado com o frio que o cerca.
+
+[TrovãoAuroraAtaque]
+Tecnica=Trovão Aurora Ataque
+Armadura=Cisne / Midgard / Coroa Boreal / Aquário
+Desc01=O cavaleiro libera um ar extremamente frio, fazendo com que ondas de gelo se abram no céu semelhantes a um redemoinho, em seguida lança essa poderosa rajada contra o inimigo usando as duas mãos.
+
+[EsquifedeGelo]
+Tecnica=Esquife de Gelo
+Armadura=Aquário
+Desc01=O cavaleiro ergue o braço e cria um ar extremamente frio que envolve o oponente congelando-o completamente, criando uma espécie de esquife de gelo quase indestrutível, geralmente é usada quando o oponente está inconsciente.
+
+[ExecuçãoAurora]
+Tecnica=Execução Aurora
+Armadura=Cisne / Aquário
+Desc01=O cavaleiro eleva seu cosmo atingindo o zero absoluto, ergue os dois braços para cima em forma de arco, e desce liberando uma rajada de energia em baixíssima temperatura, capaz de congelar e eliminar o oponente rapidamente.
+
+[MeteorodePégaso]
+Tecnica=Meteoro de Pégaso
+Armadura=Pégaso
+Desc01=O cavaleiro dispara uma seqüência de socos em alta velocidade, lançando vários meteoros de cosmo do seu punho, causando danos consideráveis.
+
+[CometadePégaso]
+Tecnica=Cometa de Pégaso
+Armadura=Pégaso
+Desc01=O cavaleiro concentra sua energia num único ponto, fazendo com que todos os meteoros de cosmo se fundam formando um gigantesco cometa com um alto poder de destruição. É a técnica mais poderosa de Pégaso.
+
+[TurbilhãodePégaso]
+Tecnica=Turbilhão de Pégaso
+Armadura=Pégaso
+Desc01=O cavaleiro agarra o oponente e salta a uma altura enorme, depois desce a toda velocidade e faz o inimigo chocar-se contra o chão, causando um grande impacto.
+
+[CóleradoDragão]
+Tecnica=Cólera do Dragão
+Armadura=Dragão / Libra
+Desc01=O cavaleiro desfere um gancho que libera a aparência de um enorme dragão cósmico, geralmente causando danos razoáveis.
+
+[DragãoNascente]
+Tecnica=Dragão Nascente
+Armadura=Dragão / Libra
+Desc01=A imagem de um dragão ascende das costas do cavaleiro que em seguida desfere um soco descarregando toda a energia acumulada contra o inimigo, sendo um poderoso ataque.
+
+[ÚltimoDragão]
+Tecnica=Último Dragão
+Armadura=Dragão
+Desc01=O cavaleiro de dragão expira seu último cosmo num ataque suicida se lançando junto com o oponente para o espaço, fazendo assim com que a luta termine empatada. 
+
+[Cólerados100Dragões]
+Tecnica=Cólera dos 100 Dragões
+Armadura=Dragão & Libra
+Desc01=O cavaleiro de libra explode seu cosmo liberando inúmeros dragões cósmicos que cortam o céu e atacam violentamente o inimigo, tornando muito difícil a esquiva. É a técnica secreta de Dragão e Libra.
+
+[ArmasdeLibra]
+Tecnica=Armas de Libra
+Armadura=Libra
+Desc01=O cavaleiro de Libra possui seis pares de armas sagradas, sendo: 2 Tridentes, 2 Barras Duplas, 2 Barras Triplas, 2 Cassetetes, 2 Espadas, 2 Escudos; todas muito resistentes, e geralmente só são usadas quando Atena permite.
+
+[CorrentedeAndrômeda]
+Tecnica=Corrente de Andrômeda
+Armadura=Andrômeda
+Desc01=O cavaleiro arremessa suas correntes contra o oponente, podendo movimentá-las como quiser através de seu cosmo, e causando vários danos.
+
+[CorrenteNebulosa]
+Tecnica=Corrente Nebulosa
+Armadura=Andrômeda
+Desc01=O cavaleiro espalha as correntes ao seu redor, formando a nebulosa de Andrômeda e fica no centro, se o inimigo tentar entrar as correntes o atacam e ele pode receber uma forte descarga elétrica.
+
+[DefesaCircular]
+Tecnica=Defesa Circular
+Armadura=Andrômeda
+Desc01=O cavaleiro usa a corrente que fica no lado esquerdo, a corrente circular, e a gira ao redor de seu corpo criando uma proteção sólida como uma parede de aço para se proteger de ataques inimigos. 
+
+[OndasRelâmpago]
+Tecnica=Ondas Relâmpago
+Armadura=Andrômeda
+Desc01=O cavaleiro utiliza as correntes movimentando-as em formas triangulares, com grande velocidade e envolvidas por poderosas ondas elétricas que atacam diretamente o inimigo. 
+
+
+[TempestadeNebulosa]
+Tecnica=Tempestade Nebulosa
+Armadura=Andrômeda
+Desc01=O cavaleiro explode seu cosmo liberando rajadas de vento que se tornam cada vez mais intensas de acordo com sua vontade, e esse jato nebuloso impede os movimentos do inimigo, até que se torna uma tempestade que o arrasa. É a técnica máxima de Andrômeda, e a única que não necessita das correntes. 
+
+[AveFênix]
+Tecnica=Ave Fênix
+Armadura=Fênix
+Desc01=O cavaleiro cria uma poderosa onda de calor usando os próprios punhos, formando a imagem de uma fênix em chamas, e dispara essa poderosa rajada de energia contra o oponente, causando sérios danos. É a técnica suprema de Fênix.
+
+[GolpeFantasmadeFênix]
+Tecnica=Golpe Fantasma de Fênix
+Armadura=Fênix
+Desc01=O cavaleiro desfere um feixe de luz que atravessa a cabeça do inimigo e atinge seu cérebro, paralisando-o e causando terríveis ilusões, podendo também destruir a alma quando o inimigo é mais fraco.
+
+[AsasdeFênix]
+Tecnica=Asas de Fênix
+Classe=Bronze
+Armadura=Fênix
+Desc01=Chamas combinadas com Ar, em seus punhos, o cavaleiro de Fênix produz uma ventania seguida de uma rajada de fogo, arremessando o oponente longe, e o queimando ao mesmo tempo. 
+
+[GalopedoUnicórnio]
+Tecnica=Galope do Unicórnio
+Armadura=Unicórnio
+Desc01=O cavaleiro usa os poderes de seu chifre de Unicórnio para paralisar o oponente por alguns segundos enquanto avança em alta velocidade, acertando-o com um poderoso chute.
+
+[BraçosdeUrso]
+Tecnica=Braços de Urso
+Classe=Bronze
+Armadura=Urso
+Desc01=O cavaleiro se aproveita de sua força física e agarra o pescoço do oponente com seus fortes braços, fazendo uma enorme pressão até estrangulá-lo.
+
+[GarrasVenenosas]
+Tecnica=Garras Venenosas
+Armadura=Hidra Macho
+Desc01=Nos punhos e joelhos da armadura estão embutidas as garras venenosas de Hidra, e ao atingir o oponente injetam esse veneno fazendo com que ele desfaleça, podendo até morrer.
+
+[UivoMortal]
+Tecnica=Uivo Mortal
+Armadura=Lobo
+Desc01=O cavaleiro eleva seu cosmo e cria deslocamentos de ar cortantes que retalham e fatiam o inimigo, causando danos razoáveis.
+
+[AtaqueExplosivodoLeão]
+Tecnica=Ataque Explosivo do Leão
+Armadura=Leão Menor
+Desc01=O cavaleiro ataca com uma série de colisões explosivas, visando dificultar o contra-ataque do oponente, deixando-o sem tempo para revidar.
+
+[PunhodeHércules]
+Tecnica=Punho de Hércules
+Armadura=Hidra Macho
+Desc01=O cavaleiro encosta um punho no outro e em seguida aplica um soco duplo que libera duas enormes rajadas de energia, normalmente deixando muito estrago no local atingido.
+
+[CorrenteNebulosaDupla]
+Tecnica=Corrente Nebulosa Dupla
+Armadura=Cassiopéia / Kaitos
+Desc01=O cavaleiro arremessa suas correntes contra o oponente, podendo movimentá-las como quiser, tanto para atacar como para aprisioná-lo.
+
+[ChicotedeCamaleão]
+Tecnica=Chicote de Camaleão
+Armadura=Camaleão
+Desc01=O cavaleiro usa seu chicote para golpear ou aprisionar o inimigo, imobilizando-o temporariamente.
+
+[SuperColisãodeSocos]
+Tecnica=Super Colisão de Socos
+Armadura=Cavalo
+Desc01=O cavaleiro reúne toda sua energia nos punhos, que ficam brilhando, em seguida avança desferindo vários socos no oponente, dificultando o contra-ataque devido a alta força aplicada.
+
+[PeloPoderdoFogo]
+Tecnica=Pelo Poder do Fogo
+Armadura=Forno
+Desc01=O ambiente se torna quente o suficiente para retardar os movimentos do adversário, vapor fervente brota do chão, o cavaleiro de Forno se move sem impecílios.
+
+[ConvergênciaMáxima]
+Tecnica=Convergência Máxima
+Armadura=Cão Menor
+Desc01=O cavaleiro explode seu cosmo desferindo várias esferas de energia que se reúnem em volta do oponente, impedindo que ele fuja, e em seguida todas convergem para o alvo, causando vários danos.
+
+[NevascadoGrou]
+Tecnica=Nevasca do Grou
+Armadura=Grou
+Desc01=O cavaleiro desfere uma rajada de ar frio semelhante a uma nevasca, repleta de cristais de gelo, atacando o oponente, e podendo até congelá-lo.
+
+[AtaqueMúltiplodaLebre]
+Tecnica=Ataque Múltiplo da Lebre
+Armadura=Lebre
+Desc01=O cavaleiro se movimenta em altíssima velocidade, fazendo parecer que há vários dele, confundindo o oponente e ficando livre para atacá-lo de surpresa.
+
+[RajadaRelâmpago]
+Tecnica=Rajada Relâmpago
+Armadura=Girafa
+Desc01=O cavaleiro se aproxima do inimigo em velocidade, encosta as duas mãos nele e descarrega uma rajada de energia de cima pra baixo, semelhante a um relâmpago.
+
+[BrilhoEstrelar]
+Tecnica=Brilho Estelar
+Armadura=Escultor
+Desc01=O cavaleiro emite um brilho intenso, reunindo seu cosmo na palma das mãos, desferindo em seguida uma enorme e poderosa esfera de energia na direção do oponente.
+
+[TornadoMarinho]
+Tecnica=Tornado Marinho
+Armadura=Dourado
+Desc01=O cavaleiro aplica um gancho no oponente, criando uma espécie de tornado que o envolve e o arremessa para cima, como um ciclone de água arrasador, deixando o oponente cair em seguida tendo sofrido sérios danos.
+
+[FissuraExplosiva]
+Tecnica=Fissura Explosiva
+Armadura=Popa
+Desc01=O cavaleiro posiciona uma mão à frente e libera muita energia concentrada, causando uma enorme explosão no local onde o oponente está, costumando causar sérios danos.
+
+[RedemoinhodePlumas]
+Tecnica=Redemoinho de Plumas
+Armadura=Pomba
+Desc01=O cavaleiro usa o punho para desferir uma rajada de vento repleta de plumas brancas que envolve o oponente causando alguns danos, como arranhões.
+
+[CírculoAustral]
+Tecnica=Círculo Austral
+Armadura=Coroa Austral
+Desc01=O cavaleiro cria uma espécie de círculo cósmico que envolve e pressiona o oponente, impedindo temporariamente seus movimentos, enquanto o cavaleiro concentra sua energia no punho e desfere um poderoso soco descarregando todo o poder acumulado e quebrando o círculo.
+
+[PinturaMortal]
+Tecnica=Pintura Mortal
+Armadura=Pintor
+Desc01=O cavaleiro coloca as duas mãos à frente e libera vários feixes coloridos de energia que rapidamente cercam o oponente, e caso o atinjam, podem prejudicar seus sentidos fazendo-o desfalecer.
+
+[RedeDimensional]
+Tecnica=Rede Dimensional
+Armadura=Retículo
+Desc01=O cavaleiro abre os braços e cria a imagem de uma rede cósmica que é lançada na direção do oponente, caso acerte, ele é envolvido por ela e tem suas energias drenadas pouco a pouco, podendo vir a morrer caso não se liberte rapidamente.
+
+[VérticedoTempo]
+Tecnica=Vértice do Tempo
+Armadura=Relógio
+Desc01=O cavaleiro ergue o braço direito e explode seu cosmo de uma única vez, graças ao poder de sua armadura ele cria um vértice temporal, uma espécie de pausa no tempo, paralisando tudo que está em sua volta, dando-lhe pouquíssimos segundos para atacar o oponente indefeso. A desvantagem dessa técnica é que geralmente não sobra muita energia para atacar, já que é necessário gastar muito poder para usá-la.
+
+[AtaqueMáximodeVentos]
+Tecnica=Ataque Máximo de Ventos
+Armadura=Vela
+Desc01=O cavaleiro desfere de seus punhos enormes rajadas de ventos fortíssimas, arrasando tudo que está a seu redor, e aumentando seu cosmo também aumenta a intensidade dos ventos, sendo um ataque com alto poder de destruição.
+
+[AsasLendárias]
+Tecnica=Asas Lendárias
+Armadura=Ave do Paraíso
+Desc01=O cavaleiro salta enquanto concentra seu cosmo, logo após desce com os braços abertos e com o corpo envolto por uma intensa aura em forma de uma ave cósmica, por fim se choca contra o oponente atravessando-o, sendo um poderoso ataque.
+
+[RaioCircular]
+Tecnica=Raio Circular
+Armadura=Compasso
+Desc01=O cavaleiro movimenta suas mãos em forma de círculo reunindo nelas sua energia, criando assim um círculo cósmico em sua frente, de onde libera uma rajada de energia concentrada na direção do oponente, causando danos razoáveis.
+
+[GolpeRasantedeTucano]
+Tecnica=Golpe Rasante de Tucano
+Armadura=Tucano
+Desc01=O cavaleiro salta em alta velocidade, concentra sua energia nas pernas, e cai em seguida aplicando um chute duplo, causando um dano considerável.
+
+[ImpactoFinal]
+Tecnica=Impacto Final
+Armadura=Mesa
+Desc01=O cavaleiro concentra sua energia no punho e avança em alta velocidade na direção do oponente, aplica vários golpes e por fim desfere um soco muito poderoso, e assim que acerta o oponente, o cavaleiro libera a energia anteriormente acumulada, sendo uma enorme rajada de energia a queima-roupa, geralmente causa muitos danos.
+
+[AtaquedaRaposaSagrada]
+Tecnica=Ataque da Raposa Sagrada
+Armadura=Raposa
+Desc01=O cavaleiro concentra seu cosmo criando uma grande aura de energia ao redor de si, em seguida ele avança em alta velocidade contra o oponente envolto pela imagem de uma raposa cósmica, atacando frontalmente com vários golpes.
+
+---Prata---
+
+[Meteoros]
+Tecnica=Meteoros
+Armadura=Águia
+Desc01=O cosmo é reunido nos punhos, e aplica-se vários socos em alta velocidade contra o oponente, dificultando sua defesa e contra-ataque.
+
+[LampejodaÁguia]
+Tecnica=Lampejo da Águia
+Armadura=Águia
+Desc01=O cavaleiro salta, e em seguida cai envolto pela imagem de uma águia em chamas, aplicando um chute poderoso e mortal no oponente.
+
+[GarrasTrovão]
+Tecnica=Garras Trovão
+Armadura=Cobra 
+Desc01=O cosmo é concentrado numa das mãos, surgindo a imagem de uma cobra, em seguida golpeia-se o oponente desferindo uma descarga de energia semelhante a um choque elétrico.
+
+[FuracãodasTrevas]
+Tecnica=Furacão das Trevas
+Armadura=Lagarto
+Desc01=O cavaleiro concentra seu cosmo em dois dedos e dispara uma rajada de energia em forma de um grande redemoinho que envolve o oponente.
+
+[ForçaExplosivadeKaisto]
+Tecnica=Força Explosiva de Kaisto
+Armadura=Baleia
+Desc01=O cavaleiro arremessa o inimigo para o alto, paralisando e fazendo-o cair de cabeça para baixo, então concentra seu cosmo no punho e aplica um golpe em cheio na cabeça do inimigo.
+
+[Ataquedeummilhãodefantasmas]
+Tecnica=Ataque de um Milhão de Fantasmas
+Armadura=Cães de Caça
+Desc01=O cavaleiro cria vários clones de si mesmo, e em seguida todos juntos atacam o oponente com rajadas de energia, dificultando a esquiva.
+
+[ChamasdeBabel]
+Tecnica=Chamas de Babel
+Armadura=Centauro
+Desc01=O cavaleiro cria entre seus punhos enormes bolas de chamas, e as atira contra o oponente com grande pressão e velocidade, dificultando o contra-ataque.
+
+[AgilidadeTelecinética]
+Tecnica=Agilidade Telecinética
+Classe=Prata
+Armadura=Bússola
+Desc01=O Cavaleiro com seu poder de telecinese pode mover-se mais rapidamente ficando mais fácil para escapar dos golpes do adversário.
+
+[SubmissãoPsíquica]
+Tecnica=Submissão Psíquica
+Armadura=Bússola
+Desc01=O cavaleiro, através da telecinese, pode controlar objetos inanimados, movimentando-os como quiser, além de também poder usar sua telecinese diretamente no oponente, através de ondas que atingem seu cérebro e impedem temporariamente seus movimentos.
+
+[PlumaNegra]
+Tecnica=Pluma Negra
+Armadura=Corvo
+Desc01=O cavaleiro expele inúmeras plumas negras que se fixam ao corpo do oponente cobrindo-o totalmente, impedindo-o de respirar e podendo levar a morte.
+
+[GórgonaDemoníaca]
+Tecnica=Górgona Demoníaca
+Armadura=Perseu
+Desc01=O cavaleiro salta enquanto uma imagem da medusa aprisiona o inimigo, ele então cai em seguida desferindo uma poderosa seqüência de chutes, causando vários danos.
+
+[EscudodaMedusa]
+Tecnica=Escudo da Medusa
+Armadura=Perseu
+Desc01=O cavaleiro aponta o Escudo da Medusa para o inimigo que ao olhar para o brilho emitido pelos olhos da medusa, tem seu corpo transformado parcial ou totalmente em pedra.
+
+[AtaquedoDisco]
+Tecnica=Ataque do Disco
+Armadura=Auriga
+Desc01=O cavaleiro possui dois discos cortantes, e os arremessa girando em alta velocidade, sendo muito afiados podem decepar ou ferir gravemente o oponente.
+
+[BolasdeAço]
+Tecnica=Bolas de Aço
+Armadura=Cérbero
+Desc01=O cavaleiro possui correntes com bolas de aço na extremidade, podendo arremessá-las contra o inimigo, ou unifica-las criando uma enorme bola de energia.
+
+[PoderSupremodeHércules]
+Tecnica=Poder Supremo de Hércules
+Armadura=Hércules
+Desc01=O cavaleiro golpeia o inimigo arremessando-o para o alto envolto numa espécie de tornado, deixando-o cair em queda livre em seguida.
+
+[VôoMortal]
+Tecnica=Vôo Mortal
+Armadura=Mosca
+Desc01=O cavaleiro concentra seu cosmo na perna, e salta em alta velocidade na direção do oponente desferindo um chute poderoso e certeiro.
+
+[PunhoEsmagador]
+Tecnica=Punho Esmagador
+Armadura=Cão Maior
+Desc01=O cavaleiro concentra seu cosmo no punho, vai rapidamente na direção do inimigo e desfere um poderoso soco descarregando toda energia acumulada.
+
+[MilBraços]
+Tecnica=Mil Braços
+Armadura=Pavão
+Desc01=O cavaleiro desfere pequenas rajadas de energia com os punhos, criando uma espécie de seqüência de socos energizados difícil de se esquivar.
+
+[ExplosãodeLótus]
+Tecnica=Explosão de Lótus
+Armadura=Lótus
+Desc01=O cavaleiro cria a imagem de uma flor de lótus que vai desabrochando, em seguida dispara uma poderosa rajada de cosmo contra o oponente.
+
+[CorrenteNebulosa]
+Tecnica=Corrente Nebulosa
+Armadura=Cefeu
+Desc01=O cavaleiro lança suas poderosas correntes contra o inimigo, causando sérios danos, e também pode usá-las para aprisioná-lo, ou ainda defender-se de golpes inimigos, já que possui total controle sobre as correntes.
+
+[TeiadeTarântula]
+Tecnica=Teia de Tarântula
+Armadura=Tarântula
+Desc01=O cavaleiro cria uma espécie de teia que aprisiona o inimigo e vai sugando suas energias, até deixá-lo completamente inconsciente.
+
+[AcordeNoturno]
+Tecnica=Acorde Noturno
+Armadura=Lira
+Desc01=O cavaleiro toca sua harpa e um vento gerado pela vibração das cordas envolve o oponente causando estragos na armadura e no seu corpo.
+
+[SerenatadaViagemdaMorte]
+Tecnica=Serenata da Viagem da Morte
+Armadura=Lira
+Desc01=O cavaleiro toca sua harpa e o som emitido por ela coloca o inimigo em um transe profundo, deixando-o vulnerável enquanto este passa a dormir.
+
+[AcordePerfeito]
+Tecnica=Acorde Perfeito
+Armadura=Lira
+Desc01=O cavaleiro toca sua harpa e as cordas envolvem o inimigo estrangulando-o, até que é tocada a última nota e a pressão aumenta, retalhando seu corpo por inteiro.
+
+[ConfluênciaCósmica]
+Tecnica=Confluência Cósmica
+Armadura=Altar
+Desc01=O cavaleiro abre os braços reunindo seu cosmo e vários feixes de luz o cercam, nesse momento ele une as duas mãos à frente e libera esses pequenos feixes que possuem um alto poder de destruição e atacam simultaneamente o oponente, tornando difícil a esquiva.
+
+[FlechaFantasma]
+Tecnica=Flecha Fantasma
+Armadura=Flecha
+Desc01=O cavaleiro dispara inúmeras flechas ilusórias no oponente, porém de acordo com sua vontade algumas podem se materializar pegando-o de surpresa.
+
+[RaioFinal]
+Tecnica=Raio Final
+Armadura=Taça
+Desc01=O cavaleiro faz movimentos circulares com as mãos concentrando nelas sua energia, em seguida cria um círculo no chão ao redor do oponente e uma poderosa rajada de energia surge de baixo, arremessando-o para cima.
+
+[RestauraçãoDivina]
+Tecnica=Restauração Divina
+Armadura=Taça
+Desc01=O cavaleiro estende as mãos sobre outra pessoa, e elevando seu cosmo consegue ativar as propriedades curativas da armadura, uma aura de energia envolve essa pessoa restabelecendo aos poucos suas forças e curando ferimentos graves. É uma técnica especial e perigosa, pois o cavaleiro fica extremamente exausto após usá-la, tornando-se vulnerável.
+
+[SelodosTrêsMundos]
+Tecnica=Selo dos Três Mundos
+Armadura=Triângulo
+Desc01=O cavaleiro ergue o braço direito reunindo nele muita energia, criando várias estrelas cósmicas enormes de seis pontas, que seguem girando na direção do oponente, penetrando em seu corpo, e além de causar danos podem paralisar seus movimentos. É uma técnica muito poderosa.
+
+--Ouro--
+
+[ExtinçãoEstrelar]
+Tecnica=Extinção Estelar
+Armadura=Áries
+Desc01=O cavaleiro reúne seu cosmo nas mãos e libera várias rajadas de luz em diversas direções que atingem o inimigo, um clarão é visto, e geralmente essa técnica desintegra tudo que toca.
+
+[MuralhadeCristal]
+Tecnica=Muralha de Cristal
+Armadura=Áries
+Desc01=O cavaleiro cria uma barreira em sua frente semelhante a uma parede, esta possui um altíssimo poder de defesa, além de refletir golpes lançados pelo inimigo contra ele mesmo. Só irá refletir golpes caso a potência empregada seja maior que a utilizada pelo oponente. Requer que o cavaleiro fique parado e concentrado.
+
+[RededeCristal]
+Tecnica=Rede de Cristal
+Armadura=Áries
+Desc01=O cavaleiro se movimenta rapidamente ao redor do inimigo, criando uma espécie de teia que o prende, e absorve os ataques desferidos pelo inimigo atingindo a ele mesmo.
+
+[RevoluçãoEstrelar]
+Tecnica=Revolução Estelar
+Armadura=Áries
+Desc01=O cavaleiro ergue uma das mãos elevando seu cosmo ao extremo, em seguida lança no inimigo inúmeras rajadas de luz semelhante a fragmentos de galáxias, causando danos imensos. É a técnica suprema de Áries.
+
+[GrandeChifre]
+Tecnica=Grande Chifre
+Armadura=Touro
+Desc01=O cavaleiro posiciona seus braços a frente e libera uma forte rajada de energia, com um poder descomunal, porem, tem as seguintes variações, se o Touro estiver em IAI (!Habilidade Postura de IAI), seu movimento de braço se torna invisivel, p/ o oponente, é como se ele não se movesse, tornando o golpe impossivel de contra-atacar, devido a sua grande força e incrivel velocidade, fora de IAI, o golpe perde a velocidade, seguindo apenas com a sua força. O golpe pode ser amplo, ou concentrado, pode atingir uma grande area, ou, centrado em um ponto, o que o torna ainda mais forte, pois toda sua potencia se localiza em apenas um lugar.
+
+[esquivailusória]
+Tecnica=Esquiva Ilusória
+Armadura=Touro
+Desc01=Aparentemente serve como refúgio contra um golpe, o atacante tem a certeza de que acertou este golpe, porém quando se da conta Touro apenas recolheu sua cabeça para dentro da armadura criando uma pequena ilusão que o faz ganhar tempo.
+
+[novatitânica]
+Tecnica=Nova Titânica
+Desc01=O cavaleiro de touro dá um poderoso soco no chão, e alguns segundos depois seu cosmo se expande de forma surpreendente criando um cataclisma no local, destruindo a maioria das coisas à sua volta.
+
+[OutraDimensão]
+Tecnica=Outra Dimensão
+Armadura=Gêmeos
+Desc01=O cavaleiro eleva seu cosmo de tal forma que é capaz de romper a barreira do espaço tempo e abre uma fenda dimensional, o qual começa a sugar o inimigo, ou os inimigos para dentro dela assim como o que há ao seu redor, se o mesmo for sugado ficará eternamente vagando por essa dimensão desconhecida.
+
+[ExplosãoGaláctica]
+Tecnica=Explosão Galáctica
+Armadura=Gêmeos
+Desc01=O cavaleiro eleva seu cosmo e faz surgir instantaneamente uma galáxia ao redor do adversário, uma vez rodeado pela mesma é impossível se desvencilhar, toda a pressão desta galáxia vai de encontro ao adversário, após comprimi-lo a galáxia se auto-destrói ao redor do mesmo, desencadeando explosões devastadoras à sua volta, tendo um poder de destruição incrível. É a técnica mais poderosa de Gêmeos.
+
+[SatãImperial]
+Tecnica=Satã Imperial
+Armadura=Gêmeos
+Desc01=O cavaleiro desfere um soco em extrema velocidade cortando o ar à sua frente e atingindo a testa do adversário, após ser atingido por este golpe o adversário pode ficar submisso aos desejos e influências geminianas, lutando até mesmo contra seus ideais.
+
+[OndasdoInferno]
+Tecnica=Ondas do Inferno
+Armadura=Câncer
+Desc01=O cavaleiro reúne seu cosmo na ponta do dedo indicador fazendo-o brilhar, e lança em seguida uma rajada de energia bastante poderosa contra o oponente, causando danos sérios.
+
+[MergulhodosEspíritos]
+Tecnica=Mergulho dos Espíritos
+Desc01=O cavaleiro concentra seu cosmo na ponta do dedo indicador e ergue o braço para cima, abrindo um buraco negro que é o portal de acesso ao Yomotsu, círculos de energia cósmica envolvem e comprimem o oponente levando-o ao mundo dos mortos, o cavaleiro fica livre para ir e vir, tanto quanto levar ou trazer a alma e o corpo do oponente.
+
+[IgnisFatus]
+Tecnica=Ignis Fatus
+Desc01=O cavaleiro expande seu cosmo ao redor do oponente, fogo fatuo surge ao seu redor e dilacera seu corpo por completo, deixando sua alma ao relento, que em seguida é enviada para o Yomotsu.
+
+[ChamasDemoníacasAzuis]
+Tecnica=Chamas Demoníacas Azuis
+Desc01=Já desguarnecida no Yomotsu, fendas se abrem e dela surgem imensas labaredas de fogo azul que consomem a alma do oponente, destruindo-a por completo.
+
+[VeladeCadáver]
+tecnica=Vela de Cadáver
+Desc01=Após a conjuração do Mergulho dos Espíritos, ao invés de se enviar o oponente ao Yomotsu, almas humanas são atraidas do Yomotsu para fora. As almas surgem incontavelmente atacando e puxando o oponente para dentro do buraco negro que aumenta de tamanho gradativamente, tanto quanto seu poder de sucção, quem entrar no buraco é morto e a alma vai ao mundo dos mortos. Câncer não é afetado pela técnica.
+
+[RelâmpagodePlasma]
+Tecnica=Relâmpago de Plasma
+Armadura=Leão
+Desc01=O cavaleiro desfere raios de energia na velocidade da luz e em várias direções, sendo o seu principal golpe e conseguindo estraçalhar vários inimigos ao mesmo tempo.
+
+[CápsuladoPoder]
+Tecnica=Cápsula do Poder
+Armadura=Leão
+Desc01=O cavaleiro reúne seu cosmo num dos punhos e descarrega um imenso relâmpago contra o oponente, sendo uma poderosa rajada de energia concentrada que causa danos sérios.
+
+[PresasRelâmpago]
+Tecnica=Presas Relâmpago
+Armadura=Leão
+Desc01=O cavaleiro concentra seu cosmo no punho e aplica um soco no chão fazendo brotar inúmeras colunas de luz que atingem o oponente de baixo para cima, sendo um ataque bastante eficaz numa luta contra vários oponentes.
+
+[ExplosãodeFótons]
+Tecnica=Explosão de Fótons
+Armadura=Leão
+Desc01=O cavaleiro explode seu cosmo criando uma atmosfera repleta de estrelas ao seu redor, em seguida todas elas convergem na direção do oponente penetrando em seu corpo e pressionando-o de dentro para fora, por fim o cavaleiro libera uma rajada de energia extremamente poderosa com um intenso brilho. É a técnica secreta de Leão.
+
+[CírculodasSeisExistências]
+Tecnica=Círculo das Seis Existências
+Armadura=Virgem
+Desc01=O cavaleiro paralisa o inimigo e lhe apresenta 6 mundos: o inferno, o mundo das feras, o mundo dos demônios, o mundo das chacinas, o mundo das emoções humanas e o paraíso; em seguida a alma do inimigo é lançada num desses mundos, ficando aprisionado nele para sempre.
+
+[Kahn]
+Tecnica=Kahn
+Armadura=Virgem
+Desc01=O cavaleiro se coloca numa posição de meditação e concentra todo o cosmo em si mesmo, criando uma esfera de energia ao seu redor com um poder de defesa quase insuperável.
+
+[BençãodoSenhordasTrevas]
+Tecnica=Benção do Senhor das Trevas
+Armadura=Virgem
+Desc01=O cavaleiro invoca vários espíritos das trevas que atacam o oponente, podendo apenas deixa-lo inconsciente quando ele possui um bom coração, ou destruindo sua alma quando possui um coração maligno.
+
+[RendiçãoDivina]
+Tecnica=Rendição Divina
+Armadura=Virgem
+Desc01=O cosmo do cavaleiro se eleva a um nível altíssimo, semelhante ao desabrochar de uma flor de lótus, em seguida ele reúne todo cosmo entre as mãos e desfere uma rajada de energia com um poder de destruição imenso, varrendo tudo que há ao redor.
+
+[TesourodoCéu]
+Tecnica=Tesouro do Céu
+Armadura=Virgem
+Desc01=O cavaleiro paralisa o inimigo com seu cosmo, deixando-o praticamente sem possibilidade de se defender ou contra-atacar, e em seguida vai suprimindo (retirando) um a um dos seus cinco sentidos, até deixá-lo num estado vegetativo.
+
+
+[AgulhaEscarlate]
+Tecnica=Agulha Escarlate
+Armadura=Escorpião
+Desc01=O cavaleiro emite de seu dedo indicador feixes de luz cor de escarlate que atingem o oponente em vários pontos de seu corpo, deixando em cada local atingido um pequeno furo semelhante a picada de um escorpião, causando muitas dores, sendo 15 disparos ao todo o último é chamado de Antares que só é utilizado caso alguém resista aos 14 tiros anteriores. É o disparo letal.
+
+[Antares]
+Tecnica=Antares
+Armadura=Escorpião
+Desc01=O cavaleiro só dispara a Antares quando necessário, para finalizar a luta, pois ela é o 15º disparo da Agulha Escarlate, sendo o último e mais letal de todos. É o golpe final de Escorpião.
+
+[FlechadeOuro]
+Tecnica=Flecha de Ouro
+Armadura=Sagitário
+Desc01=A Flecha de Ouro de Sagitário, conhecida como flecha da justiça, juntamente com o Arco são partes da armadura, e ao receber o cosmo do cavaleiro consegue transpor qualquer obstáculo.
+
+[TrovãoAtômico]
+Tecnica=Trovão Atômico
+Armadura=Sagitário
+Desc01=O cavaleiro dispara uma rajada de energia semelhante a um enorme relâmpago através de seu punho, sendo uma técnica bastante poderosa.
+
+[DestruiçãoInfinita]
+Tecnica=Destruição Infinita
+Armadura=Sagitário
+Desc01=O cavaleiro posiciona as duas mãos a frente do corpo e libera inúmeros feixes de energia semelhantes a flechas de luz, que perfuram tudo que estiver ao seu redor, sendo muito eficaz contra vários oponentes ao mesmo tempo.
+
+[Excalibur]
+Tecnica=Excalibur
+Armadura=Capricórnio
+Desc01=O cavaleiro estica o braço e o movimenta como uma espada, liberando rajadas que cortam o ar semelhantes ao corte de uma espada, retalhando tudo que atinge, é o reflexo da espada lendária Excalibur que o cavaleiro recebeu de Atena.
+
+[PedraSaltitante]
+Tecnica=Pedra Saltitante
+Armadura=Capricórnio
+Desc01=O cavaleiro esquiva para trás do oponente, prende-o colocando os pés por baixo dos braços dele, gira no ar algumas vezes verticalmente para trás e o arremessa para longe.
+
+[Dançaviolentadaexcalibur]
+Tecnica=Dança Violenta da Excalibur
+Armadura=Capricórnio
+Desc01=O cavaleiro desfere várias Excalibur ao mesmo tempo, em várias direções, essas poderosas rajadas cortantes vão convergindo cada vez mais, tornando muito difícil a esquiva do oponente.
+
+[RosasDiabólicasReais]
+Tecnica=Rosas Diabólicas Reais
+Armadura=Peixes
+Desc01=As Rosas Diabólicas Reais são vermelhas, e quando lançadas contra o oponente seu aroma vai entorpecendo seus sentidos, deixando-o debilitado e vulnerável, geralmente caindo inconsciente.
+
+[RosasPiranhas]
+Tecnica=Rosas Piranhas
+Armadura=Peixes
+Desc01=As Rosas Piranhas são negras, e quando lançadas contra o oponente atacam sua armadura para despedaça-la, perfurando e destruindo tudo que encontram pela frente.
+
+[RosasSangrentas]
+Tecnica=Rosas Sangrentas
+Armadura=Peixes
+Desc01=As Rosas Sangrentas são brancas, geralmente o cavaleiro lança apenas uma rosa contra o oponente, essa focaliza o alvo e uma vez fincada no coração dele, começa a sugar todo seu sangue lentamente, levando-o a morte.
+
+[TapetedeRosasDiabólicas]
+Tecnica=Tapete de Rosas Diabólicas
+Armadura=Peixes
+Desc01=O cavaleiro de Peixes após passar sua vida sobre reclusão e em contato direto com os venenos letais das rosas tornou seu sangue imune a estes e demais venenos letais, expandindo seu cosmo pela arena ele cobre todo o campo de batalha com rosas vermelhas que com seu aroma fazem lentamente o oponente se envenenar e perder a consciência.
+
+[EspinhosCarmesin]
+Tecnica=Espinhos Carmesin
+Armadura=Peixes
+Desc01=O cavaleiro de peixes, usando seu sangue, o transforma em espinhos carmesim, espinhos vermelhos de sangue, que perfuram o oponente, e com o contato com o sangue de peixes, envenenam o inimigo, lembrando que Peixes também fica debilitado pela perda de sangue.
+
+===MEIKAI===
+
+---NEGRAS---
+
+[MeteoroNegro]
+Tecnica=Meteoro Negro
+Armadura=Pégaso Negro
+Desc01=O cavaleiro dispara uma seqüência de socos, lançando vários meteoros negros de cosmo do seu punho, causando danos consideráveis.
+
+[CóleradoDragãoNegro]
+Tecnica=Cólera do Dragão Negro
+Armadura=Dragão Negro
+Desc01=Ao concentrar seu cosmo o cavaleiro faz surgir a silhueta de um grande Dragão Negro, que avança na direção do seu oponente com uma força avassaladora destruindo o que há no caminho.
+
+[TornadoNegro]
+Tecnica=Tornado Negro
+Armadura=Dragão Negro
+Desc01=O cavaleiro concentra toda sua energia na ponta do dedo indicador, e desfere uma enorme rajada de ar contra o oponente, arremessando-o para longe e causando muitos estragos.
+
+[TempestadeNegradeGelo]
+Tecnica=Tempestade Negra de Gelo
+Armadura=Cisne Negro
+Desc01=O cavaleiro usa o punho para criar um ar frio e negro, em seguida desfere uma rajada desse ar negro contra o inimigo, podendo chegar a congelar alguma parte de seu corpo.
+
+[CristaldeGelo]
+Tecnica=Cristal de Gelo
+Armadura=Cisne Negro
+Desc01=Um gigante cristal negro é produzido ao redor do adversário e o paralisa prendendo seus braços e pernas.
+
+[CorrenteNegra]
+Tecnica=Corrente Negra
+Armadura=Andrômeda Negro
+Desc01=O cavaleiro arremessa suas correntes negras envolvendo e aprisionando o oponente, além disso elas tomam a forma ilusória de serpentes que atacam o oponente sem trégua, causando vários danos.
+
+[GolpeFantasmadasTrevas]
+Tecnica=Golpe Fantasma das Trevas
+Armadura=Fênix Negro
+Desc01=O cavaleiro desfere um feixe de luz que atinge o cérebro do oponente, que se vê atacado por uma enorme fênix negra, além de criar terríveis ilusões que confundem sua mente.
+
+[ChamasdoInferno]
+Tecnica=Chamas do Inferno
+Armadura=Fênix Negro
+Desc01=Chamas são criadas pelo Fênix Negro e concentradas nos seus punhos, e depois lançadas contra o seu adversário. Se a luta estiver ocorrendo num local onde haja fogo, o Fênix Negro sugará a força deste fogo para aumentar a potência de seu ataque.
+
+[RequiémdeCordas]
+Tecnica=Requiém de Cordas
+Armadura=Harpa
+Desc01=O cavaleiro fantasma começa a tocar sua harpa enquanto cordas cósmicas envolvem e aprisionam o oponente, fazendo uma enorme pressão, apertando cada vez mais até levar o inimigo à morte.
+
+[SuaveMelodia]
+Tecnica=Suave Melodia
+Armadura=Harpa
+Desc01=O Cavaleiro de Harpa se concentra tocando uma Suave Melodia que entra diretamente no Cérebro de seu adversário, encantando-o e deixando-o paralisado e vulnerável a qualquer ataque.
+
+[FlechasEnvenenadas]
+Tecnica=Flechas Envenenadas
+Armadura=Flecha
+Desc01=O cavaleiro fantasma dispara inúmeras flechas cósmicas de seu punho, causando danos ao oponente, e algumas flechas podem se materializar de acordo com sua vontade, pegando o inimigo de surpresa.
+
+[FlechaSuprema]
+Tecnica=Flecha Suprema
+Armadura=Flecha
+Desc01=O Cavaleiro de Flecha lança suas flechas e depois concentra seu cosmo para que antes de atingir o seu adversário elas se tornem uma só com um enorme poder e pode ser capaz de destruir partes de uma armadura que já esteja danificada.
+
+[EscudoMortal]
+Tecnica=Escudo Mortal
+Armadura=Escudo
+Desc01=O cavaleiro fantasma salta reunindo seu cosmo na perna, e em seguida desce aplicando um poderoso chute com o corpo girando, num movimento semelhante a uma broca e que pode ser devastador ao atingir o oponente.
+
+[EscudoBumerangue]
+Tecnica=Escudo Bumerangue
+Armadura=Escudo
+Desc01=O Escudo é lançado para outra dimensão através de um portal. Após um tempo na luta, sem que o adversário perceba, outro Portal se abre atrás dele e o Escudo o atinge com força máxima.
+
+[TrovãodoCruzeirodoSul]
+Tecnica=Trovão do Cruzeiro do Sul
+Armadura=Cruzeiro do Sul
+Desc01=O cavaleiro fantasma posiciona seus braços em forma de cruz, e reunindo seu cosmos libera uma poderosa rajada de energia nesse formato, costuma causar vários danos ao oponente.
+
+[ChoqueMegatômicodeMeteoros]
+Tecnica=Choque Megatômico de Meteoros
+Armadura=Órion
+Desc01=O cavaleiro fantasma salta concentrando todo seu cosmo e encolhe seu corpo de forma arredondada, ele então desce girando envolto em energia, semelhante a um meteoro, e por fim atinge o oponente com um chute certeiro.
+
+[ExplosãodeMeteoros]
+Tecnica=Explosão de Meteoros
+Armadura=Órion
+Desc01=O poder de Órion se mescla com vários meteoros que são lançados contra o oponente, e estes meteoros só se desfazem quando atingem o seu alvo, e ao atingirem eles explodem.
+
+
+---Anjos da Morte---
+
+[PresasdaCobraAssasina]
+Tecnica=Presas da Cobra Assasina
+Armadura=Querubim
+Desc01=O guerreiro desfere em uma seqüência extremamente rápida de golpes com suas garras, perfurando o corpo do adversário em seus pontos vitais, fazendo com que perca muito sangue.
+
+[AsasdoInferno]
+Tecnica=Asas do Inferno
+Armadura=Belzebu
+Desc01=O anjo do mal salta descendo em seguida com os braços abertos num vôo rasante, a imagem de uma ave cósmica o envolve, e ele atravessa o oponente atingindo-o fatalmente.
+
+[PunhoMágicodeMantis]
+Tecnica=Punho Mágico de Mantis
+Armadura=Mantis
+Desc01=O anjo do mal concentra seu cosmo em suas enormes e afiadas garras, avançando contra o oponente ele aplica vários golpes que podem retalhar seu corpo e sua armadura.
+
+[FantasiadeMoa]
+Tecnica=Fantasia de Moa
+Armadura=Borboleta
+Desc01=O anjo do mal cria uma poderosa ilusão, geralmente levando o oponente a um belo local na presença de entes queridos para confundir sua mente, aproveitando o momento de distração ele o ataca de surpresa.
+

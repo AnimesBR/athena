@@ -1,0 +1,84 @@
+on *:text:!agora*:#:{
+  $verstaff(6)
+  var %x 1
+  while %x <= 12 {
+    set %arm $replace(%x,1,áries,2,touro,3,gêmeos,4,câncer,5,leão,6,virgem,7,libra,8,escorpião,9,sagitário,10,capricórnio,11,aquário,12,peixes)
+    if $dadosarm2(%arm,nome) == $null { halt }
+    echo -s %arm
+    var %dono = $dadosarm2(%arm,dono)
+    echo -s %dono
+    var %arm2 = $remove($dadosarm2(%arm,nome),$chr(32))
+    writeini cdz\dados\armaduras\ $+ %arm2 $+ .db arm dono Ninguém
+    remini cdz\dados\usuarios\ $+ %dono $+ .db doutrina
+    remini cdz\dados\usuarios\ $+ %dono $+ .db armadura
+    $escrever(%dono,dados,invocada,não)
+    /msg $chan $prestaff(Atenção,A armadura11 %arm 00foi liberada com sucesso)
+    .inc %x
+  }
+  /msg $chan 4Geral ownado no athena.... kkukukuku
+}
+
+on *:text:!add p?rola*:#:{
+  if ($dados($nick,staff,lv) > 1) { 
+    if !$3 { msg # 15,1(8 $+ $nick 7-> 0Você precisa indicar o que adicionar15) }
+    else {
+      var %totalp $ini(cdz\sistemas\[cdz]_perolas.db,0)
+      set %perola $3- $chr(91) $+ Postada por $nick em $date às $time $+ $chr(93)
+      writeini cdz\sistemas\[cdz]_perolas.db $calc(%totalp + 1) p %perola
+      var %totalp2 $ini(cdz\sistemas\[cdz]_perolas.db,0)
+      msg # $premsg(Atenção,A pérola foi adicionada com sucesso! Para visualiza-la digite: $opcao(!,pérola) $subopcao(%totalp2))
+    }
+  }
+}
+
+on *:text:!buscar*:#:{
+  var %totalperolas $ini(cdz\sistemas\[cdz]_perolas.db,0)
+  set %busca $2-
+  if !$2 { msg # $premsg(Atenção,Você precisa indicar o que buscar!) | halt }
+  var %x = 1
+  while %x <= %totalperolas {
+    if %busca isin $readini(cdz\sistemas\[cdz]_perolas.db,%x,p) { set %resultado %resultado $+ $iif(%resultado != $null,$chr(44),) %x }
+    inc %x
+  }
+  if %resultado == $null { msg # $premsg(Atenção,A busca por09 ' $+ $2- $+ '15 não retornou resultados) }
+  else {
+    msg # $premsg(Atenção,A busca por09 ' $+ $2- $+ '15 foi encontrada nas seguintes pérolas:11 %resultado)
+    unset %resultado
+  }
+}
+
+on *:text:!p?rola*:#:{
+  if %perolas == off { msg # $premsg(Atenção,Pérolas apenas de 15 em 15 segundos) | halt }
+  var %totalperolas $ini(cdz\sistemas\[cdz]_perolas.db,0)
+  if $right($1,1) == s { msg # 14,1(08P0érolas14) 0Total de Pérolas 14(11 $+ %totalperolas $+ 14) 15/0 $replace($readini(cdz\sistemas\[cdz]_perolas.db,$rand(1,%totalperolas),p),[,14[15,],14]0,<,07<08,>,07>0) | halt }
+  if !$2 { msg # 15,1(8 $+ $nick 7-> 0Você precisa indicar o número da pérola7!15) | halt }
+  if ($readini cdz\sistemas\[cdz]_perolas.db $2 p == $null) { msg # 15,1(8 $+ $nick 7-> 0Essa pérola é inexistente7!15) }
+  else {
+    msg # 14,1(08P0érolas14) 11->0 $replace($readini(cdz\sistemas\[cdz]_perolas.db,$2,p),[,14[15,],14]0,<,07<08,>,07>0) $+ 15)
+  }
+  set %perolas off
+  timerperola 1 15 set %perolas on
+}
+
+on *:text:!porcentagem*:#:{
+
+  if !$2-3 { msg # 0,1(Você precisa indicar o Nick e o fato) | halt }
+  else { var %porcentagem $rand(0,100)
+
+    var %nick $2
+    var %condicao $3- | echo -s %nick %condicao
+
+    var %x 1
+
+    while %x <= 255 {
+
+      if $remove(%nick,$chr(%x)) == deco { var %nick Você }
+      if $regex(%nick,[Dd]+.*[eE3]+.*.*?.*[oO0]+.*) > 0 { var %nick Você }
+      inc %x
+    }
+
+    if $regex(%condicao,[Dd].?[eE3].?.*?.?[oO0].?) > 0 { var %condicao de dar o cu, sendo enrabado por $nick(#animerpg ,$rand(1,$nick(#animerpg ,0))) e esfolado por $nick(#animerpg ,$rand(1,$nick(#animerpg ,0))) }
+
+    msg # 0,1(8 $+ %nick 0tem8 %porcentagem $+ %0 de chances de 14->8 %condicao $+ 0)
+  }
+}
